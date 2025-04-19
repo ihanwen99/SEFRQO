@@ -1,0 +1,4 @@
+/*+ SubqueryScan(web)
+ SubqueryScan(catalog)
+ SubqueryScan(store)
+ Leading(web catalog store) */

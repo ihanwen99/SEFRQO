@@ -1,0 +1,10 @@
+/*+ NestedLoop(k mk t ci n)
+ NestedLoop(k mk t ci)
+ NestedLoop(k mk t)
+ NestedLoop(k mk)
+ SeqScan(k)
+ IndexScan(mk)
+ IndexScan(t)
+ IndexScan(ci)
+ IndexScan(n)
+ Leading(((((k mk) t) ci) n)) */

@@ -1,0 +1,8 @@
+/*+ MergeJoin(v1 i1 v2 i2)
+ HashJoin(v2 i2)
+ HashJoin(v1 i1)
+ SubqueryScan(v1)
+ SeqScan(i1)
+ SubqueryScan(v2)
+ SeqScan(i2)
+ Leading(((v1 i1) (v2 i2))) */

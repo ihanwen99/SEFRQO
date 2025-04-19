@@ -1,0 +1,12 @@
+/*+ NestedLoop(it1 an n pi1 ci rt)
+ HashJoin(an n pi1 ci rt)
+ NestedLoop(an n pi1 ci)
+ NestedLoop(an n pi1)
+ HashJoin(an n)
+ SeqScan(it1)
+ SeqScan(an)
+ SeqScan(n)
+ IndexScan(pi1)
+ IndexScan(ci)
+ SeqScan(rt)
+ Leading((it1 ((((an n) pi1) ci) rt))) */

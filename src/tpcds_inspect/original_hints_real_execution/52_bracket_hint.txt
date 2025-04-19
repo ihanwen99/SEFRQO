@@ -1,0 +1,6 @@
+/*+ NestedLoop(store_sales dt item)
+ HashJoin(store_sales dt)
+ SeqScan(store_sales)
+ SeqScan(dt)
+ IndexScan(item)
+ Leading(((store_sales dt) item)) */

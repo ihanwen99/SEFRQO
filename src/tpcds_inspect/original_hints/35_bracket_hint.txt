@@ -1,0 +1,10 @@
+/*+ NestedLoop(ca store_sales date_dim c customer_demographics)
+ NestedLoop(ca store_sales date_dim c)
+ NestedLoop(store_sales date_dim c)
+ HashJoin(store_sales date_dim)
+ SeqScan(ca)
+ SeqScan(store_sales)
+ SeqScan(date_dim)
+ IndexScan(c)
+ IndexScan(customer_demographics)
+ Leading(((ca ((store_sales date_dim) c)) customer_demographics)) */

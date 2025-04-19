@@ -1,0 +1,12 @@
+/*+ HashJoin(wswscs wswscs_1 date_dim_1 date_dim)
+ MergeJoin(wswscs_1 date_dim_1 date_dim)
+ HashJoin(wswscs_1 date_dim_1)
+ HashJoin(catalog_sales web_sales date_dim_2)
+ SeqScan(catalog_sales)
+ SeqScan(web_sales)
+ SeqScan(date_dim_2)
+ CTEScan(wswscs)
+ CTEScan(wswscs_1)
+ SeqScan(date_dim_1)
+ SeqScan(date_dim)
+ Leading((catalog_sales web_sales date_dim_2) (wswscs ((wswscs_1 date_dim_1) date_dim))) */

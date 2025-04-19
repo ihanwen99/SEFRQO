@@ -1,0 +1,6 @@
+/*+ NestedLoop(web_sales date_dim item)
+ HashJoin(web_sales date_dim)
+ SeqScan(web_sales)
+ SeqScan(date_dim)
+ IndexScan(item)
+ Leading(((web_sales date_dim) item)) */

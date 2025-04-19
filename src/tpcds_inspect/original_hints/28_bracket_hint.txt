@@ -1,0 +1,12 @@
+/*+ NestedLoop(store_sales store_sales_1 store_sales_2 store_sales_3 store_sales_4 store_sales_5)
+ NestedLoop(store_sales store_sales_1 store_sales_2 store_sales_3 store_sales_4)
+ NestedLoop(store_sales store_sales_1 store_sales_2 store_sales_3)
+ NestedLoop(store_sales store_sales_1 store_sales_2)
+ NestedLoop(store_sales store_sales_1)
+ SeqScan(store_sales)
+ SeqScan(store_sales_1)
+ SeqScan(store_sales_2)
+ SeqScan(store_sales_3)
+ SeqScan(store_sales_4)
+ SeqScan(store_sales_5)
+ Leading((((((store_sales store_sales_1) store_sales_2) store_sales_3) store_sales_4) store_sales_5)) */

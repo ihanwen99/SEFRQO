@@ -1,0 +1,13 @@
+/*+ HashJoin(v1_lead v1_lag v1)
+ HashJoin(v1_lag v1)
+ HashJoin(store_sales date_dim item store)
+ NestedLoop(store_sales date_dim item)
+ HashJoin(store_sales date_dim)
+ SeqScan(store_sales)
+ SeqScan(date_dim)
+ IndexScan(item)
+ SeqScan(store)
+ CTEScan(v1_lead)
+ CTEScan(v1_lag)
+ CTEScan(v1)
+ Leading((((store_sales date_dim) item) store) (v1_lead (v1_lag v1))) */

@@ -1,0 +1,8 @@
+/*+ MergeJoin(store_sales date_dim catalog_sales date_dim_1)
+ HashJoin(catalog_sales date_dim_1)
+ HashJoin(store_sales date_dim)
+ SeqScan(store_sales)
+ SeqScan(date_dim)
+ SeqScan(catalog_sales)
+ SeqScan(date_dim_1)
+ Leading(((store_sales date_dim) (catalog_sales date_dim_1))) */

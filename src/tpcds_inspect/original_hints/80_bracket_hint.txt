@@ -1,0 +1,4 @@
+/*+ SubqueryScan(ssr)
+ SubqueryScan(csr)
+ SubqueryScan(wsr)
+ Leading(ssr csr wsr) */

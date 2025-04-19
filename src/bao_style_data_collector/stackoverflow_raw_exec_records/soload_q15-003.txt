@@ -1,0 +1,1387 @@
+{
+    "sql_file": "soload_q15-003.sql",
+    "query": "SELECT b1.name, count(*)\nFROM\nsite as s,\nso_user as u1,\ntag as t1,\ntag_question as tq1,\nquestion as q1,\nbadge as b1,\naccount as acc\nWHERE\ns.site_id = u1.site_id\nAND s.site_id = b1.site_id\nAND s.site_id = t1.site_id\nAND s.site_id = tq1.site_id\nAND s.site_id = q1.site_id\nAND t1.id = tq1.tag_id\nAND q1.id = tq1.question_id\nAND q1.owner_user_id = u1.id\nAND acc.id = u1.account_id\nAND b1.user_id = u1.id\nAND (q1.view_count >= 10)\nAND (q1.view_count <= 1000)\nAND (s.site_name in ('stackoverflow'))\nAND (t1.name in ('avr','chromium','clang++','comparator','nginx','paypal','sqoop'))\nAND (acc.website_url ILIKE ('%en'))\nGROUP BY b1.name\nORDER BY COUNT(*)\nDESC\nLIMIT 100",
+    "results": [
+        {
+            "arm": 0,
+            "execution_time": 6215.536,
+            "plan": [
+                {
+                    "Plan": {
+                        "Node Type": "Limit",
+                        "Parallel Aware": false,
+                        "Async Capable": false,
+                        "Startup Cost": 4490.59,
+                        "Total Cost": 4490.6,
+                        "Plan Rows": 1,
+                        "Plan Width": 19,
+                        "Actual Startup Time": 6215.426,
+                        "Actual Total Time": 6215.487,
+                        "Actual Rows": 45,
+                        "Actual Loops": 1,
+                        "Plans": [
+                            {
+                                "Node Type": "Sort",
+                                "Parent Relationship": "Outer",
+                                "Parallel Aware": false,
+                                "Async Capable": false,
+                                "Startup Cost": 4490.59,
+                                "Total Cost": 4490.6,
+                                "Plan Rows": 1,
+                                "Plan Width": 19,
+                                "Actual Startup Time": 6215.425,
+                                "Actual Total Time": 6215.484,
+                                "Actual Rows": 45,
+                                "Actual Loops": 1,
+                                "Sort Key": [
+                                    "(count(*)) DESC"
+                                ],
+                                "Sort Method": "quicksort",
+                                "Sort Space Used": 27,
+                                "Sort Space Type": "Memory",
+                                "Plans": [
+                                    {
+                                        "Node Type": "Aggregate",
+                                        "Strategy": "Sorted",
+                                        "Partial Mode": "Simple",
+                                        "Parent Relationship": "Outer",
+                                        "Parallel Aware": false,
+                                        "Async Capable": false,
+                                        "Startup Cost": 4490.56,
+                                        "Total Cost": 4490.58,
+                                        "Plan Rows": 1,
+                                        "Plan Width": 19,
+                                        "Actual Startup Time": 6215.362,
+                                        "Actual Total Time": 6215.472,
+                                        "Actual Rows": 45,
+                                        "Actual Loops": 1,
+                                        "Group Key": [
+                                            "b1.name"
+                                        ],
+                                        "Plans": [
+                                            {
+                                                "Node Type": "Sort",
+                                                "Parent Relationship": "Outer",
+                                                "Parallel Aware": false,
+                                                "Async Capable": false,
+                                                "Startup Cost": 4490.56,
+                                                "Total Cost": 4490.57,
+                                                "Plan Rows": 1,
+                                                "Plan Width": 11,
+                                                "Actual Startup Time": 6215.353,
+                                                "Actual Total Time": 6215.426,
+                                                "Actual Rows": 671,
+                                                "Actual Loops": 1,
+                                                "Sort Key": [
+                                                    "b1.name"
+                                                ],
+                                                "Sort Method": "quicksort",
+                                                "Sort Space Used": 42,
+                                                "Sort Space Type": "Memory",
+                                                "Plans": [
+                                                    {
+                                                        "Node Type": "Nested Loop",
+                                                        "Parent Relationship": "Outer",
+                                                        "Parallel Aware": false,
+                                                        "Async Capable": false,
+                                                        "Join Type": "Inner",
+                                                        "Startup Cost": 4265.76,
+                                                        "Total Cost": 4490.55,
+                                                        "Plan Rows": 1,
+                                                        "Plan Width": 11,
+                                                        "Actual Startup Time": 1353.512,
+                                                        "Actual Total Time": 6215.269,
+                                                        "Actual Rows": 671,
+                                                        "Actual Loops": 1,
+                                                        "Inner Unique": true,
+                                                        "Plans": [
+                                                            {
+                                                                "Node Type": "Gather",
+                                                                "Parent Relationship": "Outer",
+                                                                "Parallel Aware": false,
+                                                                "Async Capable": false,
+                                                                "Startup Cost": 4265.33,
+                                                                "Total Cost": 4483.54,
+                                                                "Plan Rows": 1,
+                                                                "Plan Width": 15,
+                                                                "Actual Startup Time": 12.211,
+                                                                "Actual Total Time": 4343.42,
+                                                                "Actual Rows": 786994,
+                                                                "Actual Loops": 1,
+                                                                "Workers Planned": 1,
+                                                                "Workers Launched": 1,
+                                                                "Single Copy": false,
+                                                                "Plans": [
+                                                                    {
+                                                                        "Node Type": "Nested Loop",
+                                                                        "Parent Relationship": "Outer",
+                                                                        "Parallel Aware": false,
+                                                                        "Async Capable": false,
+                                                                        "Join Type": "Inner",
+                                                                        "Startup Cost": 3265.33,
+                                                                        "Total Cost": 3483.44,
+                                                                        "Plan Rows": 1,
+                                                                        "Plan Width": 15,
+                                                                        "Actual Startup Time": 10.687,
+                                                                        "Actual Total Time": 4181.41,
+                                                                        "Actual Rows": 393497,
+                                                                        "Actual Loops": 2,
+                                                                        "Inner Unique": false,
+                                                                        "Join Filter": "((s.site_id = b1.site_id) AND (b1.user_id = q1.owner_user_id))",
+                                                                        "Rows Removed by Join Filter": 0,
+                                                                        "Workers": [],
+                                                                        "Plans": [
+                                                                            {
+                                                                                "Node Type": "Nested Loop",
+                                                                                "Parent Relationship": "Outer",
+                                                                                "Parallel Aware": false,
+                                                                                "Async Capable": false,
+                                                                                "Join Type": "Inner",
+                                                                                "Startup Cost": 3264.76,
+                                                                                "Total Cost": 3476.31,
+                                                                                "Plan Rows": 1,
+                                                                                "Plan Width": 32,
+                                                                                "Actual Startup Time": 10.42,
+                                                                                "Actual Total Time": 1040.35,
+                                                                                "Actual Rows": 10128,
+                                                                                "Actual Loops": 2,
+                                                                                "Inner Unique": true,
+                                                                                "Join Filter": "(s.site_id = u1.site_id)",
+                                                                                "Rows Removed by Join Filter": 0,
+                                                                                "Workers": [],
+                                                                                "Plans": [
+                                                                                    {
+                                                                                        "Node Type": "Nested Loop",
+                                                                                        "Parent Relationship": "Outer",
+                                                                                        "Parallel Aware": false,
+                                                                                        "Async Capable": false,
+                                                                                        "Join Type": "Inner",
+                                                                                        "Startup Cost": 3264.33,
+                                                                                        "Total Cost": 3414.55,
+                                                                                        "Plan Rows": 9,
+                                                                                        "Plan Width": 20,
+                                                                                        "Actual Startup Time": 10.306,
+                                                                                        "Actual Total Time": 446.322,
+                                                                                        "Actual Rows": 10128,
+                                                                                        "Actual Loops": 2,
+                                                                                        "Inner Unique": true,
+                                                                                        "Join Filter": "(s.site_id = q1.site_id)",
+                                                                                        "Rows Removed by Join Filter": 0,
+                                                                                        "Workers": [],
+                                                                                        "Plans": [
+                                                                                            {
+                                                                                                "Node Type": "Nested Loop",
+                                                                                                "Parent Relationship": "Outer",
+                                                                                                "Parallel Aware": false,
+                                                                                                "Async Capable": false,
+                                                                                                "Join Type": "Inner",
+                                                                                                "Startup Cost": 3263.89,
+                                                                                                "Total Cost": 3325.47,
+                                                                                                "Plan Rows": 13,
+                                                                                                "Plan Width": 16,
+                                                                                                "Actual Startup Time": 10.24,
+                                                                                                "Actual Total Time": 112.618,
+                                                                                                "Actual Rows": 13771,
+                                                                                                "Actual Loops": 2,
+                                                                                                "Inner Unique": false,
+                                                                                                "Join Filter": "(s.site_id = tq1.site_id)",
+                                                                                                "Rows Removed by Join Filter": 0,
+                                                                                                "Workers": [],
+                                                                                                "Plans": [
+                                                                                                    {
+                                                                                                        "Node Type": "Merge Join",
+                                                                                                        "Parent Relationship": "Outer",
+                                                                                                        "Parallel Aware": false,
+                                                                                                        "Async Capable": false,
+                                                                                                        "Join Type": "Inner",
+                                                                                                        "Startup Cost": 3263.33,
+                                                                                                        "Total Cost": 3263.4,
+                                                                                                        "Plan Rows": 1,
+                                                                                                        "Plan Width": 12,
+                                                                                                        "Actual Startup Time": 9.776,
+                                                                                                        "Actual Total Time": 9.788,
+                                                                                                        "Actual Rows": 4,
+                                                                                                        "Actual Loops": 2,
+                                                                                                        "Inner Unique": true,
+                                                                                                        "Merge Cond": "(t1.site_id = s.site_id)",
+                                                                                                        "Workers": [],
+                                                                                                        "Plans": [
+                                                                                                            {
+                                                                                                                "Node Type": "Sort",
+                                                                                                                "Parent Relationship": "Outer",
+                                                                                                                "Parallel Aware": false,
+                                                                                                                "Async Capable": false,
+                                                                                                                "Startup Cost": 3260.15,
+                                                                                                                "Total Cost": 3260.18,
+                                                                                                                "Plan Rows": 11,
+                                                                                                                "Plan Width": 8,
+                                                                                                                "Actual Startup Time": 9.748,
+                                                                                                                "Actual Total Time": 9.752,
+                                                                                                                "Actual Rows": 27,
+                                                                                                                "Actual Loops": 2,
+                                                                                                                "Sort Key": [
+                                                                                                                    "t1.site_id"
+                                                                                                                ],
+                                                                                                                "Sort Method": "quicksort",
+                                                                                                                "Sort Space Used": 26,
+                                                                                                                "Sort Space Type": "Memory",
+                                                                                                                "Workers": [
+                                                                                                                    {
+                                                                                                                        "Worker Number": 0,
+                                                                                                                        "Sort Method": "quicksort",
+                                                                                                                        "Sort Space Used": 25,
+                                                                                                                        "Sort Space Type": "Memory"
+                                                                                                                    }
+                                                                                                                ],
+                                                                                                                "Plans": [
+                                                                                                                    {
+                                                                                                                        "Node Type": "Seq Scan",
+                                                                                                                        "Parent Relationship": "Outer",
+                                                                                                                        "Parallel Aware": true,
+                                                                                                                        "Async Capable": false,
+                                                                                                                        "Relation Name": "tag",
+                                                                                                                        "Alias": "t1",
+                                                                                                                        "Startup Cost": 0.0,
+                                                                                                                        "Total Cost": 3259.96,
+                                                                                                                        "Plan Rows": 11,
+                                                                                                                        "Plan Width": 8,
+                                                                                                                        "Actual Startup Time": 0.176,
+                                                                                                                        "Actual Total Time": 9.733,
+                                                                                                                        "Actual Rows": 31,
+                                                                                                                        "Actual Loops": 2,
+                                                                                                                        "Filter": "((name)::text = ANY ('{avr,chromium,clang++,comparator,nginx,paypal,sqoop}'::text[]))",
+                                                                                                                        "Rows Removed by Filter": 93354,
+                                                                                                                        "Workers": []
+                                                                                                                    }
+                                                                                                                ]
+                                                                                                            },
+                                                                                                            {
+                                                                                                                "Node Type": "Sort",
+                                                                                                                "Parent Relationship": "Inner",
+                                                                                                                "Parallel Aware": false,
+                                                                                                                "Async Capable": false,
+                                                                                                                "Startup Cost": 3.17,
+                                                                                                                "Total Cost": 3.18,
+                                                                                                                "Plan Rows": 1,
+                                                                                                                "Plan Width": 4,
+                                                                                                                "Actual Startup Time": 0.024,
+                                                                                                                "Actual Total Time": 0.025,
+                                                                                                                "Actual Rows": 1,
+                                                                                                                "Actual Loops": 2,
+                                                                                                                "Sort Key": [
+                                                                                                                    "s.site_id"
+                                                                                                                ],
+                                                                                                                "Sort Method": "quicksort",
+                                                                                                                "Sort Space Used": 25,
+                                                                                                                "Sort Space Type": "Memory",
+                                                                                                                "Workers": [
+                                                                                                                    {
+                                                                                                                        "Worker Number": 0,
+                                                                                                                        "Sort Method": "quicksort",
+                                                                                                                        "Sort Space Used": 25,
+                                                                                                                        "Sort Space Type": "Memory"
+                                                                                                                    }
+                                                                                                                ],
+                                                                                                                "Plans": [
+                                                                                                                    {
+                                                                                                                        "Node Type": "Seq Scan",
+                                                                                                                        "Parent Relationship": "Outer",
+                                                                                                                        "Parallel Aware": false,
+                                                                                                                        "Async Capable": false,
+                                                                                                                        "Relation Name": "site",
+                                                                                                                        "Alias": "s",
+                                                                                                                        "Startup Cost": 0.0,
+                                                                                                                        "Total Cost": 3.16,
+                                                                                                                        "Plan Rows": 1,
+                                                                                                                        "Plan Width": 4,
+                                                                                                                        "Actual Startup Time": 0.017,
+                                                                                                                        "Actual Total Time": 0.017,
+                                                                                                                        "Actual Rows": 1,
+                                                                                                                        "Actual Loops": 2,
+                                                                                                                        "Filter": "((site_name)::text = 'stackoverflow'::text)",
+                                                                                                                        "Rows Removed by Filter": 172,
+                                                                                                                        "Workers": []
+                                                                                                                    }
+                                                                                                                ]
+                                                                                                            }
+                                                                                                        ]
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "Node Type": "Index Only Scan",
+                                                                                                        "Parent Relationship": "Inner",
+                                                                                                        "Parallel Aware": false,
+                                                                                                        "Async Capable": false,
+                                                                                                        "Scan Direction": "Forward",
+                                                                                                        "Index Name": "tag_question_site_id_tag_id_question_id_idx",
+                                                                                                        "Relation Name": "tag_question",
+                                                                                                        "Alias": "tq1",
+                                                                                                        "Startup Cost": 0.56,
+                                                                                                        "Total Cost": 61.69,
+                                                                                                        "Plan Rows": 31,
+                                                                                                        "Plan Width": 12,
+                                                                                                        "Actual Startup Time": 0.252,
+                                                                                                        "Actual Total Time": 28.985,
+                                                                                                        "Actual Rows": 3935,
+                                                                                                        "Actual Loops": 7,
+                                                                                                        "Index Cond": "((site_id = t1.site_id) AND (tag_id = t1.id))",
+                                                                                                        "Rows Removed by Index Recheck": 0,
+                                                                                                        "Heap Fetches": 27542,
+                                                                                                        "Workers": []
+                                                                                                    }
+                                                                                                ]
+                                                                                            },
+                                                                                            {
+                                                                                                "Node Type": "Index Scan",
+                                                                                                "Parent Relationship": "Inner",
+                                                                                                "Parallel Aware": false,
+                                                                                                "Async Capable": false,
+                                                                                                "Scan Direction": "Forward",
+                                                                                                "Index Name": "question_pkey",
+                                                                                                "Relation Name": "question",
+                                                                                                "Alias": "q1",
+                                                                                                "Startup Cost": 0.43,
+                                                                                                "Total Cost": 6.84,
+                                                                                                "Plan Rows": 1,
+                                                                                                "Plan Width": 12,
+                                                                                                "Actual Startup Time": 0.024,
+                                                                                                "Actual Total Time": 0.024,
+                                                                                                "Actual Rows": 1,
+                                                                                                "Actual Loops": 27542,
+                                                                                                "Index Cond": "((id = tq1.question_id) AND (site_id = tq1.site_id))",
+                                                                                                "Rows Removed by Index Recheck": 0,
+                                                                                                "Filter": "((view_count >= 10) AND (view_count <= 1000))",
+                                                                                                "Rows Removed by Filter": 0,
+                                                                                                "Workers": []
+                                                                                            }
+                                                                                        ]
+                                                                                    },
+                                                                                    {
+                                                                                        "Node Type": "Index Scan",
+                                                                                        "Parent Relationship": "Inner",
+                                                                                        "Parallel Aware": false,
+                                                                                        "Async Capable": false,
+                                                                                        "Scan Direction": "Forward",
+                                                                                        "Index Name": "so_user_pkey",
+                                                                                        "Relation Name": "so_user",
+                                                                                        "Alias": "u1",
+                                                                                        "Startup Cost": 0.44,
+                                                                                        "Total Cost": 6.85,
+                                                                                        "Plan Rows": 1,
+                                                                                        "Plan Width": 12,
+                                                                                        "Actual Startup Time": 0.058,
+                                                                                        "Actual Total Time": 0.058,
+                                                                                        "Actual Rows": 1,
+                                                                                        "Actual Loops": 20257,
+                                                                                        "Index Cond": "((id = q1.owner_user_id) AND (site_id = q1.site_id))",
+                                                                                        "Rows Removed by Index Recheck": 0,
+                                                                                        "Workers": []
+                                                                                    }
+                                                                                ]
+                                                                            },
+                                                                            {
+                                                                                "Node Type": "Index Only Scan",
+                                                                                "Parent Relationship": "Inner",
+                                                                                "Parallel Aware": false,
+                                                                                "Async Capable": false,
+                                                                                "Scan Direction": "Forward",
+                                                                                "Index Name": "badge_pkey",
+                                                                                "Relation Name": "badge",
+                                                                                "Alias": "b1",
+                                                                                "Startup Cost": 0.56,
+                                                                                "Total Cost": 7.12,
+                                                                                "Plan Rows": 1,
+                                                                                "Plan Width": 19,
+                                                                                "Actual Startup Time": 0.081,
+                                                                                "Actual Total Time": 0.307,
+                                                                                "Actual Rows": 39,
+                                                                                "Actual Loops": 20257,
+                                                                                "Index Cond": "((site_id = u1.site_id) AND (user_id = u1.id))",
+                                                                                "Rows Removed by Index Recheck": 0,
+                                                                                "Heap Fetches": 786994,
+                                                                                "Workers": []
+                                                                            }
+                                                                        ]
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "Node Type": "Index Scan",
+                                                                "Parent Relationship": "Inner",
+                                                                "Parallel Aware": false,
+                                                                "Async Capable": false,
+                                                                "Scan Direction": "Forward",
+                                                                "Index Name": "account_pkey",
+                                                                "Relation Name": "account",
+                                                                "Alias": "acc",
+                                                                "Startup Cost": 0.43,
+                                                                "Total Cost": 6.83,
+                                                                "Plan Rows": 1,
+                                                                "Plan Width": 4,
+                                                                "Actual Startup Time": 0.002,
+                                                                "Actual Total Time": 0.002,
+                                                                "Actual Rows": 0,
+                                                                "Actual Loops": 786994,
+                                                                "Index Cond": "(id = u1.account_id)",
+                                                                "Rows Removed by Index Recheck": 0,
+                                                                "Filter": "((website_url)::text ~~* '%en'::text)",
+                                                                "Rows Removed by Filter": 1
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "Planning Time": 17.607,
+                    "Triggers": [],
+                    "Execution Time": 6215.536
+                }
+            ],
+            "hints": [
+                "SET enable_hashjoin TO on",
+                "SET enable_indexonlyscan TO on",
+                "SET enable_indexscan TO on",
+                "SET enable_mergejoin TO on",
+                "SET enable_nestloop TO on",
+                "SET enable_seqscan TO on"
+            ]
+        },
+        {
+            "arm": 1,
+            "execution_time": 30000,
+            "plan": "Query execution error: canceling statement due to statement timeout\n",
+            "hints": [
+                "SET enable_hashjoin TO on",
+                "SET enable_indexonlyscan TO on",
+                "SET enable_indexscan TO on",
+                "SET enable_mergejoin TO on",
+                "SET enable_nestloop TO off",
+                "SET enable_seqscan TO on"
+            ]
+        },
+        {
+            "arm": 2,
+            "execution_time": 2426.168,
+            "plan": [
+                {
+                    "Plan": {
+                        "Node Type": "Limit",
+                        "Parallel Aware": false,
+                        "Async Capable": false,
+                        "Startup Cost": 4576.2,
+                        "Total Cost": 4576.21,
+                        "Plan Rows": 1,
+                        "Plan Width": 19,
+                        "Actual Startup Time": 2426.058,
+                        "Actual Total Time": 2426.118,
+                        "Actual Rows": 45,
+                        "Actual Loops": 1,
+                        "Plans": [
+                            {
+                                "Node Type": "Sort",
+                                "Parent Relationship": "Outer",
+                                "Parallel Aware": false,
+                                "Async Capable": false,
+                                "Startup Cost": 4576.2,
+                                "Total Cost": 4576.21,
+                                "Plan Rows": 1,
+                                "Plan Width": 19,
+                                "Actual Startup Time": 2426.057,
+                                "Actual Total Time": 2426.114,
+                                "Actual Rows": 45,
+                                "Actual Loops": 1,
+                                "Sort Key": [
+                                    "(count(*)) DESC"
+                                ],
+                                "Sort Method": "quicksort",
+                                "Sort Space Used": 27,
+                                "Sort Space Type": "Memory",
+                                "Plans": [
+                                    {
+                                        "Node Type": "Aggregate",
+                                        "Strategy": "Sorted",
+                                        "Partial Mode": "Simple",
+                                        "Parent Relationship": "Outer",
+                                        "Parallel Aware": false,
+                                        "Async Capable": false,
+                                        "Startup Cost": 4576.17,
+                                        "Total Cost": 4576.19,
+                                        "Plan Rows": 1,
+                                        "Plan Width": 19,
+                                        "Actual Startup Time": 2425.994,
+                                        "Actual Total Time": 2426.104,
+                                        "Actual Rows": 45,
+                                        "Actual Loops": 1,
+                                        "Group Key": [
+                                            "b1.name"
+                                        ],
+                                        "Plans": [
+                                            {
+                                                "Node Type": "Sort",
+                                                "Parent Relationship": "Outer",
+                                                "Parallel Aware": false,
+                                                "Async Capable": false,
+                                                "Startup Cost": 4576.17,
+                                                "Total Cost": 4576.18,
+                                                "Plan Rows": 1,
+                                                "Plan Width": 11,
+                                                "Actual Startup Time": 2425.987,
+                                                "Actual Total Time": 2426.059,
+                                                "Actual Rows": 671,
+                                                "Actual Loops": 1,
+                                                "Sort Key": [
+                                                    "b1.name"
+                                                ],
+                                                "Sort Method": "quicksort",
+                                                "Sort Space Used": 42,
+                                                "Sort Space Type": "Memory",
+                                                "Plans": [
+                                                    {
+                                                        "Node Type": "Nested Loop",
+                                                        "Parent Relationship": "Outer",
+                                                        "Parallel Aware": false,
+                                                        "Async Capable": false,
+                                                        "Join Type": "Inner",
+                                                        "Startup Cost": 1022.81,
+                                                        "Total Cost": 4576.16,
+                                                        "Plan Rows": 1,
+                                                        "Plan Width": 11,
+                                                        "Actual Startup Time": 359.86,
+                                                        "Actual Total Time": 2425.908,
+                                                        "Actual Rows": 671,
+                                                        "Actual Loops": 1,
+                                                        "Inner Unique": true,
+                                                        "Plans": [
+                                                            {
+                                                                "Node Type": "Nested Loop",
+                                                                "Parent Relationship": "Outer",
+                                                                "Parallel Aware": false,
+                                                                "Async Capable": false,
+                                                                "Join Type": "Inner",
+                                                                "Startup Cost": 1019.17,
+                                                                "Total Cost": 4568.4,
+                                                                "Plan Rows": 1,
+                                                                "Plan Width": 15,
+                                                                "Actual Startup Time": 14.685,
+                                                                "Actual Total Time": 1354.017,
+                                                                "Actual Rows": 786994,
+                                                                "Actual Loops": 1,
+                                                                "Inner Unique": false,
+                                                                "Join Filter": "((s.site_id = b1.site_id) AND (b1.user_id = q1.owner_user_id))",
+                                                                "Rows Removed by Join Filter": 0,
+                                                                "Plans": [
+                                                                    {
+                                                                        "Node Type": "Gather",
+                                                                        "Parent Relationship": "Outer",
+                                                                        "Parallel Aware": false,
+                                                                        "Async Capable": false,
+                                                                        "Startup Cost": 1015.33,
+                                                                        "Total Cost": 4560.53,
+                                                                        "Plan Rows": 1,
+                                                                        "Plan Width": 32,
+                                                                        "Actual Startup Time": 14.592,
+                                                                        "Actual Total Time": 241.724,
+                                                                        "Actual Rows": 20257,
+                                                                        "Actual Loops": 1,
+                                                                        "Workers Planned": 1,
+                                                                        "Workers Launched": 1,
+                                                                        "Single Copy": false,
+                                                                        "Plans": [
+                                                                            {
+                                                                                "Node Type": "Nested Loop",
+                                                                                "Parent Relationship": "Outer",
+                                                                                "Parallel Aware": false,
+                                                                                "Async Capable": false,
+                                                                                "Join Type": "Inner",
+                                                                                "Startup Cost": 15.33,
+                                                                                "Total Cost": 3560.43,
+                                                                                "Plan Rows": 1,
+                                                                                "Plan Width": 32,
+                                                                                "Actual Startup Time": 11.954,
+                                                                                "Actual Total Time": 453.262,
+                                                                                "Actual Rows": 10128,
+                                                                                "Actual Loops": 2,
+                                                                                "Inner Unique": true,
+                                                                                "Join Filter": "(s.site_id = u1.site_id)",
+                                                                                "Rows Removed by Join Filter": 0,
+                                                                                "Workers": [],
+                                                                                "Plans": [
+                                                                                    {
+                                                                                        "Node Type": "Nested Loop",
+                                                                                        "Parent Relationship": "Outer",
+                                                                                        "Parallel Aware": false,
+                                                                                        "Async Capable": false,
+                                                                                        "Join Type": "Inner",
+                                                                                        "Startup Cost": 11.69,
+                                                                                        "Total Cost": 3491.4,
+                                                                                        "Plan Rows": 9,
+                                                                                        "Plan Width": 20,
+                                                                                        "Actual Startup Time": 11.892,
+                                                                                        "Actual Total Time": 318.952,
+                                                                                        "Actual Rows": 10128,
+                                                                                        "Actual Loops": 2,
+                                                                                        "Inner Unique": true,
+                                                                                        "Join Filter": "(s.site_id = q1.site_id)",
+                                                                                        "Rows Removed by Join Filter": 0,
+                                                                                        "Workers": [],
+                                                                                        "Plans": [
+                                                                                            {
+                                                                                                "Node Type": "Nested Loop",
+                                                                                                "Parent Relationship": "Outer",
+                                                                                                "Parallel Aware": false,
+                                                                                                "Async Capable": false,
+                                                                                                "Join Type": "Inner",
+                                                                                                "Startup Cost": 8.06,
+                                                                                                "Total Cost": 3391.74,
+                                                                                                "Plan Rows": 13,
+                                                                                                "Plan Width": 16,
+                                                                                                "Actual Startup Time": 11.472,
+                                                                                                "Actual Total Time": 71.685,
+                                                                                                "Actual Rows": 13771,
+                                                                                                "Actual Loops": 2,
+                                                                                                "Inner Unique": false,
+                                                                                                "Join Filter": "(s.site_id = tq1.site_id)",
+                                                                                                "Rows Removed by Join Filter": 0,
+                                                                                                "Workers": [],
+                                                                                                "Plans": [
+                                                                                                    {
+                                                                                                        "Node Type": "Hash Join",
+                                                                                                        "Parent Relationship": "Outer",
+                                                                                                        "Parallel Aware": false,
+                                                                                                        "Async Capable": false,
+                                                                                                        "Join Type": "Inner",
+                                                                                                        "Startup Cost": 3.18,
+                                                                                                        "Total Cost": 3263.17,
+                                                                                                        "Plan Rows": 1,
+                                                                                                        "Plan Width": 12,
+                                                                                                        "Actual Startup Time": 10.697,
+                                                                                                        "Actual Total Time": 16.011,
+                                                                                                        "Actual Rows": 4,
+                                                                                                        "Actual Loops": 2,
+                                                                                                        "Inner Unique": true,
+                                                                                                        "Hash Cond": "(t1.site_id = s.site_id)",
+                                                                                                        "Workers": [],
+                                                                                                        "Plans": [
+                                                                                                            {
+                                                                                                                "Node Type": "Seq Scan",
+                                                                                                                "Parent Relationship": "Outer",
+                                                                                                                "Parallel Aware": true,
+                                                                                                                "Async Capable": false,
+                                                                                                                "Relation Name": "tag",
+                                                                                                                "Alias": "t1",
+                                                                                                                "Startup Cost": 0.0,
+                                                                                                                "Total Cost": 3259.96,
+                                                                                                                "Plan Rows": 11,
+                                                                                                                "Plan Width": 8,
+                                                                                                                "Actual Startup Time": 1.389,
+                                                                                                                "Actual Total Time": 15.939,
+                                                                                                                "Actual Rows": 31,
+                                                                                                                "Actual Loops": 2,
+                                                                                                                "Filter": "((name)::text = ANY ('{avr,chromium,clang++,comparator,nginx,paypal,sqoop}'::text[]))",
+                                                                                                                "Rows Removed by Filter": 93354,
+                                                                                                                "Workers": []
+                                                                                                            },
+                                                                                                            {
+                                                                                                                "Node Type": "Hash",
+                                                                                                                "Parent Relationship": "Inner",
+                                                                                                                "Parallel Aware": false,
+                                                                                                                "Async Capable": false,
+                                                                                                                "Startup Cost": 3.16,
+                                                                                                                "Total Cost": 3.16,
+                                                                                                                "Plan Rows": 1,
+                                                                                                                "Plan Width": 4,
+                                                                                                                "Actual Startup Time": 0.015,
+                                                                                                                "Actual Total Time": 0.016,
+                                                                                                                "Actual Rows": 1,
+                                                                                                                "Actual Loops": 2,
+                                                                                                                "Hash Buckets": 1024,
+                                                                                                                "Original Hash Buckets": 1024,
+                                                                                                                "Hash Batches": 1,
+                                                                                                                "Original Hash Batches": 1,
+                                                                                                                "Peak Memory Usage": 9,
+                                                                                                                "Workers": [],
+                                                                                                                "Plans": [
+                                                                                                                    {
+                                                                                                                        "Node Type": "Seq Scan",
+                                                                                                                        "Parent Relationship": "Outer",
+                                                                                                                        "Parallel Aware": false,
+                                                                                                                        "Async Capable": false,
+                                                                                                                        "Relation Name": "site",
+                                                                                                                        "Alias": "s",
+                                                                                                                        "Startup Cost": 0.0,
+                                                                                                                        "Total Cost": 3.16,
+                                                                                                                        "Plan Rows": 1,
+                                                                                                                        "Plan Width": 4,
+                                                                                                                        "Actual Startup Time": 0.011,
+                                                                                                                        "Actual Total Time": 0.012,
+                                                                                                                        "Actual Rows": 1,
+                                                                                                                        "Actual Loops": 2,
+                                                                                                                        "Filter": "((site_name)::text = 'stackoverflow'::text)",
+                                                                                                                        "Rows Removed by Filter": 172,
+                                                                                                                        "Workers": []
+                                                                                                                    }
+                                                                                                                ]
+                                                                                                            }
+                                                                                                        ]
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "Node Type": "Bitmap Heap Scan",
+                                                                                                        "Parent Relationship": "Inner",
+                                                                                                        "Parallel Aware": false,
+                                                                                                        "Async Capable": false,
+                                                                                                        "Relation Name": "tag_question",
+                                                                                                        "Alias": "tq1",
+                                                                                                        "Startup Cost": 4.88,
+                                                                                                        "Total Cost": 128.19,
+                                                                                                        "Plan Rows": 31,
+                                                                                                        "Plan Width": 12,
+                                                                                                        "Actual Startup Time": 0.919,
+                                                                                                        "Actual Total Time": 15.493,
+                                                                                                        "Actual Rows": 3935,
+                                                                                                        "Actual Loops": 7,
+                                                                                                        "Recheck Cond": "((t1.site_id = site_id) AND (t1.id = tag_id))",
+                                                                                                        "Rows Removed by Index Recheck": 0,
+                                                                                                        "Exact Heap Blocks": 6700,
+                                                                                                        "Lossy Heap Blocks": 0,
+                                                                                                        "Workers": [],
+                                                                                                        "Plans": [
+                                                                                                            {
+                                                                                                                "Node Type": "Bitmap Index Scan",
+                                                                                                                "Parent Relationship": "Outer",
+                                                                                                                "Parallel Aware": false,
+                                                                                                                "Async Capable": false,
+                                                                                                                "Index Name": "tag_question_site_id_tag_id_question_id_idx",
+                                                                                                                "Startup Cost": 0.0,
+                                                                                                                "Total Cost": 4.88,
+                                                                                                                "Plan Rows": 31,
+                                                                                                                "Plan Width": 0,
+                                                                                                                "Actual Startup Time": 0.502,
+                                                                                                                "Actual Total Time": 0.502,
+                                                                                                                "Actual Rows": 3935,
+                                                                                                                "Actual Loops": 7,
+                                                                                                                "Index Cond": "((site_id = t1.site_id) AND (tag_id = t1.id))",
+                                                                                                                "Workers": []
+                                                                                                            }
+                                                                                                        ]
+                                                                                                    }
+                                                                                                ]
+                                                                                            },
+                                                                                            {
+                                                                                                "Node Type": "Bitmap Heap Scan",
+                                                                                                "Parent Relationship": "Inner",
+                                                                                                "Parallel Aware": false,
+                                                                                                "Async Capable": false,
+                                                                                                "Relation Name": "question",
+                                                                                                "Alias": "q1",
+                                                                                                "Startup Cost": 3.63,
+                                                                                                "Total Cost": 7.65,
+                                                                                                "Plan Rows": 1,
+                                                                                                "Plan Width": 12,
+                                                                                                "Actual Startup Time": 0.018,
+                                                                                                "Actual Total Time": 0.018,
+                                                                                                "Actual Rows": 1,
+                                                                                                "Actual Loops": 27542,
+                                                                                                "Recheck Cond": "((tq1.question_id = id) AND (tq1.site_id = site_id))",
+                                                                                                "Rows Removed by Index Recheck": 0,
+                                                                                                "Filter": "((view_count >= 10) AND (view_count <= 1000))",
+                                                                                                "Rows Removed by Filter": 0,
+                                                                                                "Exact Heap Blocks": 6882,
+                                                                                                "Lossy Heap Blocks": 0,
+                                                                                                "Workers": [],
+                                                                                                "Plans": [
+                                                                                                    {
+                                                                                                        "Node Type": "Bitmap Index Scan",
+                                                                                                        "Parent Relationship": "Outer",
+                                                                                                        "Parallel Aware": false,
+                                                                                                        "Async Capable": false,
+                                                                                                        "Index Name": "question_pkey",
+                                                                                                        "Startup Cost": 0.0,
+                                                                                                        "Total Cost": 3.63,
+                                                                                                        "Plan Rows": 1,
+                                                                                                        "Plan Width": 0,
+                                                                                                        "Actual Startup Time": 0.014,
+                                                                                                        "Actual Total Time": 0.014,
+                                                                                                        "Actual Rows": 1,
+                                                                                                        "Actual Loops": 27542,
+                                                                                                        "Index Cond": "((id = tq1.question_id) AND (site_id = tq1.site_id))",
+                                                                                                        "Workers": []
+                                                                                                    }
+                                                                                                ]
+                                                                                            }
+                                                                                        ]
+                                                                                    },
+                                                                                    {
+                                                                                        "Node Type": "Bitmap Heap Scan",
+                                                                                        "Parent Relationship": "Inner",
+                                                                                        "Parallel Aware": false,
+                                                                                        "Async Capable": false,
+                                                                                        "Relation Name": "so_user",
+                                                                                        "Alias": "u1",
+                                                                                        "Startup Cost": 3.64,
+                                                                                        "Total Cost": 7.66,
+                                                                                        "Plan Rows": 1,
+                                                                                        "Plan Width": 12,
+                                                                                        "Actual Startup Time": 0.013,
+                                                                                        "Actual Total Time": 0.013,
+                                                                                        "Actual Rows": 1,
+                                                                                        "Actual Loops": 20257,
+                                                                                        "Recheck Cond": "((id = q1.owner_user_id) AND (site_id = q1.site_id))",
+                                                                                        "Rows Removed by Index Recheck": 0,
+                                                                                        "Exact Heap Blocks": 5392,
+                                                                                        "Lossy Heap Blocks": 0,
+                                                                                        "Workers": [],
+                                                                                        "Plans": [
+                                                                                            {
+                                                                                                "Node Type": "Bitmap Index Scan",
+                                                                                                "Parent Relationship": "Outer",
+                                                                                                "Parallel Aware": false,
+                                                                                                "Async Capable": false,
+                                                                                                "Index Name": "so_user_pkey",
+                                                                                                "Startup Cost": 0.0,
+                                                                                                "Total Cost": 3.64,
+                                                                                                "Plan Rows": 1,
+                                                                                                "Plan Width": 0,
+                                                                                                "Actual Startup Time": 0.01,
+                                                                                                "Actual Total Time": 0.01,
+                                                                                                "Actual Rows": 1,
+                                                                                                "Actual Loops": 20257,
+                                                                                                "Index Cond": "((id = q1.owner_user_id) AND (site_id = q1.site_id))",
+                                                                                                "Workers": []
+                                                                                            }
+                                                                                        ]
+                                                                                    }
+                                                                                ]
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    {
+                                                                        "Node Type": "Bitmap Heap Scan",
+                                                                        "Parent Relationship": "Inner",
+                                                                        "Parallel Aware": false,
+                                                                        "Async Capable": false,
+                                                                        "Relation Name": "badge",
+                                                                        "Alias": "b1",
+                                                                        "Startup Cost": 3.84,
+                                                                        "Total Cost": 7.86,
+                                                                        "Plan Rows": 1,
+                                                                        "Plan Width": 19,
+                                                                        "Actual Startup Time": 0.01,
+                                                                        "Actual Total Time": 0.051,
+                                                                        "Actual Rows": 39,
+                                                                        "Actual Loops": 20257,
+                                                                        "Recheck Cond": "((u1.site_id = site_id) AND (u1.id = user_id))",
+                                                                        "Rows Removed by Index Recheck": 0,
+                                                                        "Exact Heap Blocks": 774145,
+                                                                        "Lossy Heap Blocks": 0,
+                                                                        "Plans": [
+                                                                            {
+                                                                                "Node Type": "Bitmap Index Scan",
+                                                                                "Parent Relationship": "Outer",
+                                                                                "Parallel Aware": false,
+                                                                                "Async Capable": false,
+                                                                                "Index Name": "badge_pkey",
+                                                                                "Startup Cost": 0.0,
+                                                                                "Total Cost": 3.84,
+                                                                                "Plan Rows": 1,
+                                                                                "Plan Width": 0,
+                                                                                "Actual Startup Time": 0.006,
+                                                                                "Actual Total Time": 0.006,
+                                                                                "Actual Rows": 39,
+                                                                                "Actual Loops": 20257,
+                                                                                "Index Cond": "((site_id = u1.site_id) AND (user_id = u1.id))"
+                                                                            }
+                                                                        ]
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "Node Type": "Bitmap Heap Scan",
+                                                                "Parent Relationship": "Inner",
+                                                                "Parallel Aware": false,
+                                                                "Async Capable": false,
+                                                                "Relation Name": "account",
+                                                                "Alias": "acc",
+                                                                "Startup Cost": 3.63,
+                                                                "Total Cost": 7.65,
+                                                                "Plan Rows": 1,
+                                                                "Plan Width": 4,
+                                                                "Actual Startup Time": 0.001,
+                                                                "Actual Total Time": 0.001,
+                                                                "Actual Rows": 0,
+                                                                "Actual Loops": 786994,
+                                                                "Recheck Cond": "(id = u1.account_id)",
+                                                                "Rows Removed by Index Recheck": 0,
+                                                                "Filter": "((website_url)::text ~~* '%en'::text)",
+                                                                "Rows Removed by Filter": 1,
+                                                                "Exact Heap Blocks": 786994,
+                                                                "Lossy Heap Blocks": 0,
+                                                                "Plans": [
+                                                                    {
+                                                                        "Node Type": "Bitmap Index Scan",
+                                                                        "Parent Relationship": "Outer",
+                                                                        "Parallel Aware": false,
+                                                                        "Async Capable": false,
+                                                                        "Index Name": "account_pkey",
+                                                                        "Startup Cost": 0.0,
+                                                                        "Total Cost": 3.63,
+                                                                        "Plan Rows": 1,
+                                                                        "Plan Width": 0,
+                                                                        "Actual Startup Time": 0.001,
+                                                                        "Actual Total Time": 0.001,
+                                                                        "Actual Rows": 1,
+                                                                        "Actual Loops": 786994,
+                                                                        "Index Cond": "(id = u1.account_id)"
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "Planning Time": 6.224,
+                    "Triggers": [],
+                    "Execution Time": 2426.168
+                }
+            ],
+            "hints": [
+                "SET enable_hashjoin TO on",
+                "SET enable_indexonlyscan TO on",
+                "SET enable_indexscan TO off",
+                "SET enable_mergejoin TO off",
+                "SET enable_nestloop TO on",
+                "SET enable_seqscan TO on"
+            ]
+        },
+        {
+            "arm": 3,
+            "execution_time": 30000,
+            "plan": "Query execution error: canceling statement due to statement timeout\n",
+            "hints": [
+                "SET enable_hashjoin TO on",
+                "SET enable_indexonlyscan TO on",
+                "SET enable_indexscan TO off",
+                "SET enable_mergejoin TO off",
+                "SET enable_nestloop TO off",
+                "SET enable_seqscan TO on"
+            ]
+        },
+        {
+            "arm": 4,
+            "execution_time": 1768.084,
+            "plan": [
+                {
+                    "Plan": {
+                        "Node Type": "Limit",
+                        "Parallel Aware": false,
+                        "Async Capable": false,
+                        "Startup Cost": 4490.36,
+                        "Total Cost": 4490.37,
+                        "Plan Rows": 1,
+                        "Plan Width": 19,
+                        "Actual Startup Time": 1767.971,
+                        "Actual Total Time": 1768.036,
+                        "Actual Rows": 45,
+                        "Actual Loops": 1,
+                        "Plans": [
+                            {
+                                "Node Type": "Sort",
+                                "Parent Relationship": "Outer",
+                                "Parallel Aware": false,
+                                "Async Capable": false,
+                                "Startup Cost": 4490.36,
+                                "Total Cost": 4490.37,
+                                "Plan Rows": 1,
+                                "Plan Width": 19,
+                                "Actual Startup Time": 1767.969,
+                                "Actual Total Time": 1768.032,
+                                "Actual Rows": 45,
+                                "Actual Loops": 1,
+                                "Sort Key": [
+                                    "(count(*)) DESC"
+                                ],
+                                "Sort Method": "quicksort",
+                                "Sort Space Used": 27,
+                                "Sort Space Type": "Memory",
+                                "Plans": [
+                                    {
+                                        "Node Type": "Aggregate",
+                                        "Strategy": "Sorted",
+                                        "Partial Mode": "Simple",
+                                        "Parent Relationship": "Outer",
+                                        "Parallel Aware": false,
+                                        "Async Capable": false,
+                                        "Startup Cost": 4490.33,
+                                        "Total Cost": 4490.35,
+                                        "Plan Rows": 1,
+                                        "Plan Width": 19,
+                                        "Actual Startup Time": 1767.904,
+                                        "Actual Total Time": 1768.021,
+                                        "Actual Rows": 45,
+                                        "Actual Loops": 1,
+                                        "Group Key": [
+                                            "b1.name"
+                                        ],
+                                        "Plans": [
+                                            {
+                                                "Node Type": "Sort",
+                                                "Parent Relationship": "Outer",
+                                                "Parallel Aware": false,
+                                                "Async Capable": false,
+                                                "Startup Cost": 4490.33,
+                                                "Total Cost": 4490.34,
+                                                "Plan Rows": 1,
+                                                "Plan Width": 11,
+                                                "Actual Startup Time": 1767.896,
+                                                "Actual Total Time": 1767.974,
+                                                "Actual Rows": 671,
+                                                "Actual Loops": 1,
+                                                "Sort Key": [
+                                                    "b1.name"
+                                                ],
+                                                "Sort Method": "quicksort",
+                                                "Sort Space Used": 42,
+                                                "Sort Space Type": "Memory",
+                                                "Plans": [
+                                                    {
+                                                        "Node Type": "Nested Loop",
+                                                        "Parent Relationship": "Outer",
+                                                        "Parallel Aware": false,
+                                                        "Async Capable": false,
+                                                        "Join Type": "Inner",
+                                                        "Startup Cost": 1005.61,
+                                                        "Total Cost": 4490.32,
+                                                        "Plan Rows": 1,
+                                                        "Plan Width": 11,
+                                                        "Actual Startup Time": 145.794,
+                                                        "Actual Total Time": 1767.829,
+                                                        "Actual Rows": 671,
+                                                        "Actual Loops": 1,
+                                                        "Inner Unique": true,
+                                                        "Plans": [
+                                                            {
+                                                                "Node Type": "Nested Loop",
+                                                                "Parent Relationship": "Outer",
+                                                                "Parallel Aware": false,
+                                                                "Async Capable": false,
+                                                                "Join Type": "Inner",
+                                                                "Startup Cost": 1005.18,
+                                                                "Total Cost": 4483.31,
+                                                                "Plan Rows": 1,
+                                                                "Plan Width": 15,
+                                                                "Actual Startup Time": 10.458,
+                                                                "Actual Total Time": 931.04,
+                                                                "Actual Rows": 786994,
+                                                                "Actual Loops": 1,
+                                                                "Inner Unique": false,
+                                                                "Join Filter": "((s.site_id = b1.site_id) AND (b1.user_id = q1.owner_user_id))",
+                                                                "Rows Removed by Join Filter": 0,
+                                                                "Plans": [
+                                                                    {
+                                                                        "Node Type": "Gather",
+                                                                        "Parent Relationship": "Outer",
+                                                                        "Parallel Aware": false,
+                                                                        "Async Capable": false,
+                                                                        "Startup Cost": 1004.61,
+                                                                        "Total Cost": 4476.18,
+                                                                        "Plan Rows": 1,
+                                                                        "Plan Width": 32,
+                                                                        "Actual Startup Time": 10.445,
+                                                                        "Actual Total Time": 29.383,
+                                                                        "Actual Rows": 20257,
+                                                                        "Actual Loops": 1,
+                                                                        "Workers Planned": 1,
+                                                                        "Workers Launched": 1,
+                                                                        "Single Copy": false,
+                                                                        "Plans": [
+                                                                            {
+                                                                                "Node Type": "Nested Loop",
+                                                                                "Parent Relationship": "Outer",
+                                                                                "Parallel Aware": false,
+                                                                                "Async Capable": false,
+                                                                                "Join Type": "Inner",
+                                                                                "Startup Cost": 4.61,
+                                                                                "Total Cost": 3476.08,
+                                                                                "Plan Rows": 1,
+                                                                                "Plan Width": 32,
+                                                                                "Actual Startup Time": 7.967,
+                                                                                "Actual Total Time": 211.896,
+                                                                                "Actual Rows": 10128,
+                                                                                "Actual Loops": 2,
+                                                                                "Inner Unique": true,
+                                                                                "Join Filter": "(s.site_id = u1.site_id)",
+                                                                                "Rows Removed by Join Filter": 0,
+                                                                                "Workers": [],
+                                                                                "Plans": [
+                                                                                    {
+                                                                                        "Node Type": "Nested Loop",
+                                                                                        "Parent Relationship": "Outer",
+                                                                                        "Parallel Aware": false,
+                                                                                        "Async Capable": false,
+                                                                                        "Join Type": "Inner",
+                                                                                        "Startup Cost": 4.17,
+                                                                                        "Total Cost": 3414.32,
+                                                                                        "Plan Rows": 9,
+                                                                                        "Plan Width": 20,
+                                                                                        "Actual Startup Time": 7.895,
+                                                                                        "Actual Total Time": 142.655,
+                                                                                        "Actual Rows": 10128,
+                                                                                        "Actual Loops": 2,
+                                                                                        "Inner Unique": true,
+                                                                                        "Join Filter": "(s.site_id = q1.site_id)",
+                                                                                        "Rows Removed by Join Filter": 0,
+                                                                                        "Workers": [],
+                                                                                        "Plans": [
+                                                                                            {
+                                                                                                "Node Type": "Nested Loop",
+                                                                                                "Parent Relationship": "Outer",
+                                                                                                "Parallel Aware": false,
+                                                                                                "Async Capable": false,
+                                                                                                "Join Type": "Inner",
+                                                                                                "Startup Cost": 3.74,
+                                                                                                "Total Cost": 3325.24,
+                                                                                                "Plan Rows": 13,
+                                                                                                "Plan Width": 16,
+                                                                                                "Actual Startup Time": 6.76,
+                                                                                                "Actual Total Time": 51.616,
+                                                                                                "Actual Rows": 13771,
+                                                                                                "Actual Loops": 2,
+                                                                                                "Inner Unique": false,
+                                                                                                "Join Filter": "(s.site_id = tq1.site_id)",
+                                                                                                "Rows Removed by Join Filter": 0,
+                                                                                                "Workers": [],
+                                                                                                "Plans": [
+                                                                                                    {
+                                                                                                        "Node Type": "Hash Join",
+                                                                                                        "Parent Relationship": "Outer",
+                                                                                                        "Parallel Aware": false,
+                                                                                                        "Async Capable": false,
+                                                                                                        "Join Type": "Inner",
+                                                                                                        "Startup Cost": 3.18,
+                                                                                                        "Total Cost": 3263.17,
+                                                                                                        "Plan Rows": 1,
+                                                                                                        "Plan Width": 12,
+                                                                                                        "Actual Startup Time": 6.712,
+                                                                                                        "Actual Total Time": 11.213,
+                                                                                                        "Actual Rows": 4,
+                                                                                                        "Actual Loops": 2,
+                                                                                                        "Inner Unique": true,
+                                                                                                        "Hash Cond": "(t1.site_id = s.site_id)",
+                                                                                                        "Workers": [],
+                                                                                                        "Plans": [
+                                                                                                            {
+                                                                                                                "Node Type": "Seq Scan",
+                                                                                                                "Parent Relationship": "Outer",
+                                                                                                                "Parallel Aware": true,
+                                                                                                                "Async Capable": false,
+                                                                                                                "Relation Name": "tag",
+                                                                                                                "Alias": "t1",
+                                                                                                                "Startup Cost": 0.0,
+                                                                                                                "Total Cost": 3259.96,
+                                                                                                                "Plan Rows": 11,
+                                                                                                                "Plan Width": 8,
+                                                                                                                "Actual Startup Time": 0.166,
+                                                                                                                "Actual Total Time": 11.124,
+                                                                                                                "Actual Rows": 31,
+                                                                                                                "Actual Loops": 2,
+                                                                                                                "Filter": "((name)::text = ANY ('{avr,chromium,clang++,comparator,nginx,paypal,sqoop}'::text[]))",
+                                                                                                                "Rows Removed by Filter": 93354,
+                                                                                                                "Workers": []
+                                                                                                            },
+                                                                                                            {
+                                                                                                                "Node Type": "Hash",
+                                                                                                                "Parent Relationship": "Inner",
+                                                                                                                "Parallel Aware": false,
+                                                                                                                "Async Capable": false,
+                                                                                                                "Startup Cost": 3.16,
+                                                                                                                "Total Cost": 3.16,
+                                                                                                                "Plan Rows": 1,
+                                                                                                                "Plan Width": 4,
+                                                                                                                "Actual Startup Time": 0.018,
+                                                                                                                "Actual Total Time": 0.019,
+                                                                                                                "Actual Rows": 1,
+                                                                                                                "Actual Loops": 2,
+                                                                                                                "Hash Buckets": 1024,
+                                                                                                                "Original Hash Buckets": 1024,
+                                                                                                                "Hash Batches": 1,
+                                                                                                                "Original Hash Batches": 1,
+                                                                                                                "Peak Memory Usage": 9,
+                                                                                                                "Workers": [],
+                                                                                                                "Plans": [
+                                                                                                                    {
+                                                                                                                        "Node Type": "Seq Scan",
+                                                                                                                        "Parent Relationship": "Outer",
+                                                                                                                        "Parallel Aware": false,
+                                                                                                                        "Async Capable": false,
+                                                                                                                        "Relation Name": "site",
+                                                                                                                        "Alias": "s",
+                                                                                                                        "Startup Cost": 0.0,
+                                                                                                                        "Total Cost": 3.16,
+                                                                                                                        "Plan Rows": 1,
+                                                                                                                        "Plan Width": 4,
+                                                                                                                        "Actual Startup Time": 0.013,
+                                                                                                                        "Actual Total Time": 0.014,
+                                                                                                                        "Actual Rows": 1,
+                                                                                                                        "Actual Loops": 2,
+                                                                                                                        "Filter": "((site_name)::text = 'stackoverflow'::text)",
+                                                                                                                        "Rows Removed by Filter": 172,
+                                                                                                                        "Workers": []
+                                                                                                                    }
+                                                                                                                ]
+                                                                                                            }
+                                                                                                        ]
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "Node Type": "Index Only Scan",
+                                                                                                        "Parent Relationship": "Inner",
+                                                                                                        "Parallel Aware": false,
+                                                                                                        "Async Capable": false,
+                                                                                                        "Scan Direction": "Forward",
+                                                                                                        "Index Name": "tag_question_site_id_tag_id_question_id_idx",
+                                                                                                        "Relation Name": "tag_question",
+                                                                                                        "Alias": "tq1",
+                                                                                                        "Startup Cost": 0.56,
+                                                                                                        "Total Cost": 61.69,
+                                                                                                        "Plan Rows": 31,
+                                                                                                        "Plan Width": 12,
+                                                                                                        "Actual Startup Time": 0.029,
+                                                                                                        "Actual Total Time": 11.194,
+                                                                                                        "Actual Rows": 3935,
+                                                                                                        "Actual Loops": 7,
+                                                                                                        "Index Cond": "((site_id = t1.site_id) AND (tag_id = t1.id))",
+                                                                                                        "Rows Removed by Index Recheck": 0,
+                                                                                                        "Heap Fetches": 27542,
+                                                                                                        "Workers": []
+                                                                                                    }
+                                                                                                ]
+                                                                                            },
+                                                                                            {
+                                                                                                "Node Type": "Index Scan",
+                                                                                                "Parent Relationship": "Inner",
+                                                                                                "Parallel Aware": false,
+                                                                                                "Async Capable": false,
+                                                                                                "Scan Direction": "Forward",
+                                                                                                "Index Name": "question_pkey",
+                                                                                                "Relation Name": "question",
+                                                                                                "Alias": "q1",
+                                                                                                "Startup Cost": 0.43,
+                                                                                                "Total Cost": 6.84,
+                                                                                                "Plan Rows": 1,
+                                                                                                "Plan Width": 12,
+                                                                                                "Actual Startup Time": 0.006,
+                                                                                                "Actual Total Time": 0.006,
+                                                                                                "Actual Rows": 1,
+                                                                                                "Actual Loops": 27542,
+                                                                                                "Index Cond": "((id = tq1.question_id) AND (site_id = tq1.site_id))",
+                                                                                                "Rows Removed by Index Recheck": 0,
+                                                                                                "Filter": "((view_count >= 10) AND (view_count <= 1000))",
+                                                                                                "Rows Removed by Filter": 0,
+                                                                                                "Workers": []
+                                                                                            }
+                                                                                        ]
+                                                                                    },
+                                                                                    {
+                                                                                        "Node Type": "Index Scan",
+                                                                                        "Parent Relationship": "Inner",
+                                                                                        "Parallel Aware": false,
+                                                                                        "Async Capable": false,
+                                                                                        "Scan Direction": "Forward",
+                                                                                        "Index Name": "so_user_pkey",
+                                                                                        "Relation Name": "so_user",
+                                                                                        "Alias": "u1",
+                                                                                        "Startup Cost": 0.44,
+                                                                                        "Total Cost": 6.85,
+                                                                                        "Plan Rows": 1,
+                                                                                        "Plan Width": 12,
+                                                                                        "Actual Startup Time": 0.007,
+                                                                                        "Actual Total Time": 0.007,
+                                                                                        "Actual Rows": 1,
+                                                                                        "Actual Loops": 20257,
+                                                                                        "Index Cond": "((id = q1.owner_user_id) AND (site_id = q1.site_id))",
+                                                                                        "Rows Removed by Index Recheck": 0,
+                                                                                        "Workers": []
+                                                                                    }
+                                                                                ]
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    {
+                                                                        "Node Type": "Index Only Scan",
+                                                                        "Parent Relationship": "Inner",
+                                                                        "Parallel Aware": false,
+                                                                        "Async Capable": false,
+                                                                        "Scan Direction": "Forward",
+                                                                        "Index Name": "badge_pkey",
+                                                                        "Relation Name": "badge",
+                                                                        "Alias": "b1",
+                                                                        "Startup Cost": 0.56,
+                                                                        "Total Cost": 7.12,
+                                                                        "Plan Rows": 1,
+                                                                        "Plan Width": 19,
+                                                                        "Actual Startup Time": 0.005,
+                                                                        "Actual Total Time": 0.042,
+                                                                        "Actual Rows": 39,
+                                                                        "Actual Loops": 20257,
+                                                                        "Index Cond": "((site_id = u1.site_id) AND (user_id = u1.id))",
+                                                                        "Rows Removed by Index Recheck": 0,
+                                                                        "Heap Fetches": 786994
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "Node Type": "Index Scan",
+                                                                "Parent Relationship": "Inner",
+                                                                "Parallel Aware": false,
+                                                                "Async Capable": false,
+                                                                "Scan Direction": "Forward",
+                                                                "Index Name": "account_pkey",
+                                                                "Relation Name": "account",
+                                                                "Alias": "acc",
+                                                                "Startup Cost": 0.43,
+                                                                "Total Cost": 6.83,
+                                                                "Plan Rows": 1,
+                                                                "Plan Width": 4,
+                                                                "Actual Startup Time": 0.001,
+                                                                "Actual Total Time": 0.001,
+                                                                "Actual Rows": 0,
+                                                                "Actual Loops": 786994,
+                                                                "Index Cond": "(id = u1.account_id)",
+                                                                "Rows Removed by Index Recheck": 0,
+                                                                "Filter": "((website_url)::text ~~* '%en'::text)",
+                                                                "Rows Removed by Filter": 1
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "Planning Time": 9.621,
+                    "Triggers": [],
+                    "Execution Time": 1768.084
+                }
+            ],
+            "hints": [
+                "SET enable_hashjoin TO on",
+                "SET enable_indexonlyscan TO on",
+                "SET enable_indexscan TO on",
+                "SET enable_mergejoin TO off",
+                "SET enable_nestloop TO on",
+                "SET enable_seqscan TO on"
+            ]
+        }
+    ]
+}

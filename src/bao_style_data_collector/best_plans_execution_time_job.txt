@@ -1,0 +1,1130 @@
+sql file: job16a.sql
+
+Bao execution time: 64.423
+
+
+sql file: job16a.sql
+
+Postgres execution time: 64.423
+
+
+sql file: job4a.sql
+
+Bao execution time: 37.105
+
+
+sql file: job4a.sql
+
+Postgres execution time: 37.913
+
+
+sql file: job16c.sql
+
+Bao execution time: 532.704
+
+
+sql file: job16c.sql
+
+Postgres execution time: 568.927
+
+
+sql file: job27a.sql
+
+Bao execution time: 9.533
+
+
+sql file: job27a.sql
+
+Postgres execution time: 9.533
+
+
+sql file: job8d.sql
+
+Bao execution time: 430.603
+
+
+sql file: job8d.sql
+
+Postgres execution time: 436.341
+
+
+sql file: job22d.sql
+
+Bao execution time: 278.786
+
+
+sql file: job22d.sql
+
+Postgres execution time: 320.086
+
+
+sql file: job19b.sql
+
+Bao execution time: 33.626
+
+
+sql file: job19b.sql
+
+Postgres execution time: 35.812
+
+
+sql file: job7b.sql
+
+Bao execution time: 91.424
+
+
+sql file: job7b.sql
+
+Postgres execution time: 106.328
+
+
+sql file: job29b.sql
+
+Bao execution time: 91.88
+
+
+sql file: job29b.sql
+
+Postgres execution time: 91.88
+
+
+sql file: job3b.sql
+
+Bao execution time: 35.498
+
+
+sql file: job3b.sql
+
+Postgres execution time: 47.587
+
+
+sql file: job6e.sql
+
+Bao execution time: 7.445
+
+
+sql file: job6e.sql
+
+Postgres execution time: 8.809
+
+
+sql file: job11d.sql
+
+Bao execution time: 53.442
+
+
+sql file: job11d.sql
+
+Postgres execution time: 64.212
+
+
+sql file: job26c.sql
+
+Bao execution time: 956.626
+
+
+sql file: job26c.sql
+
+Postgres execution time: 1698.199
+
+
+sql file: job2c.sql
+
+Bao execution time: 125.113
+
+
+sql file: job2c.sql
+
+Postgres execution time: 185.638
+
+
+sql file: job10c.sql
+
+Bao execution time: 524.819
+
+
+sql file: job10c.sql
+
+Postgres execution time: 1548.253
+
+
+sql file: job21a.sql
+
+Bao execution time: 23.063
+
+
+sql file: job21a.sql
+
+Postgres execution time: 23.063
+
+
+sql file: job32a.sql
+
+Bao execution time: 3.524
+
+
+sql file: job32a.sql
+
+Postgres execution time: 3.524
+
+
+sql file: job17b.sql
+
+Bao execution time: 1750.144
+
+
+sql file: job17b.sql
+
+Postgres execution time: 2632.448
+
+
+sql file: job2a.sql
+
+Bao execution time: 184.597
+
+
+sql file: job2a.sql
+
+Postgres execution time: 184.597
+
+
+sql file: job28a.sql
+
+Bao execution time: 278.834
+
+
+sql file: job28a.sql
+
+Postgres execution time: 305.389
+
+
+sql file: job19a.sql
+
+Bao execution time: 73.201
+
+
+sql file: job19a.sql
+
+Postgres execution time: 74.107
+
+
+sql file: job22c.sql
+
+Bao execution time: 521.538
+
+
+sql file: job22c.sql
+
+Postgres execution time: 671.324
+
+
+sql file: job26b.sql
+
+Bao execution time: 42.365
+
+
+sql file: job26b.sql
+
+Postgres execution time: 63.868
+
+
+sql file: job33c.sql
+
+Bao execution time: 5.4
+
+
+sql file: job33c.sql
+
+Postgres execution time: 13.605
+
+
+sql file: job28b.sql
+
+Bao execution time: 141.756
+
+
+sql file: job28b.sql
+
+Postgres execution time: 166.821
+
+
+sql file: job9b.sql
+
+Bao execution time: 69.171
+
+
+sql file: job9b.sql
+
+Postgres execution time: 70.084
+
+
+sql file: job9d.sql
+
+Bao execution time: 815.511
+
+
+sql file: job9d.sql
+
+Postgres execution time: 862.076
+
+
+sql file: job25b.sql
+
+Bao execution time: 81.272
+
+
+sql file: job25b.sql
+
+Postgres execution time: 85.004
+
+
+sql file: job18a.sql
+
+Bao execution time: 682.547
+
+
+sql file: job18a.sql
+
+Postgres execution time: 1400.922
+
+
+sql file: job31c.sql
+
+Bao execution time: 406.556
+
+
+sql file: job31c.sql
+
+Postgres execution time: 420.634
+
+
+sql file: job4c.sql
+
+Bao execution time: 42.507
+
+
+sql file: job4c.sql
+
+Postgres execution time: 48.291
+
+
+sql file: job30b.sql
+
+Bao execution time: 100.434
+
+
+sql file: job30b.sql
+
+Postgres execution time: 103.999
+
+
+sql file: job1a.sql
+
+Bao execution time: 36.427
+
+
+sql file: job1a.sql
+
+Postgres execution time: 38.081
+
+
+sql file: job33a.sql
+
+Bao execution time: 5.044
+
+
+sql file: job33a.sql
+
+Postgres execution time: 12.472
+
+
+sql file: job24b.sql
+
+Bao execution time: 85.903
+
+
+sql file: job24b.sql
+
+Postgres execution time: 85.903
+
+
+sql file: job17d.sql
+
+Bao execution time: 771.285
+
+
+sql file: job17d.sql
+
+Postgres execution time: 2531.221
+
+
+sql file: job12c.sql
+
+Bao execution time: 233.773
+
+
+sql file: job12c.sql
+
+Postgres execution time: 256.15
+
+
+sql file: job25c.sql
+
+Bao execution time: 777.827
+
+
+sql file: job25c.sql
+
+Postgres execution time: 2319.496
+
+
+sql file: job15a.sql
+
+Bao execution time: 85.449
+
+
+sql file: job15a.sql
+
+Postgres execution time: 96.635
+
+
+sql file: job1d.sql
+
+Bao execution time: 35.788
+
+
+sql file: job1d.sql
+
+Postgres execution time: 35.788
+
+
+sql file: job19d.sql
+
+Bao execution time: 1284.661
+
+
+sql file: job19d.sql
+
+Postgres execution time: 1640.843
+
+
+sql file: job18b.sql
+
+Bao execution time: 56.822
+
+
+sql file: job18b.sql
+
+Postgres execution time: 73.182
+
+
+sql file: job23c.sql
+
+Bao execution time: 103.401
+
+
+sql file: job23c.sql
+
+Postgres execution time: 117.656
+
+
+sql file: job10b.sql
+
+Bao execution time: 82.883
+
+
+sql file: job10b.sql
+
+Postgres execution time: 93.984
+
+
+sql file: job22b.sql
+
+Bao execution time: 87.578
+
+
+sql file: job22b.sql
+
+Postgres execution time: 89.307
+
+
+sql file: job25a.sql
+
+Bao execution time: 710.534
+
+
+sql file: job25a.sql
+
+Postgres execution time: 807.67
+
+
+sql file: job2d.sql
+
+Bao execution time: 230.148
+
+
+sql file: job2d.sql
+
+Postgres execution time: 240.167
+
+
+sql file: job6c.sql
+
+Bao execution time: 3.999
+
+
+sql file: job6c.sql
+
+Postgres execution time: 3.999
+
+
+sql file: job1c.sql
+
+Bao execution time: 37.731
+
+
+sql file: job1c.sql
+
+Postgres execution time: 37.731
+
+
+sql file: job14c.sql
+
+Bao execution time: 198.338
+
+
+sql file: job14c.sql
+
+Postgres execution time: 262.625
+
+
+sql file: job19c.sql
+
+Bao execution time: 692.131
+
+
+sql file: job19c.sql
+
+Postgres execution time: 692.131
+
+
+sql file: job24a.sql
+
+Bao execution time: 146.721
+
+
+sql file: job24a.sql
+
+Postgres execution time: 171.668
+
+
+sql file: job2b.sql
+
+Bao execution time: 183.916
+
+
+sql file: job2b.sql
+
+Postgres execution time: 192.523
+
+
+sql file: job5a.sql
+
+Bao execution time: 30.504
+
+
+sql file: job5a.sql
+
+Postgres execution time: 40.482
+
+
+sql file: job17f.sql
+
+Bao execution time: 743.052
+
+
+sql file: job17f.sql
+
+Postgres execution time: 3478.032
+
+
+sql file: job12b.sql
+
+Bao execution time: 33.047
+
+
+sql file: job12b.sql
+
+Postgres execution time: 33.047
+
+
+sql file: job5b.sql
+
+Bao execution time: 29.798
+
+
+sql file: job5b.sql
+
+Postgres execution time: 42.579
+
+
+sql file: job16d.sql
+
+Bao execution time: 409.176
+
+
+sql file: job16d.sql
+
+Postgres execution time: 451.726
+
+
+sql file: job3c.sql
+
+Bao execution time: 105.403
+
+
+sql file: job3c.sql
+
+Postgres execution time: 139.676
+
+
+sql file: job23b.sql
+
+Bao execution time: 17.223
+
+
+sql file: job23b.sql
+
+Postgres execution time: 17.421
+
+
+sql file: job6d.sql
+
+Bao execution time: 647.191
+
+
+sql file: job6d.sql
+
+Postgres execution time: 1934.548
+
+
+sql file: job29a.sql
+
+Bao execution time: 114.166
+
+
+sql file: job29a.sql
+
+Postgres execution time: 114.166
+
+
+sql file: job16b.sql
+
+Bao execution time: 1361.296
+
+
+sql file: job16b.sql
+
+Postgres execution time: 6097.01
+
+
+sql file: job20a.sql
+
+Bao execution time: 749.276
+
+
+sql file: job20a.sql
+
+Postgres execution time: 984.341
+
+
+sql file: job7a.sql
+
+Bao execution time: 287.408
+
+
+sql file: job7a.sql
+
+Postgres execution time: 347.401
+
+
+sql file: job17e.sql
+
+Bao execution time: 1107.636
+
+
+sql file: job17e.sql
+
+Postgres execution time: 3978.061
+
+
+sql file: job7c.sql
+
+Bao execution time: 296.342
+
+
+sql file: job7c.sql
+
+Postgres execution time: 325.489
+
+
+sql file: job13c.sql
+
+Bao execution time: 203.233
+
+
+sql file: job13c.sql
+
+Postgres execution time: 203.673
+
+
+sql file: job27c.sql
+
+Bao execution time: 10.191
+
+
+sql file: job27c.sql
+
+Postgres execution time: 14.956
+
+
+sql file: job15b.sql
+
+Bao execution time: 10.241
+
+
+sql file: job15b.sql
+
+Postgres execution time: 10.257
+
+
+sql file: job17c.sql
+
+Bao execution time: 700.75
+
+
+sql file: job17c.sql
+
+Postgres execution time: 2574.176
+
+
+sql file: job11a.sql
+
+Bao execution time: 22.555
+
+
+sql file: job11a.sql
+
+Postgres execution time: 23.83
+
+
+sql file: job6f.sql
+
+Bao execution time: 918.359
+
+
+sql file: job6f.sql
+
+Postgres execution time: 1986.693
+
+
+sql file: job13d.sql
+
+Bao execution time: 693.361
+
+
+sql file: job13d.sql
+
+Postgres execution time: 716.013
+
+
+sql file: job20c.sql
+
+Bao execution time: 368.778
+
+
+sql file: job20c.sql
+
+Postgres execution time: 467.264
+
+
+sql file: job23a.sql
+
+Bao execution time: 76.059
+
+
+sql file: job23a.sql
+
+Postgres execution time: 84.34
+
+
+sql file: job11b.sql
+
+Bao execution time: 12.072
+
+
+sql file: job11b.sql
+
+Postgres execution time: 12.095
+
+
+sql file: job5c.sql
+
+Bao execution time: 53.426
+
+
+sql file: job5c.sql
+
+Postgres execution time: 55.323
+
+
+sql file: job21c.sql
+
+Bao execution time: 25.451
+
+
+sql file: job21c.sql
+
+Postgres execution time: 25.451
+
+
+sql file: job26a.sql
+
+Bao execution time: 478.526
+
+
+sql file: job26a.sql
+
+Postgres execution time: 493.68
+
+
+sql file: job32b.sql
+
+Bao execution time: 41.106
+
+
+sql file: job32b.sql
+
+Postgres execution time: 41.106
+
+
+sql file: job21b.sql
+
+Bao execution time: 25.215
+
+
+sql file: job21b.sql
+
+Postgres execution time: 25.226
+
+
+sql file: job14a.sql
+
+Bao execution time: 98.052
+
+
+sql file: job14a.sql
+
+Postgres execution time: 110.081
+
+
+sql file: job33b.sql
+
+Bao execution time: 5.004
+
+
+sql file: job33b.sql
+
+Postgres execution time: 12.584
+
+
+sql file: job8c.sql
+
+Bao execution time: 1186.091
+
+
+sql file: job8c.sql
+
+Postgres execution time: 1228.933
+
+
+sql file: job28c.sql
+
+Bao execution time: 366.179
+
+
+sql file: job28c.sql
+
+Postgres execution time: 366.179
+
+
+sql file: job9c.sql
+
+Bao execution time: 137.128
+
+
+sql file: job9c.sql
+
+Postgres execution time: 141.358
+
+
+sql file: job31b.sql
+
+Bao execution time: 92.85
+
+
+sql file: job31b.sql
+
+Postgres execution time: 95.51
+
+
+sql file: job8a.sql
+
+Bao execution time: 330.782
+
+
+sql file: job8a.sql
+
+Postgres execution time: 381.539
+
+
+sql file: job1b.sql
+
+Bao execution time: 34.803
+
+
+sql file: job1b.sql
+
+Postgres execution time: 35.415
+
+
+sql file: job4b.sql
+
+Bao execution time: 21.999
+
+
+sql file: job4b.sql
+
+Postgres execution time: 21.999
+
+
+sql file: job20b.sql
+
+Bao execution time: 689.362
+
+
+sql file: job20b.sql
+
+Postgres execution time: 727.671
+
+
+sql file: job18c.sql
+
+Bao execution time: 730.184
+
+
+sql file: job18c.sql
+
+Postgres execution time: 1545.036
+
+
+sql file: job9a.sql
+
+Bao execution time: 64.686
+
+
+sql file: job9a.sql
+
+Postgres execution time: 67.34
+
+
+sql file: job30c.sql
+
+Bao execution time: 802.28
+
+
+sql file: job30c.sql
+
+Postgres execution time: 1040.039
+
+
+sql file: job14b.sql
+
+Bao execution time: 41.217
+
+
+sql file: job14b.sql
+
+Postgres execution time: 58.85
+
+
+sql file: job22a.sql
+
+Bao execution time: 138.999
+
+
+sql file: job22a.sql
+
+Postgres execution time: 139.245
+
+
+sql file: job6b.sql
+
+Bao execution time: 68.747
+
+
+sql file: job6b.sql
+
+Postgres execution time: 68.747
+
+
+sql file: job11c.sql
+
+Bao execution time: 61.495
+
+
+sql file: job11c.sql
+
+Postgres execution time: 431.969
+
+
+sql file: job31a.sql
+
+Bao execution time: 420.875
+
+
+sql file: job31a.sql
+
+Postgres execution time: 426.538
+
+
+sql file: job17a.sql
+
+Bao execution time: 676.048
+
+
+sql file: job17a.sql
+
+Postgres execution time: 4037.783
+
+
+sql file: job30a.sql
+
+Bao execution time: 727.184
+
+
+sql file: job30a.sql
+
+Postgres execution time: 1051.284
+
+
+sql file: job12a.sql
+
+Bao execution time: 64.88
+
+
+sql file: job12a.sql
+
+Postgres execution time: 75.728
+
+
+sql file: job3a.sql
+
+Bao execution time: 53.449
+
+
+sql file: job3a.sql
+
+Postgres execution time: 61.181
+
+
+sql file: job13b.sql
+
+Bao execution time: 211.527
+
+
+sql file: job13b.sql
+
+Postgres execution time: 215.275
+
+
+sql file: job10a.sql
+
+Bao execution time: 138.453
+
+
+sql file: job10a.sql
+
+Postgres execution time: 153.547
+
+
+sql file: job15d.sql
+
+Bao execution time: 129.941
+
+
+sql file: job15d.sql
+
+Postgres execution time: 130.809
+
+
+sql file: job27b.sql
+
+Bao execution time: 5.615
+
+
+sql file: job27b.sql
+
+Postgres execution time: 5.697
+
+
+sql file: job13a.sql
+
+Bao execution time: 450.446
+
+
+sql file: job13a.sql
+
+Postgres execution time: 474.124
+
+
+sql file: job15c.sql
+
+Bao execution time: 106.658
+
+
+sql file: job15c.sql
+
+Postgres execution time: 108.113
+
+
+sql file: job29c.sql
+
+Bao execution time: 1017.984
+
+
+sql file: job29c.sql
+
+Postgres execution time: 2389.702
+
+
+sql file: job8b.sql
+
+Bao execution time: 44.961
+
+
+sql file: job8b.sql
+
+Postgres execution time: 45.617
+
+
+sql file: job6a.sql
+
+Bao execution time: 7.482
+
+
+sql file: job6a.sql
+
+Postgres execution time: 7.807
+
+

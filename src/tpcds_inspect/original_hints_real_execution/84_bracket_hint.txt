@@ -1,0 +1,12 @@
+/*+ NestedLoop(store_returns customer customer_address household_demographics income_band customer_demographics)
+ NestedLoop(store_returns customer customer_address household_demographics income_band)
+ NestedLoop(store_returns customer customer_address household_demographics)
+ HashJoin(store_returns customer customer_address)
+ HashJoin(customer customer_address)
+ SeqScan(store_returns)
+ SeqScan(customer)
+ SeqScan(customer_address)
+ IndexScan(household_demographics)
+ IndexScan(income_band)
+ IndexOnlyScan(customer_demographics)
+ Leading(((((store_returns (customer customer_address)) household_demographics) income_band) customer_demographics)) */

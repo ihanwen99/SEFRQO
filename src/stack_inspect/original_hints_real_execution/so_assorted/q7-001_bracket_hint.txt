@@ -1,0 +1,8 @@
+/*+ NestedLoop(b2 b1 so_user account)
+ NestedLoop(b2 b1 so_user)
+ NestedLoop(b2 b1)
+ SeqScan(b2)
+ IndexOnlyScan(b1)
+ IndexScan(so_user)
+ IndexScan(account)
+ Leading((((b2 b1) so_user) account)) */

@@ -1,0 +1,12 @@
+/*+ NestedLoop(store_sales date_dim store store_sales_1 date_dim_1 item)
+ MergeJoin(store_sales date_dim store store_sales_1 date_dim_1)
+ MergeJoin(store store_sales_1 date_dim_1)
+ HashJoin(store_sales_1 date_dim_1)
+ HashJoin(store_sales date_dim)
+ SeqScan(store_sales)
+ SeqScan(date_dim)
+ SeqScan(store)
+ SeqScan(store_sales_1)
+ SeqScan(date_dim_1)
+ IndexScan(item)
+ Leading((((store_sales date_dim) (store (store_sales_1 date_dim_1))) item)) */

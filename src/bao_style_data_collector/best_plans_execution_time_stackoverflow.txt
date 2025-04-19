@@ -1,0 +1,800 @@
+sql file: soload_q5-002.sql
+
+Bao execution time: 13.334
+
+
+sql file: soload_q5-002.sql
+
+Postgres execution time: 18.536
+
+
+sql file: soload_q5-004.sql
+
+Bao execution time: 9.852
+
+
+sql file: soload_q5-004.sql
+
+Postgres execution time: 60.008
+
+
+sql file: soload_q16-001.sql
+
+Bao execution time: 204.187
+
+
+sql file: soload_q16-001.sql
+
+Postgres execution time: 2018.78
+
+
+sql file: soload_q12-001.sql
+
+Bao execution time: 41.225
+
+
+sql file: soload_q12-001.sql
+
+Postgres execution time: 203.21
+
+
+sql file: soload_q10-001.sql
+
+Bao execution time: 66.568
+
+
+sql file: soload_q10-001.sql
+
+Postgres execution time: 170.956
+
+
+sql file: soload_q2-001.sql
+
+Bao execution time: 204.367
+
+
+sql file: soload_q2-001.sql
+
+Postgres execution time: 1042.755
+
+
+sql file: soload_q6-002.sql
+
+Bao execution time: 11.567
+
+
+sql file: soload_q6-002.sql
+
+Postgres execution time: 93.051
+
+
+sql file: soload_q16-002.sql
+
+Bao execution time: 392.996
+
+
+sql file: soload_q16-002.sql
+
+Postgres execution time: 6780.208
+
+
+sql file: soload_q7-005.sql
+
+Bao execution time: 365.828
+
+
+sql file: soload_q7-005.sql
+
+Postgres execution time: 517.151
+
+
+sql file: soload_q4-002.sql
+
+Bao execution time: 44.326
+
+
+sql file: soload_q4-002.sql
+
+Postgres execution time: 313.015
+
+
+sql file: soload_q13-004.sql
+
+Bao execution time: 300.336
+
+
+sql file: soload_q13-004.sql
+
+Postgres execution time: 802.72
+
+
+sql file: soload_q15-002.sql
+
+Bao execution time: 384.338
+
+
+sql file: soload_q15-002.sql
+
+Postgres execution time: 2475.337
+
+
+sql file: soload_q6-005.sql
+
+Bao execution time: 11.069
+
+
+sql file: soload_q6-005.sql
+
+Postgres execution time: 38.389
+
+
+sql file: soload_q5-005.sql
+
+Bao execution time: 34.561
+
+
+sql file: soload_q5-005.sql
+
+Postgres execution time: 59.257
+
+
+sql file: soload_q10-003.sql
+
+Bao execution time: 59.099
+
+
+sql file: soload_q10-003.sql
+
+Postgres execution time: 59.099
+
+
+sql file: soload_q10-005.sql
+
+Bao execution time: 62.861
+
+
+sql file: soload_q10-005.sql
+
+Postgres execution time: 143.229
+
+
+sql file: soload_q3-002.sql
+
+Bao execution time: 396.64
+
+
+sql file: soload_q3-002.sql
+
+Postgres execution time: 1176.508
+
+
+sql file: soload_q16-004.sql
+
+Bao execution time: 2829.473
+
+
+sql file: soload_q16-004.sql
+
+Postgres execution time: 5220.702
+
+
+sql file: soload_q1-001.sql
+
+Bao execution time: 7.647
+
+
+sql file: soload_q1-001.sql
+
+Postgres execution time: 7.959
+
+
+sql file: soload_q3-001.sql
+
+Bao execution time: 411.809
+
+
+sql file: soload_q3-001.sql
+
+Postgres execution time: 1277.371
+
+
+sql file: soload_q4-004.sql
+
+Bao execution time: 23.672
+
+
+sql file: soload_q4-004.sql
+
+Postgres execution time: 229.212
+
+
+sql file: soload_q1-005.sql
+
+Bao execution time: 7.86
+
+
+sql file: soload_q1-005.sql
+
+Postgres execution time: 7.86
+
+
+sql file: soload_q11-004.sql
+
+Bao execution time: 726.96
+
+
+sql file: soload_q11-004.sql
+
+Postgres execution time: 1979.676
+
+
+sql file: soload_q13-003.sql
+
+Bao execution time: 207.58
+
+
+sql file: soload_q13-003.sql
+
+Postgres execution time: 508.516
+
+
+sql file: soload_q7-003.sql
+
+Bao execution time: 373.06
+
+
+sql file: soload_q7-003.sql
+
+Postgres execution time: 373.06
+
+
+sql file: soload_q10-004.sql
+
+Bao execution time: 62.226
+
+
+sql file: soload_q10-004.sql
+
+Postgres execution time: 68.318
+
+
+sql file: soload_q9-006.sql
+
+Bao execution time: 2409.211
+
+
+sql file: soload_q9-006.sql
+
+Postgres execution time: 28597.82
+
+
+sql file: soload_q11-005.sql
+
+Bao execution time: 20.174
+
+
+sql file: soload_q11-005.sql
+
+Postgres execution time: 153.188
+
+
+sql file: soload_q14-002.sql
+
+Bao execution time: 103.301
+
+
+sql file: soload_q14-002.sql
+
+Postgres execution time: 144.346
+
+
+sql file: soload_q6-001.sql
+
+Bao execution time: 8.635
+
+
+sql file: soload_q6-001.sql
+
+Postgres execution time: 20.89
+
+
+sql file: soload_q14-001.sql
+
+Bao execution time: 8402.055
+
+
+sql file: soload_q14-001.sql
+
+Postgres execution time: 8402.055
+
+
+sql file: soload_q2-004.sql
+
+Bao execution time: 150.229
+
+
+sql file: soload_q2-004.sql
+
+Postgres execution time: 1253.172
+
+
+sql file: soload_q3-004.sql
+
+Bao execution time: 377.959
+
+
+sql file: soload_q3-004.sql
+
+Postgres execution time: 1437.712
+
+
+sql file: soload_q12-002.sql
+
+Bao execution time: 39.068
+
+
+sql file: soload_q12-002.sql
+
+Postgres execution time: 329.384
+
+
+sql file: soload_q14-005.sql
+
+Bao execution time: 16.268
+
+
+sql file: soload_q14-005.sql
+
+Postgres execution time: 67.995
+
+
+sql file: soload_q1-004.sql
+
+Bao execution time: 7.529
+
+
+sql file: soload_q1-004.sql
+
+Postgres execution time: 7.582
+
+
+sql file: soload_q8-002.sql
+
+Bao execution time: 7.784
+
+
+sql file: soload_q8-002.sql
+
+Postgres execution time: 10.042
+
+
+sql file: soload_q11-001.sql
+
+Bao execution time: 694.727
+
+
+sql file: soload_q11-001.sql
+
+Postgres execution time: 960.165
+
+
+sql file: soload_q15-001.sql
+
+Bao execution time: 203.319
+
+
+sql file: soload_q15-001.sql
+
+Postgres execution time: 2742.694
+
+
+sql file: soload_q9-013.sql
+
+Bao execution time: 1985.357
+
+
+sql file: soload_q9-013.sql
+
+Postgres execution time: 17504.383
+
+
+sql file: soload_q8-003.sql
+
+Bao execution time: 7.875
+
+
+sql file: soload_q8-003.sql
+
+Postgres execution time: 10.154
+
+
+sql file: soload_q8-005.sql
+
+Bao execution time: 9.504
+
+
+sql file: soload_q8-005.sql
+
+Postgres execution time: 10.538
+
+
+sql file: soload_q12-003.sql
+
+Bao execution time: 41.353
+
+
+sql file: soload_q12-003.sql
+
+Postgres execution time: 349.268
+
+
+sql file: soload_q9-003.sql
+
+Bao execution time: 1870.534
+
+
+sql file: soload_q9-003.sql
+
+Postgres execution time: 5941.141
+
+
+sql file: soload_q6-004.sql
+
+Bao execution time: 15.418
+
+
+sql file: soload_q6-004.sql
+
+Postgres execution time: 182.212
+
+
+sql file: soload_q10-002.sql
+
+Bao execution time: 68.304
+
+
+sql file: soload_q10-002.sql
+
+Postgres execution time: 159.671
+
+
+sql file: soload_q13-002.sql
+
+Bao execution time: 152.936
+
+
+sql file: soload_q13-002.sql
+
+Postgres execution time: 189.36
+
+
+sql file: soload_q2-002.sql
+
+Bao execution time: 126.137
+
+
+sql file: soload_q2-002.sql
+
+Postgres execution time: 1340.291
+
+
+sql file: soload_q7-001.sql
+
+Bao execution time: 369.509
+
+
+sql file: soload_q7-001.sql
+
+Postgres execution time: 514.088
+
+
+sql file: soload_q1-002.sql
+
+Bao execution time: 7.832
+
+
+sql file: soload_q1-002.sql
+
+Postgres execution time: 9.012
+
+
+sql file: soload_q5-001.sql
+
+Bao execution time: 10.95
+
+
+sql file: soload_q5-001.sql
+
+Postgres execution time: 19.512
+
+
+sql file: soload_q4-005.sql
+
+Bao execution time: 48.16
+
+
+sql file: soload_q4-005.sql
+
+Postgres execution time: 649.483
+
+
+sql file: soload_q3-005.sql
+
+Bao execution time: 388.776
+
+
+sql file: soload_q3-005.sql
+
+Postgres execution time: 1770.969
+
+
+sql file: soload_q15-004.sql
+
+Bao execution time: 52.94
+
+
+sql file: soload_q15-004.sql
+
+Postgres execution time: 782.023
+
+
+sql file: soload_q12-005.sql
+
+Bao execution time: 13.946
+
+
+sql file: soload_q12-005.sql
+
+Postgres execution time: 145.929
+
+
+sql file: soload_q12-004.sql
+
+Bao execution time: 230.104
+
+
+sql file: soload_q12-004.sql
+
+Postgres execution time: 2813.678
+
+
+sql file: soload_q16-003.sql
+
+Bao execution time: 248.874
+
+
+sql file: soload_q16-003.sql
+
+Postgres execution time: 715.319
+
+
+sql file: soload_q13-005.sql
+
+Bao execution time: 267.698
+
+
+sql file: soload_q13-005.sql
+
+Postgres execution time: 2110.733
+
+
+sql file: soload_q4-001.sql
+
+Bao execution time: 61.687
+
+
+sql file: soload_q4-001.sql
+
+Postgres execution time: 410.973
+
+
+sql file: soload_q5-003.sql
+
+Bao execution time: 12.802
+
+
+sql file: soload_q5-003.sql
+
+Postgres execution time: 13.701
+
+
+sql file: soload_q7-004.sql
+
+Bao execution time: 1542.208
+
+
+sql file: soload_q7-004.sql
+
+Postgres execution time: 3045.778
+
+
+sql file: soload_q14-004.sql
+
+Bao execution time: 200.335
+
+
+sql file: soload_q14-004.sql
+
+Postgres execution time: 421.965
+
+
+sql file: soload_q7-002.sql
+
+Bao execution time: 385.865
+
+
+sql file: soload_q7-002.sql
+
+Postgres execution time: 533.022
+
+
+sql file: soload_q11-003.sql
+
+Bao execution time: 30.115
+
+
+sql file: soload_q11-003.sql
+
+Postgres execution time: 49.656
+
+
+sql file: soload_q15-003.sql
+
+Bao execution time: 1768.084
+
+
+sql file: soload_q15-003.sql
+
+Postgres execution time: 6215.536
+
+
+sql file: soload_q13-001.sql
+
+Bao execution time: 80.205
+
+
+sql file: soload_q13-001.sql
+
+Postgres execution time: 388.805
+
+
+sql file: soload_q2-005.sql
+
+Bao execution time: 324.918
+
+
+sql file: soload_q2-005.sql
+
+Postgres execution time: 2038.737
+
+
+sql file: soload_q11-002.sql
+
+Bao execution time: 27.693
+
+
+sql file: soload_q11-002.sql
+
+Postgres execution time: 45.195
+
+
+sql file: soload_q9-008.sql
+
+Bao execution time: 2115.459
+
+
+sql file: soload_q9-008.sql
+
+Postgres execution time: 19811.445
+
+
+sql file: soload_q1-003.sql
+
+Bao execution time: 7.674
+
+
+sql file: soload_q1-003.sql
+
+Postgres execution time: 7.674
+
+
+sql file: soload_q4-003.sql
+
+Bao execution time: 41.213
+
+
+sql file: soload_q4-003.sql
+
+Postgres execution time: 305.847
+
+
+sql file: soload_q8-004.sql
+
+Bao execution time: 9.783
+
+
+sql file: soload_q8-004.sql
+
+Postgres execution time: 10.289
+
+
+sql file: soload_q6-003.sql
+
+Bao execution time: 12.245
+
+
+sql file: soload_q6-003.sql
+
+Postgres execution time: 69.197
+
+
+sql file: soload_q16-005.sql
+
+Bao execution time: 201.9
+
+
+sql file: soload_q16-005.sql
+
+Postgres execution time: 3986.412
+
+
+sql file: soload_q3-003.sql
+
+Bao execution time: 480.639
+
+
+sql file: soload_q3-003.sql
+
+Postgres execution time: 1464.301
+
+
+sql file: soload_q15-005.sql
+
+Bao execution time: 80.722
+
+
+sql file: soload_q15-005.sql
+
+Postgres execution time: 174.311
+
+
+sql file: soload_q9-005.sql
+
+Bao execution time: 2171.99
+
+
+sql file: soload_q9-005.sql
+
+Postgres execution time: 18430.938
+
+
+sql file: soload_q8-001.sql
+
+Bao execution time: 9.876
+
+
+sql file: soload_q8-001.sql
+
+Postgres execution time: 10.097
+
+
+sql file: soload_q14-003.sql
+
+Bao execution time: 3094.469
+
+
+sql file: soload_q14-003.sql
+
+Postgres execution time: 3094.469
+
+
+sql file: soload_q2-003.sql
+
+Bao execution time: 103.295
+
+
+sql file: soload_q2-003.sql
+
+Postgres execution time: 601.423
+
+

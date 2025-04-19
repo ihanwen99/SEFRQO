@@ -1,2 +1,4 @@
 # SEFRQO
-A Self-Evolving Fine-Tuned RAG-Based Query Optimizer
+Large Language Model for Query Optimization
+
+Python 3.10.16

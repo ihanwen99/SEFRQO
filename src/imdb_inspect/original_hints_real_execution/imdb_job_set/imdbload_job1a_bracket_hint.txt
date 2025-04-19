@@ -1,0 +1,10 @@
+/*+ NestedLoop(mi_idx it mc ct t)
+ HashJoin(mi_idx it mc ct)
+ NestedLoop(mi_idx it mc)
+ HashJoin(mi_idx it)
+ SeqScan(mi_idx)
+ SeqScan(it)
+ IndexScan(mc)
+ SeqScan(ct)
+ IndexScan(t)
+ Leading(((((mi_idx it) mc) ct) t)) */

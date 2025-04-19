@@ -1,0 +1,400 @@
+sql file: q1-002.sql
+
+execution time: 0.0017168521881103516
+
+
+sql file: q2-004.sql
+
+execution time: 0.1317894458770752
+
+
+sql file: q10-003.sql
+
+execution time: 0.029901504516601562
+
+
+sql file: q3-005.sql
+
+execution time: 0.1768026351928711
+
+
+sql file: q9-013.sql
+
+execution time: 1.6038832664489746
+
+
+sql file: q10-004.sql
+
+execution time: 0.02985358238220215
+
+
+sql file: q6-002.sql
+
+execution time: 0.007717132568359375
+
+
+sql file: q4-004.sql
+
+execution time: 0.015720844268798828
+
+
+sql file: q15-003.sql
+
+execution time: 0.5698568820953369
+
+
+sql file: q15-002.sql
+
+execution time: 0.28458404541015625
+
+
+sql file: q8-005.sql
+
+execution time: 0.03987717628479004
+
+
+sql file: q7-004.sql
+
+execution time: 0.7535059452056885
+
+
+sql file: q10-005.sql
+
+execution time: 0.02953195571899414
+
+
+sql file: q7-003.sql
+
+execution time: 0.22180557250976562
+
+
+sql file: q13-003.sql
+
+execution time: 0.08011579513549805
+
+
+sql file: q5-002.sql
+
+execution time: 0.00677800178527832
+
+
+sql file: q4-002.sql
+
+execution time: 0.02595829963684082
+
+
+sql file: q12-004.sql
+
+execution time: 0.1950089931488037
+
+
+sql file: q11-001.sql
+
+execution time: 0.6185507774353027
+
+
+sql file: q12-005.sql
+
+execution time: 0.010609865188598633
+
+
+sql file: q11-003.sql
+
+execution time: 0.0201108455657959
+
+
+sql file: q8-004.sql
+
+execution time: 0.038900136947631836
+
+
+sql file: q9-003.sql
+
+execution time: 1.5512855052947998
+
+
+sql file: q6-004.sql
+
+execution time: 0.009999752044677734
+
+
+sql file: q16-005.sql
+
+execution time: 0.11192560195922852
+
+
+sql file: q1-003.sql
+
+execution time: 0.0018351078033447266
+
+
+sql file: q4-005.sql
+
+execution time: 0.026137590408325195
+
+
+sql file: q16-001.sql
+
+execution time: 0.13756847381591797
+
+
+sql file: q3-001.sql
+
+execution time: 0.156829833984375
+
+
+sql file: q8-003.sql
+
+execution time: 0.0392603874206543
+
+
+sql file: q13-005.sql
+
+execution time: 0.17852115631103516
+
+
+sql file: q13-001.sql
+
+execution time: 0.07283329963684082
+
+
+sql file: q7-001.sql
+
+execution time: 0.24268794059753418
+
+
+sql file: q1-004.sql
+
+execution time: 0.0018544197082519531
+
+
+sql file: q12-003.sql
+
+execution time: 0.030361413955688477
+
+
+sql file: q9-008.sql
+
+execution time: 1.5625677108764648
+
+
+sql file: q15-005.sql
+
+execution time: 0.04753684997558594
+
+
+sql file: q13-002.sql
+
+execution time: 0.05824160575866699
+
+
+sql file: q5-003.sql
+
+execution time: 0.004814863204956055
+
+
+sql file: q8-002.sql
+
+execution time: 0.03975272178649902
+
+
+sql file: q15-004.sql
+
+execution time: 0.050549983978271484
+
+
+sql file: q6-003.sql
+
+execution time: 0.0058367252349853516
+
+
+sql file: q7-002.sql
+
+execution time: 0.24726247787475586
+
+
+sql file: q14-005.sql
+
+execution time: 0.015055418014526367
+
+
+sql file: q6-001.sql
+
+execution time: 0.004115104675292969
+
+
+sql file: q6-005.sql
+
+execution time: 0.004986763000488281
+
+
+sql file: q14-002.sql
+
+execution time: 0.07101774215698242
+
+
+sql file: q5-004.sql
+
+execution time: 0.005557060241699219
+
+
+sql file: q16-003.sql
+
+execution time: 0.11486983299255371
+
+
+sql file: q9-005.sql
+
+execution time: 1.7362606525421143
+
+
+sql file: q3-004.sql
+
+execution time: 0.19325566291809082
+
+
+sql file: q11-004.sql
+
+execution time: 0.4261000156402588
+
+
+sql file: q7-005.sql
+
+execution time: 0.23131203651428223
+
+
+sql file: q2-002.sql
+
+execution time: 0.13224244117736816
+
+
+sql file: q14-001.sql
+
+execution time: 1.7337369918823242
+
+
+sql file: q11-005.sql
+
+execution time: 0.013893604278564453
+
+
+sql file: q2-001.sql
+
+execution time: 0.1437854766845703
+
+
+sql file: q12-002.sql
+
+execution time: 0.03081798553466797
+
+
+sql file: q15-001.sql
+
+execution time: 0.12347197532653809
+
+
+sql file: q1-005.sql
+
+execution time: 0.0018496513366699219
+
+
+sql file: q4-003.sql
+
+execution time: 0.023414134979248047
+
+
+sql file: q11-002.sql
+
+execution time: 0.011926889419555664
+
+
+sql file: q12-001.sql
+
+execution time: 0.031815290451049805
+
+
+sql file: q3-002.sql
+
+execution time: 0.18011021614074707
+
+
+sql file: q5-001.sql
+
+execution time: 0.0057828426361083984
+
+
+sql file: q14-003.sql
+
+execution time: 0.18043923377990723
+
+
+sql file: q1-001.sql
+
+execution time: 0.0019364356994628906
+
+
+sql file: q8-001.sql
+
+execution time: 0.03935408592224121
+
+
+sql file: q5-005.sql
+
+execution time: 0.023802995681762695
+
+
+sql file: q2-003.sql
+
+execution time: 0.1287822723388672
+
+
+sql file: q3-003.sql
+
+execution time: 0.2285633087158203
+
+
+sql file: q14-004.sql
+
+execution time: 0.17018771171569824
+
+
+sql file: q9-006.sql
+
+execution time: 1.6845343112945557
+
+
+sql file: q16-004.sql
+
+execution time: 0.8877766132354736
+
+
+sql file: q13-004.sql
+
+execution time: 0.1996617317199707
+
+
+sql file: q16-002.sql
+
+execution time: 0.2644333839416504
+
+
+sql file: q2-005.sql
+
+execution time: 0.26796603202819824
+
+
+sql file: q4-001.sql
+
+execution time: 0.031579017639160156
+
+
+sql file: q10-002.sql
+
+execution time: 0.047180891036987305
+
+
+sql file: q10-001.sql
+
+execution time: 0.04653644561767578
+
+

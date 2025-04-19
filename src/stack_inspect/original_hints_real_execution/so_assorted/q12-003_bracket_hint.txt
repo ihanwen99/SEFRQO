@@ -1,0 +1,12 @@
+/*+ NestedLoop(t1 s tq1 a1 u1 q1)
+ NestedLoop(t1 s tq1 a1 u1)
+ NestedLoop(t1 s tq1 a1)
+ NestedLoop(t1 s tq1)
+ MergeJoin(t1 s)
+ SeqScan(t1)
+ SeqScan(s)
+ IndexOnlyScan(tq1)
+ IndexScan(a1)
+ IndexScan(u1)
+ IndexScan(q1)
+ Leading((((((t1 s) tq1) a1) u1) q1)) */

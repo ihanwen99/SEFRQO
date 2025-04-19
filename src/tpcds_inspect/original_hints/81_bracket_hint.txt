@@ -1,0 +1,11 @@
+/*+ NestedLoop(ctr1 customer customer_address)
+ NestedLoop(ctr1 customer)
+ NestedLoop(catalog_returns date_dim customer_address_1)
+ HashJoin(catalog_returns date_dim)
+ SeqScan(catalog_returns)
+ SeqScan(date_dim)
+ IndexScan(customer_address_1)
+ CTEScan(ctr1)
+ IndexScan(customer)
+ IndexScan(customer_address)
+ Leading(((catalog_returns date_dim) customer_address_1) ((ctr1 customer) customer_address)) */

@@ -1,0 +1,10 @@
+/*+ NestedLoop(catalog_sales date_dim customer_demographics item promotion)
+ NestedLoop(catalog_sales date_dim customer_demographics item)
+ NestedLoop(catalog_sales date_dim customer_demographics)
+ HashJoin(catalog_sales date_dim)
+ SeqScan(catalog_sales)
+ SeqScan(date_dim)
+ IndexScan(customer_demographics)
+ IndexScan(item)
+ IndexScan(promotion)
+ Leading(((((catalog_sales date_dim) customer_demographics) item) promotion)) */

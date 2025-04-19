@@ -1,0 +1,2 @@
+/*+ SubqueryScan(dw1)
+ Leading(dw1) */

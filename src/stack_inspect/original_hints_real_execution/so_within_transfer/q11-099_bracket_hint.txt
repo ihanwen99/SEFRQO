@@ -1,0 +1,8 @@
+/*+ NestedLoop(t s tq q)
+ NestedLoop(t s tq)
+ MergeJoin(t s)
+ SeqScan(t)
+ SeqScan(s)
+ IndexOnlyScan(tq)
+ IndexScan(q)
+ Leading((((t s) tq) q)) */
