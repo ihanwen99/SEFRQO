@@ -1,6 +1,0 @@
-/*+ HashJoin(catalog_sales date_dim item)
- HashJoin(catalog_sales date_dim)
- SeqScan(catalog_sales)
- SeqScan(date_dim)
- SeqScan(item)
- Leading(((catalog_sales date_dim) item)) */

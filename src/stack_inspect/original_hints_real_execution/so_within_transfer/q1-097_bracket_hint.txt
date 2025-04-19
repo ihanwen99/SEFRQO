@@ -1,8 +1,0 @@
-/*+ NestedLoop(site tag tag_question question)
- NestedLoop(site tag tag_question)
- NestedLoop(site tag)
- SeqScan(site)
- SeqScan(tag)
- IndexOnlyScan(tag_question)
- IndexOnlyScan(question)
- Leading((((site tag) tag_question) question)) */

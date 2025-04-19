@@ -4,13 +4,13 @@ import time
 # execute all sqls from one folder
 db_config = {
     'host': 'localhost',
-    'port': 5438,
-    'dbname': 'tpcds1load',
-    'user': 'qihanzha',
+    'port': 5432,
+    'dbname': 'your_database_name',
+    'user': 'your_username',
 }
 
 
-target_dir = '/home/qihanzha/LLM4QO/sql/tpcds'
+target_dir = '/your_path/sql/your_dataset_name'
 
 
 conn = psycopg2.connect(**db_config)
@@ -28,13 +28,13 @@ with conn.cursor() as cur:
 
         start_time = time.time()
         try:
-            cur.execute("SET statement_timeout = 2000000;")
+            cur.execute("SET statement_timeout = your_timeout;")
             cur.execute(sql_content)
             end_time = time.time()
             exec_time = end_time - start_time
             print(f"{filename}: cost {exec_time:.4f} seconds")
             cur.execute('DISCARD ALL;')  
         except Exception as e:
-            print(f"{filename}: failed {e}, exceed 600s")
+            print(f"{filename}: failed {e}, exceed your_timeout seconds")
 
 conn.close()

@@ -6,11 +6,11 @@ import subprocess
 import psycopg2
 import json
 DATABASE_HOST = "localhost"
-DATABASE_PORT = 5438
-DATABASE_NAME = "imdbload"
-DATABASE_USER = "qihanzha"
+DATABASE_PORT = 5432
+DATABASE_NAME = "your_database_name"
+DATABASE_USER = "your_username"
 
-# 300 seconds 
+# 300 seconds  or your_timeout
 DATABASE_TIMEOUT = 300000
 
 CONNECTION_INFO = {
@@ -25,15 +25,14 @@ import json
 
 
 def extract_join_tree(plan):
-    """
-    从执行计划中提取连接/扫描节点，构造成二叉树结构。
-    如果节点类型是连接（Nested Loop、Hash Join、Merge Join），返回字典：
-       {"type": "join", "op": 去空格后的连接类型, "left": 左子树, "right": 右子树}
-    如果节点类型包含 Scan，则返回扫描节点字典：
-       {"type": "scan", "alias": 别名, "scan_op": 去空格后的扫描类型}
-    如果节点既非连接也非扫描，但存在子计划，则递归处理所有子计划，
-    如果有多个有效子树，则将它们合并为一个左深的连接树。
-    """
+# Extract join/scan nodes from the execution plan and construct a binary tree structure.
+# If the node type is a join (e.g., Nested Loop, Hash Join, Merge Join), return a dictionary:
+# {"type": "join", "op": join type with whitespace removed, "left": left subtree, "right": right subtree}
+# If the node type contains "Scan", return a scan node dictionary:
+# {"type": "scan", "alias": alias name, "scan_op": scan type with whitespace removed}
+# If the node is neither a join nor a scan but contains subplans, recursively process all subplans.
+# If there are multiple valid subtrees, merge them into a left-deep join tree.
+
     node_type = plan.get("Node Type", "")
     
     if node_type in ("Nested Loop", "Hash Join", "Merge Join"):
@@ -52,16 +51,16 @@ def extract_join_tree(plan):
         op = node_type.replace(" ", "")
         return {"type": "scan", "alias": alias, "scan_op": op}
     elif "Plans" in plan:
-        # 对于非连接、非扫描节点，递归处理所有子节点
+        # for non-join, non-scan nodes, recursively process all child nodes
         child_trees = [extract_join_tree(child) for child in plan["Plans"]]
-        # 过滤掉 None
+        # filter out None
         child_trees = [t for t in child_trees if t is not None]
         if not child_trees:
             return None
-        # 如果只有一个子树，则直接返回
+        # if there is only one child tree, return it directly
         if len(child_trees) == 1:
             return child_trees[0]
-        # 如果有多个子树，则构造左深树（这里用 "DummyJoin" 作为连接操作）
+        # if there are multiple child trees, construct a left-deep join tree (use "DummyJoin" as the join operation)
         tree = child_trees[0]
         for child in child_trees[1:]:
             tree = {"type": "join", "op": "DummyJoin", "left": tree, "right": child}
@@ -70,7 +69,7 @@ def extract_join_tree(plan):
 
 def flatten_join_tree(tree):
     """
-    递归遍历 join 树，返回左到右的扫描节点别名列表。
+    Recursively traverse the join tree, returning a list of alias names from left to right.
     """
     if tree is None:
         return []
@@ -82,7 +81,7 @@ def flatten_join_tree(tree):
 
 def collect_join_nodes(tree):
     """
-    递归收集所有连接节点的信息，每个节点返回 (连接操作, 此子树内所有扫描节点别名列表)。
+    Recursively collect information about all join nodes, returning a list of tuples (join operation, list of alias names for all scan nodes in this subtree).
     """
     if tree is None or tree["type"] == "scan":
         return []
@@ -95,7 +94,7 @@ def collect_join_nodes(tree):
 
 def collect_scans(tree):
     """
-    递归收集所有扫描节点的信息，返回 (扫描操作, 别名) 的列表。
+    Recursively collect information about all scan nodes, returning a list of tuples (scan operation, alias name).
     """
     if tree is None:
         return []
@@ -107,8 +106,8 @@ def collect_scans(tree):
 
 def build_leading_string_from_tree(tree):
     """
-    原始版本，根据连接树的实际结构生成嵌套括号表示：
-    对于扫描节点，直接返回其别名；对于连接节点，返回形如：(左子树 右子树) 的字符串。
+    Original version, generate nested parentheses representation based on the actual structure of the join tree:
+    For scan nodes, return their alias names directly; for join nodes, return a string like: (left subtree right subtree).
     """
     if tree is None:
         return ""
@@ -122,8 +121,8 @@ def build_leading_string_from_tree(tree):
 
 def build_leading_string_from_tree_modified(tree, print_dummy_join):
     """
-    修改版本的 Leading 字符串生成函数：
-    如果遇到 DummyJoin 且 print_dummy_join 为 False，则直接将左右子树合并（不额外添加括号）。
+    Modified version of the Leading string generation function:
+    If a DummyJoin is encountered and print_dummy_join is False, merge the left and right subtrees directly (without adding additional parentheses).
     """
     if tree is None:
         return ""
@@ -140,7 +139,7 @@ def build_leading_string_from_tree_modified(tree, print_dummy_join):
 
 def print_plan_bracket(plan_json_str, print_dummy_join=True):
     """
-    主函数：将 JSON 格式的查询计划转换为括号形式提示信息，格式示例：
+    Main function: Convert the JSON format query plan into a bracket format hint, example format:
     
     /*+ NestedLoop(site tag tag_question question)
      NestedLoop(site tag tag_question)
@@ -151,42 +150,42 @@ def print_plan_bracket(plan_json_str, print_dummy_join=True):
      IndexScan(question)
      Leading((((site tag) tag_question) question)) */
     
-    仅考虑扫描与连接操作。
+    Only consider scan and join operations.
     
-    新增参数 print_dummy_join:
-      - 若为 True，则打印所有连接节点（包括 DummyJoin 节点）；
-      - 若为 False，则在输出中跳过 DummyJoin 节点，并在 Leading 提示中折叠掉 DummyJoin 层级。
+    New parameter print_dummy_join:
+      - If True, print all join nodes (including DummyJoin nodes);
+      - If False, skip DummyJoin nodes in the output and fold the DummyJoin level in the Leading hint.
     """
-    # 解析 JSON 字符串
+    # Parse the JSON string
     plan_data = json.loads(plan_json_str)
-    # 如果最外层有 "Plan" 键，则使用其内部对象作为根节点
+    # If the outermost layer has a "Plan" key, use its internal object as the root node
     if "Plan" in plan_data:
         root_plan = plan_data["Plan"]
     else:
         root_plan = plan_data
 
-    # 提取连接树
+    # Extract join tree
     join_tree = extract_join_tree(root_plan)
     lines = []
     if join_tree is not None:
-        # 收集连接节点信息，按从低层到高层顺序输出
+        # Collect join node information, output in order from low level to high level
         join_nodes = collect_join_nodes(join_tree)
         for op, aliases in reversed(join_nodes):
-            # 当不打印 DummyJoin 时，跳过此节点
+            # When not printing DummyJoin, skip this node
             if op == "DummyJoin" and not print_dummy_join:
                 continue
             lines.append(f"{op}(" + " ".join(aliases) + ")")
-        # 收集扫描节点信息
+        # Collect scan node information
         for scan_op, alias in collect_scans(join_tree):
             lines.append(f"{scan_op}({alias})")
-        # 生成 Leading 提示，按标志选择使用原始或修改版本
+        # Generate Leading hint, select using original or modified version
         if print_dummy_join:
             leading_str = build_leading_string_from_tree(join_tree)
         else:
             leading_str = build_leading_string_from_tree_modified(join_tree, print_dummy_join)
         lines.append(f"Leading({leading_str})")
     else:
-        # 如果仅有扫描节点
+        # If there is only a scan node
         if "Scan" in root_plan.get("Node Type", ""):
             alias = root_plan.get("Alias") or root_plan.get("Relation Name") or ""
             op = root_plan.get("Node Type").replace(" ", "")

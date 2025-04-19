@@ -25,7 +25,7 @@ from utils.RAG_connection import keep_fastest_queries_by_sqlid, get_fastest_plan
 DATABASE_HOST = "localhost"
 DATABASE_PORT = 5438
 DATABASE_NAME = "soload"
-DATABASE_USER = "qihanzha"
+DATABASE_USER = "your_username"
 
 print(f"Database host: {DATABASE_HOST}")
 print(f"Database port: {DATABASE_PORT}")
@@ -45,9 +45,9 @@ CONNECTION_INFO = {
         "user": DATABASE_USER,
     }
 
-DOMAIN_FILE = "/home/qihanzha/LLM4QO/src/local_llm/prompts/SO/domain.nl"
-INIT_VEC_QUERIES_DIR = "/home/qihanzha/LLM4QO/src/local_llm/prompts/SO/so_within_transfer_original_with_time.sql"
-TEST_SQL_DIR = "/home/qihanzha/LLM4QO/sql/so_assorted"
+DOMAIN_FILE = "/home/your_username/LLM4QO/src/local_llm/prompts/SO/domain.nl"
+INIT_VEC_QUERIES_DIR = "/home/your_username/LLM4QO/src/local_llm/prompts/SO/so_within_transfer_original_with_time.sql"
+TEST_SQL_DIR = "/home/your_username/LLM4QO/sql/so_assorted"
 
 print(f"Domain file: {DOMAIN_FILE}")
 print(f"Initial vector queries directory: {INIT_VEC_QUERIES_DIR}")
@@ -108,15 +108,15 @@ if f"{SQL_INIT_COLLECTION_NAME}" not in collections:
         collection_name=f"{SQL_INIT_COLLECTION_NAME}",
         dimension=encoding_model_dimension 
     )
-    # 从文件中读取SQL查询内容，假设各个 entry 之间以空行分隔
+    # read the SQL query content from the file, assuming that the entries are separated by empty lines
     with open(INIT_VEC_QUERIES_DIR, 'r', encoding='utf-8') as file:
         data = file.read().split('\n\n')
     
-    # 定义正则表达式来匹配:
-    # 1. 第一行注释（形如 -- 01.sql），捕获文件名作为 id
-    # 2. 第二行注释（形如 -- 3034.749），捕获原始执行计划时间（单位ms）
-    # 3. 紧跟着的 block 注释（形如 /* ... */），捕获执行计划注释
-    # 4. 后面的 SQL 语句部分
+    # define the regular expression to match:
+    # 1. the first line comment (e.g., -- 01.sql), capturing the file name as id
+    # 2. the second line comment (e.g., -- 3034.749), capturing the original execution plan time (unit: ms)
+    # 3. the block comment immediately following (e.g., /* ... */), capturing the execution plan comment
+    # 4. the SQL statement part following
     pattern = re.compile(
         r"^\s*--\s*(\S+)\s*\n\s*--\s*([\d.]+)\s*\n\s*(/\*[\s\S]*?\*/)\s*(.+)$",
         re.DOTALL
@@ -129,16 +129,16 @@ if f"{SQL_INIT_COLLECTION_NAME}" not in collections:
             continue
         match = pattern.match(entry)
         if match:
-            file_id = match.group(1).strip()              # 文件 id，如 "01.sql"
-            execution_time = float(match.group(2).strip())  # 原始执行计划时间 ms，如 3034.749
-            plan_comment = match.group(3).strip()           # 执行计划注释块，如 /*+ ... */
-            sql_text = match.group(4).strip()               # SQL 语句部分
+            file_id = match.group(1).strip()              # file id, e.g., "01.sql"
+            execution_time = float(match.group(2).strip())  # original execution plan time ms, e.g., 3034.749
+            plan_comment = match.group(3).strip()           # execution plan comment block, e.g., /*+ ... */
+            sql_text = match.group(4).strip()               # SQL statement part
             sql_plan_pairs.append((file_id, sql_text, plan_comment, execution_time))
         else:
             print("Warning: entry does not match expected format, skipping:")
             print(entry)
     
-    # 对每个 SQL 进行编码后插入到 Milvus 中，使用 file_id 作为标识，同时保存执行时间
+    # encode each SQL and insert into Milvus, using file_id as identifier, and save the execution time
     counter = 0
     for file_id, sql, plan, exec_time in sql_plan_pairs:
         vector = model_milvus.encode(sql).tolist()

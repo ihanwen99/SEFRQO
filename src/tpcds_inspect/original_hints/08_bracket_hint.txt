@@ -1,8 +1,0 @@
-/*+ HashJoin(store_sales date_dim a2 store)
- HashJoin(a2 store)
- HashJoin(store_sales date_dim)
- SeqScan(store_sales)
- SeqScan(date_dim)
- SubqueryScan(a2)
- SeqScan(store)
- Leading(((store_sales date_dim) (a2 store))) */

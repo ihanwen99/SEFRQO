@@ -1,8 +1,0 @@
-/*+ NestedLoop(item date_dim inventory catalog_sales)
- NestedLoop(item date_dim inventory)
- NestedLoop(date_dim inventory)
- SeqScan(item)
- SeqScan(date_dim)
- IndexScan(inventory)
- IndexOnlyScan(catalog_sales)
- Leading(((item (date_dim inventory)) catalog_sales)) */

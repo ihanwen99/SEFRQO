@@ -1,2 +1,0 @@
-/*+ SubqueryScan(cool_cust)
- Leading(cool_cust) */

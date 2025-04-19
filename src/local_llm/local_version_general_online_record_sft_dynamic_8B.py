@@ -8,10 +8,12 @@ import random
 import math
 from pymilvus import MilvusClient
 from sentence_transformers import SentenceTransformer  
-from openai import OpenAI
+from vllm import LLM, SamplingParams
+from transformers import AutoTokenizer
+
 
 from utils.translation_sql_2_nlenv_new import analyze_sql
-from utils.get_postgres_hint import get_postgres_hint
+from utils.get_postgres_hint import get_postgres_hint,extract_sql_hint_from_text_chunk,print_plan_bracket
 from utils.get_postgres_hint import print_plan_bracket
 from utils.check_hint_validity import is_bushy_hint_reasonable
 from utils.RAG_connection import keep_fastest_queries_by_sqlid, get_fastest_plan_by_sqlid, update_init_collection, get_next_id
@@ -23,15 +25,15 @@ DATABASE_HOST = "localhost"
 DATABASE_PORT = 5438
 DATABASE_LIST = ["imdbload", "soload"]
 # DATABASE_LIST = ["imdbload", "soload","imdbdownload", "sodownload"]
-DATABASE_USER = "qihanzha"
+DATABASE_USER = "your_username"
 
 print(f"Database host: {DATABASE_HOST}")
 print(f"Database port: {DATABASE_PORT}")
 # print(f"Database name: {DATABASE_NAME}")
 print(f"Database user: {DATABASE_USER}")
 
-TIME_OUT_IMDB = 30000
-TIME_OUT_STACK = 50000
+TIME_OUT_IMDB = 10000
+TIME_OUT_STACK = 30000
 print(f"Database IMDB timeout: {TIME_OUT_IMDB}")
 print(f"Database Stack Overflow timeout: {TIME_OUT_STACK}")
 CONNECTION_INFO_LIST = []
@@ -47,24 +49,23 @@ for database in DATABASE_LIST:
     CONNECTION_INFO_LIST.append(connection_info)
 
 
-DOMAIN_FILE = "/home/qihanzha/LLM4QO/src/local_llm/prompts/IMDB/domain.nl"
-INIT_VEC_QUERIES_DIR = "/home/qihanzha/LLM4QO/src/local_llm/prompts/IMDB/IMDB_ceb_set_1_original_with_time.sql"
+DOMAIN_FILE = "/home/your_username/LLM4QO/src/local_llm/prompts/IMDB/domain.nl"
+INIT_VEC_QUERIES_DIR = "/home/your_username/LLM4QO/src/local_llm/prompts/IMDB/IMDB_job_set_original_with_time.sql"
 
-TEST_IMDB_DIR_LIST = ["/home/qihanzha/LLM4QO/sql/imdb_small_test", "/home/qihanzha/LLM4QO/sql/imdb_small_test_2"]
-TEST_STACK_DIR_LIST = ["/home/qihanzha/LLM4QO/sql/so_small_test", "/home/qihanzha/LLM4QO/sql/so_small_test_2"]
-
+TEST_IMDB_DIR_LIST = ["/home/your_username/LLM4QO/sql/imdb_assorted_5", "/home/your_username/LLM4QO/sql/imdb_job_set"]
+TEST_STACK_DIR_LIST = ["/home/your_username/LLM4QO/sql/so_assorted"]
 print(f"Domain file: {DOMAIN_FILE}")
 print(f"Initial vector queries directory: {INIT_VEC_QUERIES_DIR}")
 # print(f"Test SQL directory: {TEST_SQL_DIR}")
 
 REAL_EXECUTION = False
-ONLY_ORDER = True
+ONLY_ORDER = False
 DROP_CACHE = False
 USE_REFERENCE = True
 DELETE_VECTOR_AFTER_USE = True
 USE_UPDATING_RAG = True
-NUM_ITERATIONS = 15
-NUM_PHASE = 4
+NUM_ITERATIONS = 50
+NUM_PHASE = 10
 
 # greater than or equal to 1
 NUM_REFERENCE_QUERIES = 1
@@ -80,21 +81,29 @@ print(f"Number of phases: {NUM_PHASE}")
 print(f"Number of reference queries: {NUM_REFERENCE_QUERIES}")
 
 
-milvus_position = f"/home/qihanzha/LLM4QO/src/local_llm/online_records/dynamic_online_vec.db"
+milvus_position = f"/home/your_username/LLM4QO/src/local_llm/online_records/dynamic_online_vec.db"
 model_milvus = SentenceTransformer('paraphrase-MiniLM-L6-v2')
 client_milvus = MilvusClient(milvus_position)
 encoding_model_dimension = 384
 SQL_INIT_COLLECTION_NAME = "sql_init_collection"
 SQL_ONLINE_COLLECTION_NAME = "sql_online_collection"
 SQL_POSTGRES_COLLECTION_NAME = "sql_postgres_collection"
+# 8B
+local_model_name = "/home/your_username/LLM4QO/latest-checkpoints-Apr5/8B-JOB-Apr2-ckpts/ckpt-1074"
+print(f"Model name: {local_model_name}")
 
-client_gpt = OpenAI(api_key="", base_url="https://api.deepseek.com")
-# deepseek-chat deepseek-reasoner
-model_name = "deepseek-chat"
+local_tokenizer = AutoTokenizer.from_pretrained(local_model_name, trust_remote_code=True)
 
-
-
-print(f"Model name: {model_name}")
+client_gpt = LLM(
+        model=local_model_name,
+        dtype="bfloat16",
+    )
+local_sampling_params = SamplingParams(
+        temperature=1.0,
+        max_tokens=512,
+        n=1,
+        stop_token_ids = [128009, 128001],
+    )
 
 collections = client_milvus.list_collections() 
 if f"{SQL_INIT_COLLECTION_NAME}" not in collections:
@@ -104,15 +113,15 @@ if f"{SQL_INIT_COLLECTION_NAME}" not in collections:
         collection_name=f"{SQL_INIT_COLLECTION_NAME}",
         dimension=encoding_model_dimension 
     )
-    # read the SQL query content from the file, assuming that each entry is separated by an empty line
+    # read the SQL query content from the file, assuming that the entries are separated by empty lines
     with open(INIT_VEC_QUERIES_DIR, 'r', encoding='utf-8') as file:
         data = file.read().split('\n\n')
     
-    # define the regular expression to match:
-    # 1. the first line comment (e.g., -- 01.sql), capturing the file name as id
-    # 2. the second line comment (e.g., -- 3034.749), capturing the original execution plan time (unit: ms)
-    # 3. the block comment immediately following (e.g., /* ... */), capturing the execution plan comment
-    # 4. the SQL statement part following
+    # define the regex to match:
+    # 1. the first line comment (e.g. -- 01.sql), capture the file name as id
+    # 2. the second line comment (e.g. -- 3034.749), capture the original execution plan time (unit: ms)
+    # 3. the block comment (e.g. /* ... */) following the second line comment, capture the execution plan comment
+    # 4. the SQL statement part following the block comment
     pattern = re.compile(
         r"^\s*--\s*(\S+)\s*\n\s*--\s*([\d.]+)\s*\n\s*(/\*[\s\S]*?\*/)\s*(.+)$",
         re.DOTALL
@@ -125,16 +134,16 @@ if f"{SQL_INIT_COLLECTION_NAME}" not in collections:
             continue
         match = pattern.match(entry)
         if match:
-            file_id = match.group(1).strip()              # file id, e.g., "01.sql"
-            execution_time = float(match.group(2).strip())  # original execution plan time ms, e.g., 3034.749
-            plan_comment = match.group(3).strip()           # execution plan comment block, e.g., /*+ ... */
+            file_id = match.group(1).strip()              # file id, e.g. "01.sql"
+            execution_time = float(match.group(2).strip())  # original execution plan time (unit: ms), e.g. 3034.749
+            plan_comment = match.group(3).strip()           # execution plan comment block, e.g. /*+ ... */
             sql_text = match.group(4).strip()               # SQL statement part
             sql_plan_pairs.append((file_id, sql_text, plan_comment, execution_time))
         else:
             print("Warning: entry does not match expected format, skipping:")
             print(entry)
     
-    # encode each SQL and insert into Milvus, using file_id as the identifier, and save the execution time
+    # encode each SQL and insert into Milvus, using file_id as identifier, and save the execution time
     counter = 0
     for file_id, sql, plan, exec_time in sql_plan_pairs:
         vector = model_milvus.encode(sql).tolist()
@@ -461,13 +470,12 @@ for partition in partitions:
 
     
     for local_iter in range(partition):
-        
         # TODO Decide whether we need this if statement
         if global_iter == 0:
             fill_postgres_collection(client_milvus, SQL_POSTGRES_COLLECTION_NAME, model_milvus, keys, values,connection_info)
             global_iter = global_iter + 1
             continue
-        
+    
         print(f"=========Processing global iteration {global_iter+1}/{NUM_ITERATIONS}=========\n")
         print(f"=========Processing local iteration {local_iter+1}/{partition}=========\n")
         for i in range(1, number_of_questions+1):
@@ -509,25 +517,26 @@ for partition in partitions:
                 else:
                     milvus_res.append(result['entity']['plan'])
                     # FIXME: the referenced sqls may come from another database
-                if "imdbload" in result['entity']['sqlid']:
-                    temp_connection_info = {
-                                        "host": DATABASE_HOST,
-                                        "port": DATABASE_PORT,
-                                        "database": "imdbload",
-                                        "user": DATABASE_USER,
-                                        "timeout": TIME_OUT_IMDB,
-                                        }
-                elif "soload" in result['entity']['sqlid']:
-                    temp_connection_info = {
-                                        "host": DATABASE_HOST,
-                                        "port": DATABASE_PORT,
-                                        "database": "soload",
-                                        "user": DATABASE_USER,
-                                        "timeout": TIME_OUT_STACK,
-                                        }
-                else:
-                    raise ValueError(f"Invalid database name in result['entity']['sqlid']: {result['entity']['sqlid']}")
+                    if "imdbload" in result['entity']['sqlid']:
+                        temp_connection_info = {
+                                            "host": DATABASE_HOST,
+                                            "port": DATABASE_PORT,
+                                            "database": "imdbload",
+                                            "user": DATABASE_USER,
+                                            "timeout": TIME_OUT_IMDB,
+                                            }
+                    elif "soload" in result['entity']['sqlid']:
+                        temp_connection_info = {
+                                            "host": DATABASE_HOST,
+                                            "port": DATABASE_PORT,
+                                            "database": "soload",
+                                            "user": DATABASE_USER,
+                                            "timeout": TIME_OUT_STACK,
+                                            }
+                    else:
+                        raise ValueError(f"Invalid database name in result['entity']['sqlid']: {result['entity']['sqlid']}")
                 milvus_res_envs.append(analyze_sql(result['entity']['sql'],temp_connection_info,REAL_EXECUTION,result['entity']['sqlid']))
+
             sql_query_original = sql_query
 
             with open(DOMAIN_FILE, "r") as file:
@@ -644,12 +653,26 @@ for partition in partitions:
                     )
                 
             messages.append({"role": "user", "content": combined_query})
-            response = client_gpt.chat.completions.create(
-                model=model_name,
-                messages=messages
-            )
+            after_template_messages = local_tokenizer.apply_chat_template(messages, add_generation_prompt=True, tokenize=False)
+            response = client_gpt.generate(after_template_messages, local_sampling_params)
+            action_sequence = response[0].outputs[0].text.strip()
+            # FIXME Qihan: for Hanwen's model, we need to manually add /*+ and */ to the action sequence
+            if ONLY_ORDER:
+                leading_line = None
+                # Extract the Leading hint line from the original plan
+                for line in action_sequence.splitlines():
+                    stripped_line = line.strip()
+                    if stripped_line.startswith("Leading("):
+                        leading_line = stripped_line
+                        break
+                if leading_line is not None:
+                    action_sequence = "/*+ \n" + leading_line + " */"  
+                else:
+                    # If no Leading hint is found, fallback to the original plan
+                    action_sequence = "/*+ " + action_sequence + " */"
+            else:
+                action_sequence = "/*+ " + action_sequence + " */"
 
-            action_sequence = response.choices[0].message.content
 
             try:
                 print(f"hint for question {keys[i-1]} given by LLM (may not be valid): ", action_sequence)
@@ -730,7 +753,7 @@ for partition in partitions:
         if USE_UPDATING_RAG:
             update_init_collection(milvus_position, SQL_INIT_COLLECTION_NAME, SQL_POSTGRES_COLLECTION_NAME, SQL_ONLINE_COLLECTION_NAME)
         if (global_iter+1) % 5 == 0:
-            send_email("llmqo API Experiment", f"The experiment of dynamic finished! The iteration is {global_iter+1}","")
+            send_email("llmqo local Experiment", f"The experiment of dynamic finished! The iteration is {global_iter+1}","")
         
         global_iter += 1
 

@@ -1,2 +1,0 @@
-/*+ SeqScan(i1)
- Leading(i1) */

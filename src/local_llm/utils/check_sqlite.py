@@ -20,7 +20,7 @@ def query_sqlite_data(db_file, table_name, limit=10):
             conn.close()
 
 if __name__ == "__main__":
-    db_file = "/home/qihanzha/LLM4QO/src/local_llm/online_records/online_test.db"
+    db_file = "your_path/src/local_llm/online_records/online_test.db"
     table_name = "execution_results"
     limit = 5
     query_sqlite_data(db_file, table_name, limit)

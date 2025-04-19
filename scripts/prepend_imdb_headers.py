@@ -19,7 +19,7 @@ from absl import flags
 from absl import logging
 
 FLAGS = flags.FLAGS
-# /mydata/datasets/job
+# /mydata/datasets/job or the path of the job folder
 flags.DEFINE_string('csv_dir', '/mydata/datasets/job', 'Directory to IMDB CSVs.')
 
 

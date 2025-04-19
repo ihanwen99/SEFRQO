@@ -1,8 +1,0 @@
-/*+ NestedLoop(inventory date_dim item warehouse)
- NestedLoop(inventory date_dim item)
- HashJoin(inventory date_dim)
- SeqScan(inventory)
- SeqScan(date_dim)
- IndexScan(item)
- IndexScan(warehouse)
- Leading((((inventory date_dim) item) warehouse)) */

@@ -25,4 +25,4 @@ def send_email(subject, body, to_email):
         print(f"Failed to send email: {e}")
 
 if __name__ == '__main__':
-    send_email("llmqo API Experiment", "The experiment of IMDB XXX finished!", "")
+    send_email("llmqo API Experiment", "The experiment of dataset XXX finished!", "")

@@ -1,8 +1,0 @@
-/*+ NestedLoop(catalog_sales date_dim customer customer_address)
- NestedLoop(catalog_sales date_dim customer)
- HashJoin(catalog_sales date_dim)
- SeqScan(catalog_sales)
- SeqScan(date_dim)
- IndexScan(customer)
- IndexScan(customer_address)
- Leading((((catalog_sales date_dim) customer) customer_address)) */

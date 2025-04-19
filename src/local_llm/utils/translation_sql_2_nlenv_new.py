@@ -2,16 +2,16 @@ import re
 from utils.get_postgres_hint import get_postgres_hint_json
 def extract_plan_info(plan_json):
     """
-    从 Postgres 查询计划的 JSON 中提取出每个表/节点的基数和对应的过滤条件基数。
+    Extract the cardinality of each table/node and the corresponding filter cardinality from the JSON of the Postgres query plan.
 
-    返回两个字典：
-    - table_cardinality: key 为表别名（或表名/CTE名），value 为该节点的 Plan Rows（认为是基数）。
-    - filter_cardinality: key 为 (表别名, filter字符串) 的元组，value 为对应节点的 Plan Rows。
+    Returns two dictionaries:
+    - table_cardinality: key is the table alias (or table name/CTE name), value is the Plan Rows of the node (considered as the cardinality).
+    - filter_cardinality: key is the tuple of (table alias, filter string), value is the Plan Rows of the corresponding node.
 
-    注意：
-    - 若同一表在多个节点中出现，这里采用较大的 Plan Rows 作为该表的估计基数。
-    - 每个带 Filter 或 Join Filter 的节点都会单独记录。
-    - 对于 Join Filter，如果当前节点没有明确的 alias，会利用正则表达式从条件中提取出涉及的所有表别名进行记录。
+    Note:
+    - If the same table appears in multiple nodes, the larger Plan Rows is used as the estimated cardinality of that table.
+    - Each node with Filter or Join Filter will be recorded separately.
+    - For Join Filter, if the current node does not have a clear alias, all table aliases involved in the condition will be extracted using a regular expression.
     """
     table_cardinality = {}
     filter_cardinality = {}
@@ -20,7 +20,7 @@ def extract_plan_info(plan_json):
         if not isinstance(node, dict):
             return
 
-        # 确定当前节点的标识：优先使用 Relation Name，其次使用 CTE Name，再次使用 Alias，否则为 "unknown"
+        # determine the identifier of the current node: use Relation Name first, then CTE Name, then Alias, otherwise "unknown"
         if "Relation Name" in node:
             alias = node.get("Alias", node["Relation Name"])
         elif "CTE Name" in node:
@@ -30,29 +30,29 @@ def extract_plan_info(plan_json):
             
         plan_rows = node.get("Plan Rows")
 
-        # 处理 Filter 字段
+        # process the Filter field
         if "Filter" in node:
             filter_str = node["Filter"]
             if plan_rows is not None:
                 filter_cardinality[(alias, filter_str)] = plan_rows
 
-        # 处理 Join Filter 字段
+        # process the Join Filter field
         if "Join Filter" in node:
             join_filter_str = node["Join Filter"]
-            # 如果当前节点 alias 为 unknown 或 join filter 涉及多个表，则尝试用正则提取所有表别名
+            # if the current node alias is unknown or the join filter involves multiple tables, try to extract all table aliases using a regular expression
             aliases = re.findall(r'([a-zA-Z_]\w*)\.', join_filter_str)
             if not aliases:
                 aliases = [alias]
-            # 对于 join filter 涉及的每个别名，都单独记录基数
+            # for each alias involved in the join filter, record the cardinality separately
             for a in aliases:
                 if plan_rows is not None:
                     filter_cardinality[(a, join_filter_str)] = plan_rows
 
-        # 记录扫描节点的表基数（只在有 Relation Name 时记录）
+        # record the table cardinality of the scan node (only record when there is Relation Name)
         if "Relation Name" in node and plan_rows is not None:
             table_cardinality[alias] = max(plan_rows, table_cardinality.get(alias, 0))
 
-        # 递归遍历所有子节点（包括 Plans 数组中的节点）
+        # recursively traverse all child nodes (including nodes in the Plans array)
         for key, value in node.items():
             if isinstance(value, dict):
                 traverse(value)
@@ -60,7 +60,7 @@ def extract_plan_info(plan_json):
                 for item in value:
                     traverse(item)
 
-    # 从顶层的 Plan 节点开始遍历
+    # start traversing from the top-level Plan node
     if "Plan" in plan_json:
         traverse(plan_json["Plan"])
     else:
@@ -76,15 +76,15 @@ def analyze_sql(sql, connection_info,REAL_EXECUTION,sql_name):
     if 'timeout' in connection_info_cp:
         del connection_info_cp['timeout']
 
-    # 获取查询计划的 JSON 对象（假设 get_postgres_hint_json 已定义）
+    # get the JSON object of the query plan (assuming get_postgres_hint_json is defined)
     plan_json = get_postgres_hint_json(sql, connection_info_cp,REAL_EXECUTION,sql_name)
     # change string to json
     plan_json = json.loads(plan_json)
     
-    # 提取表的基数和过滤条件基数（假设 extract_plan_info 已定义）
+    # extract the cardinality of the tables and the filter cardinality (assuming extract_plan_info is defined)
     table_card, filter_card = extract_plan_info(plan_json)
     
-    # 用列表存储各行结果，最后合并为一个字符串返回
+    # store the results of each line in a list, then merge them into a string and return
     result_lines = []
     
     result_lines.append("Table Cardinality:")
@@ -95,10 +95,10 @@ def analyze_sql(sql, connection_info,REAL_EXECUTION,sql_name):
     for (alias, filt), rows in filter_card.items():
         result_lines.append(f"  ({alias}, {filt}): {rows}")
     
-    # 将所有行用换行符合并为一个字符串
+    # merge all lines with newline characters into a string
     concatened_text = "\n".join(result_lines)
     
-    # 可选：打印结果
+    # optional: print the result
     # print(concatened_text)
     
     return concatened_text
@@ -106,7 +106,7 @@ def analyze_sql(sql, connection_info,REAL_EXECUTION,sql_name):
     
 
 
-# # 示例使用：从文件中读取 JSON 查询计划
+# # example: read the JSON query plan from a file
 # if __name__ == "__main__":
 #     database = "tpcds1load"
 #     connection_info = {

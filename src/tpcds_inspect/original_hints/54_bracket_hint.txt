@@ -1,2 +1,0 @@
-/*+ SubqueryScan(my_revenue)
- Leading(my_revenue) */

@@ -1,5 +1,0 @@
-/*+ HashJoin(inv1 inv2)
- SubqueryScan(foo)
- CTEScan(inv1)
- CTEScan(inv2)
- Leading(foo (inv1 inv2)) */

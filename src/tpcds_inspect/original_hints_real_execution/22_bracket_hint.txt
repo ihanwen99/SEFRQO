@@ -1,6 +1,0 @@
-/*+ HashJoin(inventory date_dim item)
- HashJoin(inventory date_dim)
- SeqScan(inventory)
- SeqScan(date_dim)
- SeqScan(item)
- Leading(((inventory date_dim) item)) */

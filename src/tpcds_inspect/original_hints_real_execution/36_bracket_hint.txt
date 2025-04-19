@@ -1,9 +1,0 @@
-/*+ NestedLoop(store_sales store d1 item)
- NestedLoop(store_sales store d1)
- HashJoin(store_sales store)
- SeqScan(store_sales)
- SeqScan(store)
- IndexScan(d1)
- IndexScan(item)
- SubqueryScan(results_rollup)
- Leading((((store_sales store) d1) item) results_rollup) */

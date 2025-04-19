@@ -1,6 +1,0 @@
-/*+ NestedLoop(store_returns reason store_sales)
- HashJoin(store_returns reason)
- SeqScan(store_returns)
- SeqScan(reason)
- IndexScan(store_sales)
- Leading(((store_returns reason) store_sales)) */

@@ -20,8 +20,8 @@ def extract_hint_block(action_sequence):
 
 def extract_sql_hint_from_text_chunk(text):
     """
-    从输入文本中提取以 /*+ 开始、以 */ 结束的 SQL hint，返回包含包围字符的匹配项。
-    如果未找到匹配项，则返回 None。
+    Extract the SQL hint that starts with /*+ and ends with */, returning the matching item containing the surrounding characters.
+    If no match is found, return None.
     """
     pattern = r"(\/\*\+.*?\*\/)"
     match = re.search(pattern, text, re.DOTALL)
@@ -37,13 +37,13 @@ def get_explain_plan_json(original_sql, connection_info,real_execution,sql_name)
         del connection_info_cp['timeout']
 
     
-    # 2. 拼接 EXPLAIN 语句
+    # 2. concatenate EXPLAIN statement
     # explain_sql = f"EXPLAIN (ANALYZE, FORMAT JSON) {original_sql};"
     if real_execution:
         # sql_name is like 74.sql, now weextrach the number 74
         sql_number = sql_name.split(".")[0]
         # get the stored json file 74.json in the /home/qihanzha/LLM4QO/src/tpcds_inspect/original_hints_real_execution folder
-        json_file_path = f"/home/qihanzha/LLM4QO/src/tpcds_inspect/original_hints_real_execution/{sql_number}.json"
+        json_file_path = f"your_path/src/tpcds_inspect/original_hints_real_execution/{sql_number}.json"
         with open(json_file_path, "r") as f:
             plan_json_str = f.read()
         return plan_json_str
@@ -51,26 +51,26 @@ def get_explain_plan_json(original_sql, connection_info,real_execution,sql_name)
     else:
         explain_sql = f"EXPLAIN (FORMAT JSON) {original_sql};"
 
-        # 3. 执行拼接后的 SQL 并获取结果
+        # 3. execute the concatenated SQL and get the result
         with psycopg2.connect(**connection_info_cp) as conn:
             with conn.cursor() as cur:
                 cur.execute(explain_sql)
-                # EXPLAIN (FORMAT JSON) 通常只返回一行一列, 形如 [(json_string, )]
+                # EXPLAIN (FORMAT JSON) usually returns only one row and one column, such as [(json_string, )]
                 result = cur.fetchall()
-                plan_json_str = result[0][0]  # 取第 0 行第 0 列
+                plan_json_str = result[0][0]  # take the 0th row and 0th column
     
-        # 4. 直接返回 JSON 字符串
+        # 4. return the JSON string directly
         return json.dumps(plan_json_str[0])
 
 def extract_join_tree(plan):
     """
-    从执行计划中提取连接/扫描节点，构造成二叉树结构。
-    如果节点类型是连接（Nested Loop、Hash Join、Merge Join），返回字典：
-       {"type": "join", "op": 去空格后的连接类型, "left": 左子树, "right": 右子树}
-    如果节点类型包含 Scan，则返回扫描节点字典：
-       {"type": "scan", "alias": 别名, "scan_op": 去空格后的扫描类型}
-    如果节点既非连接也非扫描，但存在子计划，则递归处理所有子计划，
-    如果有多个有效子树，则将它们合并为一个左深的连接树。
+    Extract join/scan nodes from the execution plan, constructing a binary tree structure.
+    If the node type is a join (Nested Loop, Hash Join, Merge Join), return a dictionary:
+       {"type": "join", "op": join type with whitespace removed, "left": left subtree, "right": right subtree}
+    If the node type contains Scan, return a scan node dictionary:
+       {"type": "scan", "alias": alias, "scan_op": scan type with whitespace removed}
+    If the node is neither a join nor a scan but contains subplans, recursively process all subplans.
+    If there are multiple valid subtrees, merge them into a left-deep join tree.
     """
     node_type = plan.get("Node Type", "")
     
@@ -90,16 +90,16 @@ def extract_join_tree(plan):
         op = node_type.replace(" ", "")
         return {"type": "scan", "alias": alias, "scan_op": op}
     elif "Plans" in plan:
-        # 对于非连接、非扫描节点，递归处理所有子节点
+        # for non-join, non-scan nodes, recursively process all child nodes
         child_trees = [extract_join_tree(child) for child in plan["Plans"]]
-        # 过滤掉 None
+        # filter out None
         child_trees = [t for t in child_trees if t is not None]
         if not child_trees:
             return None
-        # 如果只有一个子树，则直接返回
+        # if there is only one child tree, return it directly
         if len(child_trees) == 1:
             return child_trees[0]
-        # 如果有多个子树，则构造左深树（这里用 "DummyJoin" 作为连接操作）
+        # if there are multiple child trees, construct a left-deep join tree (use "DummyJoin" as the join operation)
         tree = child_trees[0]
         for child in child_trees[1:]:
             tree = {"type": "join", "op": "DummyJoin", "left": tree, "right": child}
@@ -108,7 +108,7 @@ def extract_join_tree(plan):
 
 def flatten_join_tree(tree):
     """
-    递归遍历 join 树，返回左到右的扫描节点别名列表。
+    Recursively traverse the join tree, returning a list of alias names from left to right.
     """
     if tree is None:
         return []
@@ -120,7 +120,7 @@ def flatten_join_tree(tree):
 
 def collect_join_nodes(tree):
     """
-    递归收集所有连接节点的信息，每个节点返回 (连接操作, 此子树内所有扫描节点别名列表)。
+    Recursively collect information about all join nodes, returning a list of tuples (join operation, list of alias names for all scan nodes in this subtree).
     """
     if tree is None or tree["type"] == "scan":
         return []
@@ -133,7 +133,7 @@ def collect_join_nodes(tree):
 
 def collect_scans(tree):
     """
-    递归收集所有扫描节点的信息，返回 (扫描操作, 别名) 的列表。
+    Recursively collect information about all scan nodes, returning a list of tuples (scan operation, alias).
     """
     if tree is None:
         return []
@@ -145,8 +145,8 @@ def collect_scans(tree):
 
 def build_leading_string_from_tree(tree):
     """
-    原始版本，根据连接树的实际结构生成嵌套括号表示：
-    对于扫描节点，直接返回其别名；对于连接节点，返回形如：(左子树 右子树) 的字符串。
+    Original version, generate nested parentheses representation based on the actual structure of the join tree:
+    For scan nodes, return their alias names directly; for join nodes, return a string like: (left subtree right subtree).
     """
     if tree is None:
         return ""
@@ -160,8 +160,8 @@ def build_leading_string_from_tree(tree):
 
 def build_leading_string_from_tree_modified(tree, print_dummy_join):
     """
-    修改版本的 Leading 字符串生成函数：
-    如果遇到 DummyJoin 且 print_dummy_join 为 False，则直接将左右子树合并（不额外添加括号）。
+    Modified version of the Leading string generation function:
+    If a DummyJoin is encountered and print_dummy_join is False, merge the left and right subtrees directly (without adding additional parentheses).
     """
     if tree is None:
         return ""
@@ -268,7 +268,7 @@ def get_postgres_hint_json(original_sql, connection_info,REAL_EXECUTION,sql_name
 
     return plan_result
 # if __name__ == "__main__":
-#     # 使用示例
+#     # example
 #     database = "tpcds1load"
 #     connection_info = {
 #         "host": "127.0.0.1",

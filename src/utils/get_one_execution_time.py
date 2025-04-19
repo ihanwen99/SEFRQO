@@ -5,13 +5,13 @@ import time
 
 db_config = {
     'host': 'localhost',
-    'port': 5438,
-    'dbname': 'tpcds1load',
-    'user': 'qihanzha',  
+    'port': 5432,
+    'dbname': 'your_database_name',
+    'user': 'your_username',  
 }
 
 
-sql_file_path = '/home/qihanzha/LLM4QO/sql/tpcds/11.sql'
+sql_file_path = '/your_path/sql/your_dataset_name/your_sql_file_name.sql'
 
 conn = psycopg2.connect(**db_config)
 conn.autocommit = True

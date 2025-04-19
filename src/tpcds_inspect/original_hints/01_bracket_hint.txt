@@ -1,9 +1,0 @@
-/*+ NestedLoop(store ctr1 customer)
- NestedLoop(store ctr1)
- HashJoin(store_returns date_dim)
- SeqScan(store_returns)
- SeqScan(date_dim)
- SeqScan(store)
- CTEScan(ctr1)
- IndexScan(customer)
- Leading((store_returns date_dim) ((store ctr1) customer)) */

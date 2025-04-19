@@ -7,28 +7,27 @@ import json
 
 from pymilvus import MilvusClient
 from sentence_transformers import SentenceTransformer  
-from openai import OpenAI
+from vllm import LLM, SamplingParams
+from transformers import AutoTokenizer
 
 from utils.translation_sql_2_nlenv_new import analyze_sql
 from utils.get_postgres_hint import get_postgres_hint
 from utils.get_postgres_hint import print_plan_bracket
 from utils.check_hint_validity import is_bushy_hint_reasonable
 from utils.RAG_connection import keep_fastest_queries_by_sqlid, get_fastest_plan_by_sqlid, update_init_collection, get_next_id
-
 from utils.notification import send_email
-
 DATABASE_HOST = "localhost"
 DATABASE_PORT = 5438
 DATABASE_NAME = "imdbload"
-DATABASE_USER = "qihanzha"
+DATABASE_USER = "your_username"
 
 print(f"Database host: {DATABASE_HOST}")
 print(f"Database port: {DATABASE_PORT}")
 print(f"Database name: {DATABASE_NAME}")
 print(f"Database user: {DATABASE_USER}")
 
-# 50 seconds 
-DATABASE_TIMEOUT = 50000
+# 10 seconds 
+DATABASE_TIMEOUT = 10000
 print(f"Database timeout: {DATABASE_TIMEOUT}")
 
 CONNECTION_INFO = {
@@ -38,21 +37,23 @@ CONNECTION_INFO = {
         "user": DATABASE_USER,
     }
 
-DOMAIN_FILE = "/home/qihanzha/LLM4QO/src/local_llm/prompts/IMDB/domain.nl"
-INIT_VEC_QUERIES_DIR = "/home/qihanzha/LLM4QO/src/local_llm/prompts/IMDB/IMDB_ceb_set_1_original_with_time.sql"
-TEST_SQL_DIR = "/home/qihanzha/LLM4QO/sql/imdb_assorted_5"
+DOMAIN_FILE = "/home/your_username/LLM4QO/src/local_llm/prompts/IMDB/domain.nl"
+INIT_VEC_QUERIES_DIR = "/home/your_username/LLM4QO/src/local_llm/prompts/IMDB/IMDB_job_set_original_with_time.sql"
+TEST_SQL_DIR = "/home/your_username/LLM4QO/sql/imdb_assorted_5"
 
 print(f"Domain file: {DOMAIN_FILE}")
 print(f"Initial vector queries directory: {INIT_VEC_QUERIES_DIR}")
 print(f"Test SQL directory: {TEST_SQL_DIR}")
 
 REAL_EXECUTION = False
-ONLY_ORDER = True
+ONLY_ORDER = False
 DROP_CACHE = False
+# set it to True if you want to use the reference queries
 USE_REFERENCE = True
 DELETE_VECTOR_AFTER_USE = True
 USE_UPDATING_RAG = True
-NUM_ITERATIONS = 2
+# In Penn's cluster, if we exceed 7 iterations, the process will be frozen
+NUM_ITERATIONS = 50
 # greater than or equal to 1
 NUM_REFERENCE_QUERIES = 1
 
@@ -65,8 +66,7 @@ print(f"Use updating RAG: {USE_UPDATING_RAG}")
 print(f"Number of iterations: {NUM_ITERATIONS}")
 print(f"Number of reference queries: {NUM_REFERENCE_QUERIES}")
 
-
-milvus_position = f"/home/qihanzha/LLM4QO/src/local_llm/online_records/{DATABASE_NAME}_online_vec.db"
+milvus_position = f"/home/your_username/LLM4QO/src/local_llm/online_records/{DATABASE_NAME}_online_vec.db"
 model_milvus = SentenceTransformer('paraphrase-MiniLM-L6-v2')
 client_milvus = MilvusClient(milvus_position)
 encoding_model_dimension = 384
@@ -74,13 +74,25 @@ SQL_INIT_COLLECTION_NAME = "sql_init_collection"
 SQL_ONLINE_COLLECTION_NAME = "sql_online_collection"
 SQL_POSTGRES_COLLECTION_NAME = "sql_postgres_collection"
 
-client_gpt = OpenAI(api_key="", base_url="https://api.deepseek.com")
-# deepseek-chat deepseek-reasoner
-model_name = "deepseek-chat"
+# /home/your_username/LLM4QO/latest-checkpoints-Apr5/8B-JOB-Apr2-ckpts/ckpt-1074
+#/home/your_username/LLM4QO/latest-checkpoints-Apr5/3B-JOB-ckpts/ckpt-4296
+local_model_name = "/home/your_username/LLM4QO/latest-checkpoints-Apr5/3B-JOB-ckpts/ckpt-4296"
+print(f"Model name: {local_model_name}")
+
+# load tokenizer and model
+local_tokenizer = AutoTokenizer.from_pretrained(local_model_name, trust_remote_code=True)
+client_gpt = LLM(
+        model=local_model_name,
+        dtype="bfloat16",
+    )
+local_sampling_params = SamplingParams(
+        temperature=1.0,
+        max_tokens=512,
+        n=1,
+        stop_token_ids = [128009, 128001],
+    )
 
 
-
-print(f"Model name: {model_name}")
 
 collections = client_milvus.list_collections() 
 if f"{SQL_INIT_COLLECTION_NAME}" not in collections:
@@ -90,15 +102,15 @@ if f"{SQL_INIT_COLLECTION_NAME}" not in collections:
         collection_name=f"{SQL_INIT_COLLECTION_NAME}",
         dimension=encoding_model_dimension 
     )
-    # read the SQL query content from the file, assuming that each entry is separated by an empty line
+    # read the SQL query content from the file, assuming that the entries are separated by empty lines
     with open(INIT_VEC_QUERIES_DIR, 'r', encoding='utf-8') as file:
         data = file.read().split('\n\n')
     
-    # define the regular expression to match:
-    # 1. the first line comment (e.g., -- 01.sql), capturing the file name as id
-    # 2. the second line comment (e.g., -- 3034.749), capturing the original execution plan time (unit: ms)
-    # 3. the block comment immediately following (e.g., /* ... */), capturing the execution plan comment
-    # 4. the SQL statement part following
+    # define the regex to match:
+    # 1. the first line comment (e.g. -- 01.sql), capture the file name as id
+    # 2. the second line comment (e.g. -- 3034.749), capture the original execution plan time (unit: ms)
+    # 3. the following block comment (e.g. /* ... */), capture the execution plan comment
+    # 4. the SQL statement part
     pattern = re.compile(
         r"^\s*--\s*(\S+)\s*\n\s*--\s*([\d.]+)\s*\n\s*(/\*[\s\S]*?\*/)\s*(.+)$",
         re.DOTALL
@@ -111,16 +123,16 @@ if f"{SQL_INIT_COLLECTION_NAME}" not in collections:
             continue
         match = pattern.match(entry)
         if match:
-            file_id = match.group(1).strip()              # file id, e.g., "01.sql"
-            execution_time = float(match.group(2).strip())  # original execution plan time ms, e.g., 3034.749
-            plan_comment = match.group(3).strip()           # execution plan comment block, e.g., /*+ ... */
+            file_id = match.group(1).strip()              # file id, e.g. "01.sql"
+            execution_time = float(match.group(2).strip())  # original execution plan time (unit: ms), e.g. 3034.749
+            plan_comment = match.group(3).strip()           # execution plan comment block, e.g. /*+ ... */
             sql_text = match.group(4).strip()               # SQL statement part
             sql_plan_pairs.append((file_id, sql_text, plan_comment, execution_time))
         else:
             print("Warning: entry does not match expected format, skipping:")
             print(entry)
     
-    # encode each SQL and insert into Milvus, using file_id as the identifier, and save the execution time
+    # encode each SQL and insert into Milvus, using file_id as identifier, and save the execution time
     counter = 0
     for file_id, sql, plan, exec_time in sql_plan_pairs:
         vector = model_milvus.encode(sql).tolist()
@@ -341,7 +353,6 @@ def fill_postgres_collection(client_milvus, collection_name, model_milvus, keys,
         counter += 1
     print("Postgres collection filled successfully.")
 
-
 def fill_postgres_collection_one_record(client_milvus, collection_name, model_milvus, key, value):
     """
     For a single SQL file, perform two rounds:
@@ -401,6 +412,7 @@ def fill_postgres_collection_one_record(client_milvus, collection_name, model_mi
     )
     print(f"A new SQL {key} (execution time {exec_time} ms) inserted into collection '{collection_name}' with ID {new_id}.")
     print("Postgres collection filled a new query successfully.")
+
 # Main process
 directory = TEST_SQL_DIR
 sql_files = get_sql_files(directory)
@@ -417,7 +429,7 @@ for current_iteration in range(NUM_ITERATIONS):
     if current_iteration == 0:
         fill_postgres_collection(client_milvus, SQL_POSTGRES_COLLECTION_NAME, model_milvus, keys, values)
         continue
-
+    
     print(f"=========Processing iteration {current_iteration+1}=========\n")
     for i in range(1, number_of_questions+1):
         print(f"=========Processing question {keys[i-1]}=========\n")
@@ -439,7 +451,6 @@ for current_iteration in range(NUM_ITERATIONS):
         )
 
         for result in res[0]: 
-            # print(f"debug result[['entity']]: {result['entity']}")
             if ONLY_ORDER:
                 original_plan = result['entity']['plan']
                 leading_line = None
@@ -473,14 +484,14 @@ for current_iteration in range(NUM_ITERATIONS):
                 combined_query = f"## Here is {NUM_REFERENCE_QUERIES} similar query-answer pairs you can reference:\n"
                 for j in range(NUM_REFERENCE_QUERIES):
                     combined_query += milvus_res_envs[j] + "\nThe optimal hint:\n" + milvus_res[j] + "\n"
-                # Qihan: this is fine, since we don't execute the query if real_execution is False
+                
                 postgres_hint = get_postgres_hint(sql_query, CONNECTION_INFO, keys[i-1], print_dummy_join=False,real_execution = REAL_EXECUTION, only_order=ONLY_ORDER)
                 
                 combined_query += (
                 f"## Here is the query and its corresponding statistics: \n{question_nl}\n"
                 f"The hint provided by Postgres: \n{postgres_hint}\n"
                 "## Please provide a better hint in the same format as Postgres's. Return ONLY the final SQL hint. "
-                "DO NOT USE THE SAME HINT AS THE Postgres HINT.\n"                       
+                "DO NOT USE THE SAME HINT AS THE Postgres HINT.\n"
                 "NO OTHER REDUNDANT OUTPUTS OR COMMENTS. IMPORTANT: The hint must include an extra outer pair of parentheses in the Leading clause, and the brackets should match. "
                 "For example, given a join order of 'a b c d':\n"
                 "Valid hint: /*+ Leading((((a b) c) d)) */\n"
@@ -491,20 +502,21 @@ for current_iteration in range(NUM_ITERATIONS):
             else:
                 # we also need to get the current best hint from the online collection, and use it as part of the prompt
                 best_online_record_hint, best_online_record_time = get_fastest_plan_by_sqlid(milvus_position,  f"{SQL_ONLINE_COLLECTION_NAME}", keys[i-1])
-                # Qihan: actually this won't be None
                 if best_online_record_hint is None:
                     best_online_record_hint = "NOT FOUND"
                 _, postgres_time = get_fastest_plan_by_sqlid(milvus_position,  f"{SQL_POSTGRES_COLLECTION_NAME}", keys[i-1])
                 if postgres_time == 0:
                     # Qihan: add this to fill the postgres collection
                     fill_postgres_collection_one_record(client_milvus, SQL_POSTGRES_COLLECTION_NAME, model_milvus, keys[i-1], sql_query)
+              
                 postgres_hint = get_postgres_hint(sql_query, CONNECTION_INFO, keys[i-1], print_dummy_join=False,real_execution = REAL_EXECUTION, only_order=ONLY_ORDER)
                 if postgres_time == 0 or best_online_record_time == 0:
                     performance_gain = "UNKNOWN"
-                else:
+                else:    
                     performance_gain = (postgres_time - best_online_record_time) / postgres_time * 100
                 gain_str = f"{performance_gain:.3f}%" if isinstance(performance_gain, (int, float)) else performance_gain
-
+                             
+                
                 combined_query = f"## Here is {NUM_REFERENCE_QUERIES} similar query-answer pairs you can reference:\n"
                 for j in range(NUM_REFERENCE_QUERIES):
                     combined_query += milvus_res_envs[j] + "\nThe optimal hint:\n" + milvus_res[j] + "\n"
@@ -516,7 +528,7 @@ for current_iteration in range(NUM_ITERATIONS):
                 f"The current performance gain is {gain_str}\n"
                 "If the performance gain is negative, it means that the current LLM-generated plan is inferior to the Postgres plan.\n"
                 "## Please generate a different hint that at least meets or exceeds their best performance in the same format. Return ONLY the final SQL hint."
-                "DO NOT USE THE SAME HINT AS THE CURRENT BEST HINT or Postgres HINT.\n"                                               
+                "DO NOT USE THE SAME HINT AS THE CURRENT BEST HINT or Postgres HINT.\n"
                 "NO OTHER REDUNDANT OUTPUTS OR COMMENTS. IMPORTANT: The hint must include an extra outer pair of parentheses in the Leading clause, and the brackets should match. "
                 "For example, given a join order of 'a b c d':\n"
                 "Valid hint: /*+ Leading((((a b) c) d)) */\n"
@@ -534,7 +546,7 @@ for current_iteration in range(NUM_ITERATIONS):
                 f"## Here is the query and its corresponding statistics: \n{question_nl}\n"
                 f"The hint provided by Postgres: \n{postgres_hint}\n"
                 "## Please provide a better hint in the same format as Postgres's. Return ONLY the final SQL hint. "
-                "DO NOT USE THE SAME HINT AS THE Postgres HINT.\n"                                                               
+                "DO NOT USE THE SAME HINT AS THE Postgres HINT.\n"
                 "NO OTHER REDUNDANT OUTPUTS OR COMMENTS. IMPORTANT: The hint must include an extra outer pair of parentheses in the Leading clause, and the brackets should match. "
                 "For example, given a join order of 'a b c d':\n"
                 "Valid hint: /*+ Leading((((a b) c) d)) */\n"
@@ -546,16 +558,18 @@ for current_iteration in range(NUM_ITERATIONS):
                 # we also need to get the current best hint from the online collection, and use it as part of the prompt
                 best_online_record_hint, best_online_record_time = get_fastest_plan_by_sqlid(milvus_position,  f"{SQL_ONLINE_COLLECTION_NAME}", keys[i-1])
                 if best_online_record_hint is None:
-                    best_online_record_hint = "NOT FOUND"
+                    best_online_record_hint = "NOT FOUND"               
                 _, postgres_time = get_fastest_plan_by_sqlid(milvus_position,  f"{SQL_POSTGRES_COLLECTION_NAME}", keys[i-1])
                 if postgres_time == 0:
                     # Qihan: add this to fill the postgres collection
                     fill_postgres_collection_one_record(client_milvus, SQL_POSTGRES_COLLECTION_NAME, model_milvus, keys[i-1], sql_query)
+               
                 postgres_hint = get_postgres_hint(sql_query, CONNECTION_INFO, keys[i-1], print_dummy_join=False,real_execution = REAL_EXECUTION, only_order=ONLY_ORDER)
                 if postgres_time == 0 or best_online_record_time == 0:
                     performance_gain = "UNKNOWN"
                 else:
                     performance_gain = (postgres_time - best_online_record_time) / postgres_time * 100
+              
                 gain_str = f"{performance_gain:.3f}%" if isinstance(performance_gain, (int, float)) else performance_gain
                     
                 combined_query = (
@@ -565,7 +579,7 @@ for current_iteration in range(NUM_ITERATIONS):
                 f"The current performance gain is {gain_str}\n"
                 "If the performance gain is negative, it means that the current LLM-generated plan is inferior to the Postgres plan.\n"
                 "## Please generate a hint that at least meets or exceeds their best performance in the same format. Return ONLY the final SQL hint."
-                "DO NOT USE THE SAME HINT AS THE CURRENT BEST HINT or Postgres HINT.\n"                                               
+                "DO NOT USE THE SAME HINT AS THE CURRENT BEST HINT or Postgres HINT.\n"
                 "NO OTHER REDUNDANT OUTPUTS OR COMMENTS. IMPORTANT: The hint must include an extra outer pair of parentheses in the Leading clause, and the brackets should match. "
                 "For example, given a join order of 'a b c d':\n"
                 "Valid hint: /*+ Leading((((a b) c) d)) */\n"
@@ -575,12 +589,26 @@ for current_iteration in range(NUM_ITERATIONS):
                 )
               
         messages.append({"role": "user", "content": combined_query})
-        response = client_gpt.chat.completions.create(
-            model=model_name,
-            messages=messages
-        )
+        after_template_messages = local_tokenizer.apply_chat_template(messages, add_generation_prompt=True, tokenize=False)
+        response = client_gpt.generate(after_template_messages, local_sampling_params)
 
-        action_sequence = response.choices[0].message.content
+        action_sequence = response[0].outputs[0].text.strip()
+        # FIXME Qihan: for Hanwen's model, we need to manually add /*+ and */ to the action sequence
+        if ONLY_ORDER:
+            leading_line = None
+            # Extract the Leading hint line from the original plan
+            for line in action_sequence.splitlines():
+                stripped_line = line.strip()
+                if stripped_line.startswith("Leading("):
+                    leading_line = stripped_line
+                    break
+            if leading_line is not None:
+                action_sequence = "/*+ \n" + leading_line + " */"  
+            else:
+                # If no Leading hint is found, fallback to the original plan
+                action_sequence = "/*+ " + action_sequence + " */"
+        else:
+            action_sequence = "/*+ " + action_sequence + " */"
 
         try:
             print(f"hint for question {keys[i-1]} given by LLM (may not be valid): ", action_sequence)
@@ -622,6 +650,7 @@ for current_iteration in range(NUM_ITERATIONS):
         if postgres_time == 0:
             # Qihan: add this to fill the postgres collection
             fill_postgres_collection_one_record(client_milvus, SQL_POSTGRES_COLLECTION_NAME, model_milvus, keys[i-1], sql_query)
+     
         postgres_hint = get_postgres_hint(sql_query, CONNECTION_INFO, keys[i-1], print_dummy_join=False,real_execution = REAL_EXECUTION, only_order=ONLY_ORDER)
         best_online_record_hint, best_online_record_time = get_fastest_plan_by_sqlid(milvus_position,  f"{SQL_ONLINE_COLLECTION_NAME}", keys[i-1])
         print(f"Postgres execution plan ({postgres_time} ms) for question {keys[i-1]} is \n{postgres_hint}\n")
@@ -631,6 +660,7 @@ for current_iteration in range(NUM_ITERATIONS):
                 print(f"The final performance gain is UNKNOWN\n")
             else:
                 print(f"The final performance gain is {postgres_time - best_online_record_time} / {postgres_time} = {((postgres_time - best_online_record_time) / postgres_time * 100):.3f}%\n")
+    
         else:
             if best_online_record_time == 0:
                 print(f"The current LLM generated optimal execution plan is UNKNOWN\n")
@@ -640,14 +670,14 @@ for current_iteration in range(NUM_ITERATIONS):
                 print(f"The current performance gain is UNKNOWN\n")
             else:
                 print(f"The current performance gain is {postgres_time - best_online_record_time} / {postgres_time} = {((postgres_time - best_online_record_time) / postgres_time * 100):.3f}%\n")
-
-
+ 
         # comparer the postgres_hint and best_online_record_hint are the same or not
         if best_online_record_hint is None or best_online_record_hint == "NOT FOUND" or postgres_hint.strip() == best_online_record_hint.strip():
             print(f"The final/current LLM generated optimal execution plan for question {keys[i-1]} is the same as the Postgres execution plan\n")
         else:
             print(f"The final/current LLM generated optimal execution plan for question {keys[i-1]} is different from the Postgres execution plan\n")
 
+        
         # print(f"Checking the syntax correct rate of the hints for question {keys[i-1]}")
         # res = is_bushy_hint_reasonable(action_sequence, sql_query_original)
         
@@ -660,8 +690,10 @@ for current_iteration in range(NUM_ITERATIONS):
     keep_fastest_queries_by_sqlid(milvus_position, SQL_ONLINE_COLLECTION_NAME)
     if USE_UPDATING_RAG:
         update_init_collection(milvus_position, SQL_INIT_COLLECTION_NAME, SQL_POSTGRES_COLLECTION_NAME, SQL_ONLINE_COLLECTION_NAME)
-    if (current_iteration+1) % 5 == 0:
-        send_email("llmqo API Experiment", f"The experiment of IMDB finished! The iteration is {current_iteration+1}","")
+    
+    if (current_iteration+ 1) % 5 == 0:
+        send_email("llmqo LOCAL Experiment test", f"The experiment of IMDB finished! The iteration is {current_iteration + 1}", "")
+
 if DELETE_VECTOR_AFTER_USE:
     # delete the file after use milvus_position
     os.remove(milvus_position)

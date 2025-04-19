@@ -1,2 +1,0 @@
-/*+ IndexOnlyScan(reason)
- Leading(reason) */

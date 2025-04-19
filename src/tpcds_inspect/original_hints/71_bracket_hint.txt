@@ -1,8 +1,0 @@
-/*+ NestedLoop(*SELECT* 3 *SELECT* 2 *SELECT* 1 item time_dim)
- NestedLoop(*SELECT* 3 *SELECT* 2 *SELECT* 1 item)
- SubqueryScan(*SELECT* 3)
- SubqueryScan(*SELECT* 2)
- SubqueryScan(*SELECT* 1)
- IndexScan(item)
- IndexScan(time_dim)
- Leading(((*SELECT* 3 *SELECT* 2 *SELECT* 1 item) time_dim)) */

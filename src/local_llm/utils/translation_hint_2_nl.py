@@ -1,31 +1,31 @@
 import re
 
 def convert_hint_to_plan(sql):
-    # 提取提示部分：查找以 /*+ 开始、以 */ 结束的提示块
+    # extract the hint part: find the hint block that starts with /*+ and ends with */
     hint_match = re.search(r'/\*\+(.*?)\*/', sql, flags=re.DOTALL)
     if hint_match:
         hint_text = hint_match.group(1)
-        # 移除提示块中的 -- 注释（行内或整行）
+        # remove the -- comments (inline or whole line) in the hint block
         hint_text = re.sub(r'--.*', '', hint_text)
     else:
-        # 如果没有提示块，则去掉所有 SQL 注释（包括块注释和行注释）
+        # if there is no hint block, remove all SQL comments (including block comments and line comments)
         hint_text = re.sub(r'/\*.*?\*/', '', sql, flags=re.DOTALL)
         hint_text = re.sub(r'--.*', '', hint_text)
     
-    # 按行分割并清理掉空行
+    # split by line and clean empty lines
     lines = [line.strip() for line in hint_text.splitlines() if line.strip()]
     
-    # 定义扫描行匹配模式（只处理 SeqScan, IndexOnlyScan, IndexScan）
+    # define the scan line matching pattern (only process SeqScan, IndexOnlyScan, IndexScan)
     scan_pattern = re.compile(r'^(SeqScan|IndexOnlyScan|IndexScan)\(')
     
-    # 找到第一条扫描语句所在的行索引
+    # find the index of the first scan line
     start_idx_scan = 0
     for i, line in enumerate(lines):
         if scan_pattern.search(line):
             start_idx_scan = i
             break
 
-    # 构建扫描字典：键为表名，值为扫描类型（直接使用原扫描类型字符串）
+    # build the scan dictionary: key is the table name, value is the scan type (use the original scan type string directly)
     scan_dict = {}
     for i in range(start_idx_scan, len(lines)):
         line = lines[i]
@@ -35,19 +35,19 @@ def convert_hint_to_plan(sql):
                 scan_type, table_name = m.groups()
                 scan_dict[table_name] = scan_type
 
-    # 用两个集合分别记录剩余的扫描表和子树
+    # use two sets to record the remaining scan tables and subtrees
     remaining_tables = set(scan_dict.keys())
     remaining_subtrees = set()
     steps = []
 
     def parse_operands(expr):
         expr = expr.strip()
-        # 去掉最外层的括号
+        # remove the outermost parentheses
         if expr.startswith('(') and expr.endswith(')'):
             expr = expr[1:-1].strip()
         depth = 0
         split_pos = None
-        # 按照第一个顶层空格拆分为左右两个操作数
+        # split by the first top-level space into two operands
         for i, c in enumerate(expr):
             if c == '(':
                 depth += 1
@@ -75,7 +75,7 @@ def convert_hint_to_plan(sql):
         return join_type, expr
 
     def expand_operands(operands):
-        # 对操作数列表中的每个元素提取所有单词（无论是否带括号）
+        # extract all words (whether with parentheses or not) from the list of operands
         expanded_operands = []
         for operand in operands:
             if operand is None:
@@ -86,16 +86,16 @@ def convert_hint_to_plan(sql):
                 expanded_operands.extend(operand.split())
         return expanded_operands
 
-    # 逆向处理提示块中扫描语句前的连接操作
+    # reverse process the join operations before the scan statements in the hint block
     for i in range(start_idx_scan - 1, -1, -1):
         join_type, expr = parse_line(lines[i])
         left_operand, right_operand = parse_operands(expr)
         operands = [left_operand, right_operand]
-        # 提取当前表达式中所有单个标识符（可能为扫描表或之前生成的子树标识）
+        # extract all single identifiers (possibly scan tables or previously generated subtree identifiers)
         expanded_operands = expand_operands(operands)
 
-        # 对每个 token 检查：若在 remaining_tables 中则输出 Pick 步骤并移除，
-        # 若在 remaining_subtrees 中则移除（代表该子树已被“使用”）
+        # check each token: if it is in remaining_tables, output the Pick step and remove it,
+        # if it is in remaining_subtrees, remove it (representing that the subtree has been "used")
         for token in expanded_operands:
             if token in remaining_tables:
                 steps.append(f'Pick table {token}, with a label "{scan_dict[token]}".')
@@ -103,19 +103,19 @@ def convert_hint_to_plan(sql):
             elif token in remaining_subtrees:
                 remaining_subtrees.remove(token)
 
-        # 生成连接步骤描述：若操作数在 scan_dict 中则视为表，否则视为子树
+        # generate the join step description: if the operand is in scan_dict, it is regarded as a table, otherwise it is regarded as a subtree
         left_desc = f'table {left_operand}' if left_operand in scan_dict else f'subtree {left_operand}'
         right_desc = f'table {right_operand}' if right_operand in scan_dict else f'subtree {right_operand}'
         steps.append(f'Join {left_desc} and {right_desc} as {expr}, with a label "{join_type}".')
-        # 将当前连接表达式作为新生成的子树加入 remaining_subtrees
+        # add the current join expression as a newly generated subtree to remaining_subtrees
         remaining_subtrees.add(expr)
         
-        # 输出当前剩余项：集合为 remaining_tables ∪ remaining_subtrees
+        # output the current remaining items: the union of remaining_tables and remaining_subtrees
         current_remaining = sorted(list(remaining_tables | remaining_subtrees))
         remaining_str = ' '.join(current_remaining)
         steps.append(f'Check remaining tables and subtrees: {remaining_str}.')
 
-        # 后续决策逻辑保持原有比较方式
+        # the subsequent decision logic remains the same comparison method
         if i != 0:
             _, expr_next = parse_line(lines[i - 1])
             left_operand_next, right_operand_next = parse_operands(expr_next)
