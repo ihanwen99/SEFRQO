@@ -1,4 +1,20 @@
-# SEFRQO
-Large Language Model for Query Optimization, in this branch, you will see the imlementation of the online phase: RAG implementation.
+# SEFRQO: LLM-Based Query Optimization
 
-Python 3.10.16
+This branch contains the implementation of the **online phase** of SEFRQO, specifically the **RAG (Retrieval-Augmented Generation)** component.
+
+You can reproduce the experiments described in our paper using either:
+- Local LLMs (as specified in the paper), or
+- APIs provided by services such as **OpenAI** or **DeepSeek**.
+
+> ⚠️ Make sure to adjust any necessary paths in the Python scripts before running the experiments.
+
+## Environment
+- Python 3.10.16
+
+## Example: Replay Static CEB Workload with 3B Model
+
+To run the static CEB workload using the 3B model:
+
+```bash
+python /your_path/src/local_llm/local_version_general_online_record_sft_3B.py \
+    > /your_path/test.log 2>&1
