@@ -1,0 +1,1230 @@
+plans_lib.FilterScansOrJoins()
+plans_lib.GatherUnaryFiltersInfo()
+postgres.EstimateFilterRows()
+200 unique filters
+{('cast_info AS ci', "((ci.note = '(executive producer)'::text) OR (ci.note IS NULL))"): 22397054,
+ ('cast_info AS ci', "((ci.note = '(producer)'::text) OR (ci.note IS NULL))"): 22497538,
+ ('cast_info AS ci', '((ci.note = ANY (\'{"(executive producer)","(executive producer: Williams Street)","(supervising producer)",(uncredited),(voice)}\'::text[])) OR (ci.note IS NULL))'): 23021305,
+ ('cast_info AS ci', '(ci.note IS NULL)'): 22002229,
+ ('char_name AS chn', "((chn.name !~~ '%Sherlock%'::text) AND ((chn.name ~~ '%Tony%Stark%'::text) OR (chn.name ~~ '%Iron%Man%'::text)))"): 628,
+ ('comp_cast_type AS cct1', "((cct1.kind)::text = 'cast'::text)"): 1,
+ ('comp_cast_type AS cct2', "((cct2.kind)::text ~~ '%complete%'::text)"): 1,
+ ('company_name AS cn', "((cn.country_code)::text = '[us]'::text)"): 85374,
+ ('company_name AS cn', "((cn.country_code)::text = ANY ('{[ae],[is],[lu],[no],[nz]}'::text[]))"): 1990,
+ ('company_name AS cn', "((cn.country_code)::text = ANY ('{[cn],[my]}'::text[]))"): 1308,
+ ('company_name AS cn', '(cn.name = ANY (\'{ABS-CBN,"American Broadcasting Company (ABC)","British Broadcasting Corporation (BBC)"}\'::text[]))'): 3,
+ ('company_name AS cn', '(cn.name = ANY (\'{ABS-CBN,"British Broadcasting Corporation (BBC)","Granada Television","National Broadcasting Company (NBC)"}\'::text[]))'): 4,
+ ('company_name AS cn', "(cn.name ~~* '%bo%'::text)"): 2371,
+ ('company_name AS cn', "(cn.name ~~* '%le%'::text)"): 19057,
+ ('company_name AS cn', "(cn.name ~~* '%me%'::text)"): 23760,
+ ('company_name AS cn', "(cn.name ~~* '%re%'::text)"): 28566,
+ ('company_name AS cn1', "((cn1.country_code)::text = '[nl]'::text)"): 2373,
+ ('company_type AS ct', "((ct.kind)::text = 'production companies'::text)"): 1,
+ ('company_type AS ct', '((ct.kind)::text = ANY (\'{distributors,"production companies"}\'::text[]))'): 2,
+ ('info_type AS it', '(it.id = 2)'): 1,
+ ('info_type AS it', '(it.id = 4)'): 1,
+ ('info_type AS it1', '((it1.info)::text = \'rating\'::text COLLATE "C")'): 1,
+ ('info_type AS it1', "((it1.info)::text = 'release dates'::text)"): 1,
+ ('info_type AS it1', '(it1.id = 1)'): 1,
+ ('info_type AS it1', '(it1.id = 16)'): 1,
+ ('info_type AS it1', '(it1.id = 2)'): 1,
+ ('info_type AS it1', '(it1.id = 3)'): 1,
+ ('info_type AS it1', '(it1.id = 37)'): 1,
+ ('info_type AS it1', '(it1.id = 4)'): 1,
+ ('info_type AS it1', '(it1.id = 5)'): 1,
+ ('info_type AS it1', '(it1.id = 6)'): 1,
+ ('info_type AS it1', '(it1.id = 7)'): 1,
+ ('info_type AS it1', '(it1.id = 8)'): 1,
+ ('info_type AS it1', "(it1.id = ANY ('{2,3,6}'::integer[]))"): 3,
+ ('info_type AS it1', "(it1.id = ANY ('{2,4,6}'::integer[]))"): 3,
+ ('info_type AS it1', "(it1.id = ANY ('{3,6,8}'::integer[]))"): 3,
+ ('info_type AS it1', "(it1.id = ANY ('{6,8}'::integer[]))"): 2,
+ ('info_type AS it2', '((it2.info)::text = \'rating\'::text COLLATE "C")'): 1,
+ ('info_type AS it2', '(it2.id = 1)'): 1,
+ ('info_type AS it2', '(it2.id = 17)'): 1,
+ ('info_type AS it2', '(it2.id = 18)'): 1,
+ ('info_type AS it2', '(it2.id = 21)'): 1,
+ ('info_type AS it2', '(it2.id = 23)'): 1,
+ ('info_type AS it2', '(it2.id = 24)'): 1,
+ ('info_type AS it2', '(it2.id = 4)'): 1,
+ ('info_type AS it2', '(it2.id = 5)'): 1,
+ ('info_type AS it2', '(it2.id = 6)'): 1,
+ ('info_type AS it2', '(it2.id = 7)'): 1,
+ ('info_type AS it3', '(it3.id = 100)'): 1,
+ ('info_type AS it4', '(it4.id = 101)'): 1,
+ ('info_type AS it5', '(it5.id = 19)'): 1,
+ ('info_type AS it5', '(it5.id = 31)'): 1,
+ ('info_type AS it5', '(it5.id = 37)'): 1,
+ ('keyword AS k', "(k.keyword = ANY ('{alienation,armored-wagon,burning-shoes,exsanguination,falsifying-data,ivy,partial-male-nudity,stealing-a-boat,throwing-a-baseball-through-a-window,toothpaste-advertisement,united-kingdom}'::text[]))"): 11,
+ ('keyword AS k', "(k.keyword = ANY ('{anal-sex,character-name-in-title,death,doctor,friendship,gun,hardcore,husband-wife-relationship,independent-film,kidnapping,lesbian-sex,marriage,police,revenge,sex,suicide,surrealism,violence}'::text[]))"): 18,
+ ('keyword AS k', "(k.keyword = ANY ('{bare-breasts,based-on-novel,doctor,surrealism}'::text[]))"): 4,
+ ('keyword AS k', "(k.keyword = ANY ('{bare-breasts,dog,female-nudity,fight,hardcore,homosexual,independent-film,interview,kidnapping,new-york-city,revenge,singer}'::text[]))"): 12,
+ ('keyword AS k', "(k.keyword = ANY ('{superhero,sequel,second-part,marvel-comics,based-on-comic,tv-special,fight,violence}'::text[]))"): 8,
+ ('kind_type AS kt', "((kt.kind)::text = 'episode'::text)"): 1,
+ ('kind_type AS kt', "((kt.kind)::text = 'movie'::text)"): 1,
+ ('kind_type AS kt', '((kt.kind)::text = ANY (\'{"tv movie","tv series","video game","video movie"}\'::text[]))'): 4,
+ ('kind_type AS kt', '((kt.kind)::text = ANY (\'{"tv movie","tv series","video game"}\'::text[]))'): 3,
+ ('kind_type AS kt', '((kt.kind)::text = ANY (\'{"tv series","video game","video movie"}\'::text[]))'): 3,
+ ('kind_type AS kt', '((kt.kind)::text = ANY (\'{episode,movie,"tv mini series","tv movie","tv series","video game","video movie"}\'::text[]))'): 7,
+ ('kind_type AS kt', '((kt.kind)::text = ANY (\'{episode,movie,"tv mini series","tv movie","video game","video movie"}\'::text[]))'): 6,
+ ('kind_type AS kt', '((kt.kind)::text = ANY (\'{episode,movie,"tv movie","tv series","video game","video movie"}\'::text[]))'): 6,
+ ('kind_type AS kt', '((kt.kind)::text = ANY (\'{episode,movie,"tv movie","tv series","video movie"}\'::text[]))'): 5,
+ ('kind_type AS kt', '((kt.kind)::text = ANY (\'{episode,movie,"tv movie","tv series"}\'::text[]))'): 4,
+ ('kind_type AS kt', '((kt.kind)::text = ANY (\'{episode,movie,"tv movie"}\'::text[]))'): 3,
+ ('kind_type AS kt', '((kt.kind)::text = ANY (\'{episode,movie,"video movie"}\'::text[]))'): 3,
+ ('kind_type AS kt', "((kt.kind)::text = ANY ('{episode,movie}'::text[]))"): 2,
+ ('kind_type AS kt', '((kt.kind)::text = ANY (\'{movie,"tv mini series","tv movie","tv series","video game","video movie"}\'::text[]))'): 6,
+ ('kind_type AS kt', '((kt.kind)::text = ANY (\'{movie,"tv mini series","tv movie","video game"}\'::text[]))'): 4,
+ ('kind_type AS kt', '((kt.kind)::text = ANY (\'{movie,"tv movie","tv series","video movie"}\'::text[]))'): 4,
+ ('kind_type AS kt', '((kt.kind)::text = ANY (\'{movie,"video movie"}\'::text[]))'): 2,
+ ('kind_type AS kt', "((kt.kind)::text ~~* '%m%'::text)"): 7,
+ ('kind_type AS kt', "((kt.kind)::text ~~* '%v%'::text)"): 7,
+ ('kind_type AS kt1', '((kt1.kind)::text = \'tv series\'::text COLLATE "C")'): 1,
+ ('kind_type AS kt2', '((kt2.kind)::text = \'tv series\'::text COLLATE "C")'): 1,
+ ('link_type AS lt', "((lt.link)::text ~~ '%follow%'::text)"): 1,
+ ('movie_companies AS mc', "((mc.note ~~ '%(200%)%'::text) AND (mc.note ~~ '%(worldwide)%'::text))"): 16176,
+ ('movie_info AS mi', "((mi.note ~~ '%internet%'::text) AND (mi.info ~~ 'USA:% 200%'::text))"): 267,
+ ('movie_info AS mi1', '((mi1.info = ANY (\'{"Black and White",Color}\'::text[])) AND (mi1.info_type_id = 2))'): 104579,
+ ('movie_info AS mi1', "((mi1.info ~~* '%c%'::text) AND (mi1.info_type_id = 2))"): 490034,
+ ('movie_info AS mi1', "((mi1.info ~~* '%e%'::text) AND (mi1.info_type_id = 4))"): 690437,
+ ('movie_info AS mi1', "((mi1.info ~~* '%r%'::text) AND (mi1.info_type_id = 5))"): 258242,
+ ('movie_info AS mi1', "((mi1.info ~~* '%spai%'::text) AND (mi1.info_type_id = 16))"): 58793,
+ ('movie_info AS mi1', "((mi1.info ~~* '%usa%'::text) AND (mi1.info_type_id = 16))"): 525435,
+ ('movie_info AS mi1', "((mi1.info_type_id = 1) AND (mi1.info = '30'::text))"): 3345,
+ ('movie_info AS mi1', "((mi1.info_type_id = 3) AND (mi1.info = ANY ('{Action,Adventure,Animation,Comedy,Crime,Drama,Music,Western}'::text[])))"): 71142,
+ ('movie_info AS mi1', "((mi1.info_type_id = 3) AND (mi1.info = ANY ('{Adventure,Comedy,Crime,Drama,Family,Western}'::text[])))"): 60675,
+ ('movie_info AS mi1', "((mi1.info_type_id = 4) AND (mi1.info = ANY ('{French,German,Italian,Japanese,Mandarin,Portuguese,Spanish}'::text[])))"): 28175,
+ ('movie_info AS mi1', "((mi1.info_type_id = 5) AND (mi1.info = 'USA:Approved'::text))"): 355,
+ ('movie_info AS mi1', "((mi1.info_type_id = 6) AND (mi1.info = 'Mono'::text))"): 5897,
+ ('movie_info AS mi1', '((mi1.info_type_id = 6) AND (mi1.info = ANY (\'{"4-Track Stereo","6-Track Stereo","70 mm 6-Track",DTS-ES,DTS-Stereo,Datasat,"Dolby Stereo",Dolby,SDDS,Silent,Stereo,"Ultra Stereo"}\'::text[])))'): 6758,
+ ('movie_info AS mi1', '((mi1.info_type_id = 7) AND (mi1.info = ANY (\'{"OFM:35 mm","PFM:35 mm","RAT:1.33 : 1","RAT:1.78 : 1","RAT:16:9 HD"}\'::text[])))'): 66070,
+ ('movie_info AS mi1', "((mi1.info_type_id = 8) AND (mi1.info = ANY ('{Albania,Czechoslovakia,Egypt,Hungary,Italy,Japan,Mexico,Philippines,Sweden,Switzerland}'::text[])))"): 13403,
+ ('movie_info AS mi1', "((mi1.info_type_id = 8) AND (mi1.info = ANY ('{Argentina,Canada,France,Germany,Italy,Japan,Mexico,Netherlands,Spain,UK,USA}'::text[])))"): 103781,
+ ('movie_info AS mi1', '(mi1.info = ANY (\'{"Black and White",DTS,Dolby,English,French,Hindi,Norwegian,Portuguese,Romanian,SDDS,Spanish,Stereo,Tagalog}\'::text[]))'): 1401163,
+ ('movie_info AS mi1', '(mi1.info = ANY (\'{"OFM:35 mm","PFM:35 mm","RAT:1.78 : 1"}\'::text[]))'): 522385,
+ ('movie_info AS mi1', "(mi1.info = ANY ('{30,60}'::text[]))"): 102594,
+ ('movie_info AS mi1', '(mi1.info = ANY (\'{Adult,"Black and White",Color,DTS,"Dolby Digital",Dolby,Drama,Sci-Fi,Silent,Thriller}\'::text[]))'): 1806921,
+ ('movie_info AS mi1', "(mi1.info = ANY ('{Animation,Belgium,Brazil,Comedy,Crime,Documentary,Family,France,Italy,Mexico,Mono,Musical,Mystery,Netherlands,Romance,Sport,Stereo,Thriller,UK}'::text[]))"): 1182438,
+ ('movie_info AS mi1', '(mi1.info = ANY (\'{Argentina,Chile,"Czech Republic",DTS,Denmark,"Dolby SR",Ireland,Netherlands,"New Zealand",Portugal,Sweden,Turkey,"Ultra Stereo",Venezuela,"West Germany"}\'::text[]))'): 96235,
+ ('movie_info AS mi1', '(mi1.info = ANY (\'{Australia,Canada,"Hong Kong",Mexico,"OFM:16 mm","PFM:16 mm",Philippines,"RAT:1.66 : 1","RAT:1.85 : 1","Soviet Union",Spain,Turkey,"West Germany",Yugoslavia}\'::text[]))'): 283537,
+ ('movie_info AS mi1', "(mi1.info = ANY ('{Comedy,Documentary,Drama}'::text[]))"): 610605,
+ ('movie_info AS mi2', '((mi2.info = ANY (\'{"Dolby Digital",Mono}\'::text[])) AND (mi2.info_type_id = 6))'): 7006,
+ ('movie_info AS mi2', "((mi2.info_type_id = 1) AND (mi2.info = ANY ('{100,6,60,7,75,80,88,9,95,USA:30,USA:50}'::text[])))"): 3020,
+ ('movie_info AS mi2', "((mi2.info_type_id = 18) AND (mi2.info = 'Iverson Ranch - 1 Iverson Lane, Chatsworth, Los Angeles, California, USA'::text))"): 18,
+ ('movie_info AS mi2', "((mi2.info_type_id = 4) AND (mi2.info = ANY ('{Bengali,Italian,Malayalam,Romanian,Spanish}'::text[])))"): 10488,
+ ('movie_info AS mi2', "((mi2.info_type_id = 5) AND (mi2.info = ANY ('{Argentina:Atp,Australia:G,Finland:K-16,Finland:S,Sweden:15,UK:U,USA:Approved}'::text[])))"): 1184,
+ ('movie_info AS mi2', "((mi2.info_type_id = 5) AND (mi2.info = ANY ('{Sweden:15,USA:Approved,USA:Passed}'::text[])))"): 677,
+ ('movie_info AS mi2', '((mi2.info_type_id = 7) AND (mi2.info = ANY (\'{"CAM:Arriflex Cameras and Lenses","CAM:Panavision Panaflex Platinum, Panavision Primo Lenses",LAB:DeLuxe,"LAB:DeLuxe, Hollywood (CA), USA","LAB:DeLuxe, USA","LAB:FotoKem Laboratory, Burbank (CA), USA","OFM:16 mm",PCS:Digital,PCS:Panavision,"PCS:Super 16","PFM:16 mm",PFM:DVD-ROM,PFM:Digital,"RAT:1.37 : 1","RAT:1.85 : 1"}\'::text[])))'): 7507,
+ ('movie_info AS mi2', '((mi2.info_type_id = 7) AND (mi2.info = ANY (\'{LAB:DeLuxe,MET:,"OFM:35 mm",OFM:Video,"RAT:1.33 : 1","RAT:2.35 : 1"}\'::text[])))'): 43572,
+ ('movie_info_idx AS mi_idx', "((mi_idx.info ~ '^(?:[1-9]\\d*|0)?(?:\\.\\d+)?$'::text) AND (mi_idx.info ~ '^(?:[1-9]\\d*|0)?(?:\\.\\d+)?$'::text) AND (mi_idx.info_type_id = 100) AND ('0'::double precision <= (mi_idx.info)::double precision) AND ((mi_idx.info)::double precision <= '500'::double precision))"): 1110,
+ ('movie_info_idx AS mi_idx', "((mi_idx.info ~ '^(?:[1-9]\\d*|0)?(?:\\.\\d+)?$'::text) AND (mi_idx.info ~ '^(?:[1-9]\\d*|0)?(?:\\.\\d+)?$'::text) AND (mi_idx.info_type_id = 100) AND ('500'::double precision <= (mi_idx.info)::double precision) AND ((mi_idx.info)::double precision <= '7200'::double precision))"): 1110,
+ ('movie_info_idx AS mii1', "((mii1.info ~ '^(?:[1-9]\\d*|0)?(?:\\.\\d+)?$'::text) AND (mii1.info ~ '^(?:[1-9]\\d*|0)?(?:\\.\\d+)?$'::text) AND (mii1.info_type_id = 100) AND ('0'::double precision <= (mii1.info)::double precision) AND ((mii1.info)::double precision <= '1000'::double precision))"): 1110,
+ ('movie_info_idx AS mii1', "((mii1.info ~ '^(?:[1-9]\\d*|0)?(?:\\.\\d+)?$'::text) AND (mii1.info ~ '^(?:[1-9]\\d*|0)?(?:\\.\\d+)?$'::text) AND (mii1.info_type_id = 100) AND ('0'::double precision <= (mii1.info)::double precision) AND ((mii1.info)::double precision <= '10000'::double precision))"): 1110,
+ ('movie_info_idx AS mii2', "((mii2.info ~ '^(?:[1-9]\\d*|0)?(?:\\.\\d+)?$'::text) AND (mii2.info ~ '^(?:[1-9]\\d*|0)?(?:\\.\\d+)?$'::text) AND (mii2.info_type_id = 101) AND ((mii2.info)::double precision <= '11'::double precision) AND ('7'::double precision <= (mii2.info)::double precision))"): 1101,
+ ('movie_info_idx AS mii2', "((mii2.info ~ '^(?:[1-9]\\d*|0)?(?:\\.\\d+)?$'::text) AND (mii2.info ~ '^(?:[1-9]\\d*|0)?(?:\\.\\d+)?$'::text) AND (mii2.info_type_id = 101) AND ((mii2.info)::double precision <= '3'::double precision) AND ('2'::double precision <= (mii2.info)::double precision))"): 1101,
+ ('movie_info_idx AS mii2', "((mii2.info ~ '^(?:[1-9]\\d*|0)?(?:\\.\\d+)?$'::text) AND (mii2.info ~ '^(?:[1-9]\\d*|0)?(?:\\.\\d+)?$'::text) AND (mii2.info_type_id = 101) AND ((mii2.info)::double precision <= '4'::double precision) AND ('0'::double precision <= (mii2.info)::double precision))"): 1101,
+ ('movie_info_idx AS mii2', "((mii2.info ~ '^(?:[1-9]\\d*|0)?(?:\\.\\d+)?$'::text) AND (mii2.info ~ '^(?:[1-9]\\d*|0)?(?:\\.\\d+)?$'::text) AND (mii2.info_type_id = 101) AND ((mii2.info)::double precision <= '5'::double precision) AND ('2'::double precision <= (mii2.info)::double precision))"): 1101,
+ ('movie_info_idx AS mii2', "(mii2.info < '3.0'::text)"): 674446,
+ ('movie_info_idx AS miidx', "((miidx.info ~ '^(?:[1-9]\\d*|0)?(?:\\.\\d+)?$'::text) AND (miidx.info ~ '^(?:[1-9]\\d*|0)?(?:\\.\\d+)?$'::text) AND (miidx.info_type_id = 100) AND ('0'::double precision <= (miidx.info)::double precision) AND ((miidx.info)::double precision <= '1000'::double precision))"): 1110,
+ ('movie_info_idx AS miidx', "((miidx.info ~ '^(?:[1-9]\\d*|0)?(?:\\.\\d+)?$'::text) AND (miidx.info ~ '^(?:[1-9]\\d*|0)?(?:\\.\\d+)?$'::text) AND (miidx.info_type_id = 100) AND ('0'::double precision <= (miidx.info)::double precision) AND ((miidx.info)::double precision <= '10000'::double precision))"): 1110,
+ ('name AS n', "((((n.gender)::text = 'f'::text) OR (n.gender IS NULL)) AND (((n.name_pcode_nf)::text = ANY ('{A5362,J2452,J5162,M2345,M252,M6453,R2562,S26,S3151,S3152,T5252,T6252}'::text[])) OR (n.name_pcode_nf IS NULL)))"): 76293,
+ ('name AS n', "((((n.gender)::text = 'f'::text) OR (n.gender IS NULL)) AND ((n.name_pcode_cf)::text = ANY ('{A3654,B4353,B6156,C6264,D4253,D4262,L2562,L5326,M5323,R2461,S4362,S5236,S5245}'::text[])))"): 2029,
+ ('name AS n', "((((n.gender)::text = 'f'::text) OR (n.gender IS NULL)) AND ((n.name_pcode_nf)::text = ANY ('{B6161,C6235,C6416,C6452,D5162,E4213,J5215,M6216,M6263,R3565}'::text[])))"): 23726,
+ ('name AS n', "((((n.gender)::text = 'm'::text) OR (n.gender IS NULL)) AND (((n.name_pcode_nf)::text = ANY ('{A5351,C6235,C6421,C6425,F6362,F6521,J5216,J525,P3623,R1632,R1636,V4356,V5253}'::text[])) OR (n.name_pcode_nf IS NULL)))"): 111852,
+ ('name AS n', "((((n.gender)::text = 'm'::text) OR (n.gender IS NULL)) AND (((n.name_pcode_nf)::text = ANY ('{A6364,B6252,E3634,G6216,J162,J5162,J5236,K6231,L6525,P3624,R1632,R52,T5242,V2362}'::text[])) OR (n.name_pcode_nf IS NULL)))"): 81523,
+ ('name AS n', "((((n.gender)::text = 'm'::text) OR (n.gender IS NULL)) AND ((n.name_pcode_cf)::text = ANY ('{A2365,A6252,C52,C6325,E1524,J5252,P6235,Q5325,R1632,R2425,R25,R3626,V4524,V4626}'::text[])))"): 16340,
+ ('name AS n', "((((n.gender)::text = 'm'::text) OR (n.gender IS NULL)) AND ((n.name_pcode_nf)::text = ANY ('{B6524,D1352,G6252,J25,J5235,M2412,M2423,M2424,M6241,M6252,M6352,S3153,W4125,W4361,W4525}'::text[])))"): 23244,
+ ('name AS n', "(((n.gender)::text = 'f'::text) OR (n.gender IS NULL))"): 2082806,
+ ('name AS n', "(((n.gender)::text = 'm'::text) AND (((n.name_pcode_nf)::text = ANY ('{A3525,A6361,C4562,D6424,F6535,G5356,G6212,I2652,J1435,J164,J5365,J6354,K3261,K6434,M253,M6216,M6252,P3626,P4126,P4546,R1424,R146,T252,T5414}'::text[])) OR (n.name_pcode_nf IS NULL)))"): 51172,
+ ('name AS n', "(((n.gender)::text = 'm'::text) OR (n.gender IS NULL))"): 2600724,
+ ('name AS n', "((n.gender)::text = 'f'::text)"): 951371,
+ ('name AS n', "((n.gender)::text = 'm'::text)"): 1750340,
+ ('name AS n', "((n.gender)::text = ANY ('{f,m}'::text[]))"): 2701711,
+ ('name AS n', "((n.name_pcode_nf)::text ~~* '%n52%'::text)"): 349,
+ ('name AS n', "((n.surname_pcode)::text ~~* '%c61%'::text)"): 21838,
+ ('name AS n', '(n.gender IS NULL)'): 1466096,
+ ('name AS n', "(n.name ~~* '%co%'::text)"): 294693,
+ ('name AS n', "(n.name ~~* '%cu%'::text)"): 42099,
+ ('name AS n', "(n.name ~~* '%mar%'::text)"): 294693,
+ ('name AS n', "(n.name ~~* '%tia%'::text)"): 42099,
+ ('person_info AS pi1', "((pi1.info ~~* '%19%'::text) AND (pi1.info_type_id = 23))"): 38929,
+ ('person_info AS pi1', "((pi1.info ~~* '%1914%'::text) AND (pi1.info_type_id = 21))"): 32,
+ ('person_info AS pi1', "((pi1.info ~~* '%196%'::text) AND (pi1.info_type_id = 21))"): 9899,
+ ('person_info AS pi1', "((pi1.info ~~* '%197%'::text) AND (pi1.info_type_id = 21))"): 23068,
+ ('person_info AS pi1', '(pi1.info_type_id = 17)'): 626596,
+ ('person_info AS pi1', '(pi1.info_type_id = 19)'): 85014,
+ ('person_info AS pi1', '(pi1.info_type_id = 24)'): 124806,
+ ('person_info AS pi1', '(pi1.info_type_id = 31)'): 5233,
+ ('person_info AS pi1', '(pi1.info_type_id = 37)'): 71092,
+ ('role_type AS rt', "((rt.role)::text = 'actor'::text)"): 1,
+ ('role_type AS rt', "((rt.role)::text = 'cinematographer'::text)"): 1,
+ ('role_type AS rt', "((rt.role)::text = 'composer'::text)"): 1,
+ ('role_type AS rt', "((rt.role)::text = 'director'::text)"): 1,
+ ('role_type AS rt', "((rt.role)::text = 'miscellaneous crew'::text)"): 1,
+ ('role_type AS rt', "((rt.role)::text = 'production designer'::text)"): 1,
+ ('role_type AS rt', "((rt.role)::text = 'writer'::text)"): 1,
+ ('role_type AS rt', '((rt.role)::text = ANY (\'{"costume designer",director,"miscellaneous crew",producer}\'::text[]))'): 4,
+ ('role_type AS rt', '((rt.role)::text = ANY (\'{"miscellaneous crew",producer}\'::text[]))'): 2,
+ ('role_type AS rt', '((rt.role)::text = ANY (\'{actor,actress,cinematographer,"costume designer",director,editor,"miscellaneous crew",producer,writer}\'::text[]))'): 9,
+ ('role_type AS rt', '((rt.role)::text = ANY (\'{actor,actress,cinematographer,composer,"costume designer",director,editor,"miscellaneous crew","production designer",writer}\'::text[]))'): 10,
+ ('role_type AS rt', '((rt.role)::text = ANY (\'{actor,actress,cinematographer,composer,"costume designer",director,guest,"miscellaneous crew",producer,"production designer",writer}\'::text[]))'): 11,
+ ('role_type AS rt', "((rt.role)::text = ANY ('{actor,actress,cinematographer,composer}'::text[]))"): 4,
+ ('role_type AS rt', "((rt.role)::text = ANY ('{actor,cinematographer,composer}'::text[]))"): 3,
+ ('role_type AS rt', "((rt.role)::text = ANY ('{actor,composer,director,producer}'::text[]))"): 4,
+ ('role_type AS rt', '((rt.role)::text = ANY (\'{actor,composer,editor,"miscellaneous crew",producer}\'::text[]))'): 5,
+ ('role_type AS rt', "((rt.role)::text = ANY ('{actor,composer,producer}'::text[]))"): 3,
+ ('role_type AS rt', '((rt.role)::text = ANY (\'{actress,cinematographer,composer,"costume designer",guest,producer,"production designer",writer}\'::text[]))'): 8,
+ ('role_type AS rt', '((rt.role)::text = ANY (\'{actress,cinematographer,composer,director,guest,"miscellaneous crew",producer,"production designer",writer}\'::text[]))'): 9,
+ ('role_type AS rt', '((rt.role)::text = ANY (\'{actress,composer,editor,"production designer"}\'::text[]))'): 4,
+ ('role_type AS rt', '((rt.role)::text = ANY (\'{actress,director,"miscellaneous crew",producer}\'::text[]))'): 4,
+ ('role_type AS rt', "((rt.role)::text = ANY ('{actress,director,editor}'::text[]))"): 3,
+ ('role_type AS rt', "((rt.role)::text = ANY ('{actress,director}'::text[]))"): 2,
+ ('role_type AS rt', "((rt.role)::text = ANY ('{actress,producer}'::text[]))"): 2,
+ ('role_type AS rt', '((rt.role)::text = ANY (\'{cinematographer,"costume designer",director,editor,guest,"miscellaneous crew"}\'::text[]))'): 6,
+ ('role_type AS rt', '((rt.role)::text = ANY (\'{cinematographer,composer,"costume designer",director,editor,"miscellaneous crew",producer,writer}\'::text[]))'): 8,
+ ('role_type AS rt', '((rt.role)::text = ANY (\'{composer,"costume designer"}\'::text[]))'): 2,
+ ('role_type AS rt', "((rt.role)::text = ANY ('{composer,director,producer}'::text[]))"): 3,
+ ('role_type AS rt', "((rt.role)::text = ANY ('{director,producer}'::text[]))"): 2,
+ ('title AS t', '((t.production_year <= 1945) AND (t.production_year >= 1875))'): 147798,
+ ('title AS t', '((t.production_year <= 1975) AND (1925 < t.production_year))'): 340452,
+ ('title AS t', '((t.production_year <= 1975) AND (t.production_year >= 1875))'): 441447,
+ ('title AS t', '((t.production_year <= 1975) AND (t.production_year >= 1925) AND (t.title = ANY (\'{(#1.104),"Androcles and the Lion","Annie Get Your Gun","Chûkon giretsu - Jitsuroku Chûshingura","Devils Island","Is There Sex After Death?","Monte Carlo","Mr. District Attorney","Sea Devils",Survival,"The French Line","The Wrong Man","Treasure Hunt","Winged Victory"}\'::text[])))'): 32,
+ ('title AS t', '((t.production_year <= 1975) AND (t.production_year >= 1925))'): 344889,
+ ('title AS t', '((t.production_year <= 1990) AND (t.production_year >= 1950))'): 537059,
+ ('title AS t', '((t.production_year <= 2015) AND (t.production_year >= 1875))'): 2460927,
+ ('title AS t', '((t.production_year <= 2015) AND (t.production_year >= 1900))'): 2456002,
+ ('title AS t', '((t.production_year <= 2015) AND (t.production_year >= 1925))'): 2364369,
+ ('title AS t', '((t.production_year <= 2015) AND (t.production_year >= 1975) AND (t.title = ANY (\'{(#1.1671),(#1.3711),(#1.5630),(#1.6267),(#10.55),(#2.225),(#2.50),(#4.3),(#5.195),(#9.75),(2003-10-10),(2006-03-04),(2006-11-20),(2007-05-03),(2007-10-04),(2009-03-19),(2009-09-02),(2011-01-22),"11th Annual Screen Actors Guild Awards",Altlasten,"An Owl in a Thornbush","Austin Powers in Goldmember",Conspiracy,Detox,"Disco Fever","Fata Morgana",Freunde,"Happy End","Homeward Bound II: Lost in San Francisco",Inkasso,"Jailed in Katrina, Bhutan Motorcycle Crash, Kings Canyon Rescue","Just for the Record","Mauvaise fille","Nothing Lasts Forever",Portraits,Ray,"Secrets in the Snow","Slash Fiction",Switch,"Sûpâ no onna","The American Way","The Storm","Till My Heartaches End","Time Out of Mind",Turbulence}\'::text[])))'): 1265,
+ ('title AS t', '((t.production_year <= 2015) AND (t.production_year >= 1975))'): 2035883,
+ ('title AS t', '((t.production_year <= 2015) AND (t.production_year >= 1990))'): 1792824,
+ ('title AS t', '(t.production_year > 1950)'): 2298356,
+ ('title AS t', '(t.production_year > 2000)'): 1393186,
+ ('title AS t', "(t.title ~~* '%boy%'::text)"): 235,
+ ('title AS t', "(t.title ~~* '%ma%'::text)"): 142218,
+ ('title AS t2', '(t2.production_year = 2007)'): 125226}
+Dropping buffer cache.
+Running queries as-is (baseline PG performance)...
+---------------------------------------
+FinalizeAggregate cost=13875.929
+  Gather Merge cost=370379.85
+    PartialAggregate cost=368544.02
+      Sort cost=368516.26
+        Nested Loop cost=368440.35
+          Hash Join cost=359450.55
+            Nested Loop cost=359240.06
+              Hash Join cost=235179.27
+                Nested Loop cost=235137.7
+                  Hash Join cost=229888.64
+                    Seq Scan [movie_info AS mi1] cost=228901.83
+                    Hash cost=2.55
+                      Seq Scan [info_type AS it1] cost=2.55
+                  Index Scan [title AS t] cost=0.55
+                Hash cost=1.1
+                  Seq Scan [kind_type AS kt] cost=1.1
+              Index Scan [cast_info AS ci] cost=29.78
+            Hash cost=1.18
+              Seq Scan [role_type AS rt] cost=1.18
+          Index Scan [name AS n] cost=0.46
+
+
+qimdbload_10a1,13875.9 (baseline)
+Execution time: 13875.929
+---------------------------------------
+FinalizeAggregate cost=9071.445
+  Gather Merge cost=349556.38
+    PartialAggregate cost=348463.57
+      Sort cost=348460.49
+        Nested Loop cost=348454.51
+          Hash Join cost=341483.61
+            Nested Loop cost=341320.11
+              Hash Join cost=245136.79
+                Nested Loop cost=245104.3
+                  Hash Join cost=240819.1
+                    Seq Scan [movie_info AS mi1] cost=240053.31
+                    Hash cost=2.55
+                      Seq Scan [info_type AS it1] cost=2.55
+                  Index Scan [title AS t] cost=0.58
+                Hash cost=1.1
+                  Seq Scan [kind_type AS kt] cost=1.1
+              Index Scan [cast_info AS ci] cost=29.78
+            Hash cost=1.18
+              Seq Scan [role_type AS rt] cost=1.18
+          Index Scan [name AS n] cost=0.46
+
+
+qimdbload_10a2,9071.4 (baseline)
+Execution time: 9071.445
+---------------------------------------
+Sort cost=7081.213
+  SimpleAggregate cost=669387.8
+    Sort cost=662460.64
+      Nested Loop cost=621438.52
+        Seq Scan [info_type AS it] cost=2.41
+        Gather cost=617972.52
+          Nested Loop cost=582336.72
+            Hash Join cost=531679.43
+              Nested Loop cost=531309.0
+                Hash Join cost=280453.91
+                  Hash Join cost=280422.17
+                    Nested Loop cost=280381.87
+                      Hash Join cost=242516.45
+                        Seq Scan [movie_info AS mi1] cost=206598.89
+                        Hash cost=34313.55
+                          Hash Join cost=34313.55
+                            Seq Scan [movie_companies AS mc] cost=27206.55
+                            Hash cost=4722.92
+                              Seq Scan [company_name AS cn] cost=4722.92
+                      Index Scan [title AS t] cost=0.71
+                    Hash cost=1.04
+                      Seq Scan [company_type AS ct] cost=1.04
+                  Hash cost=1.09
+                    Seq Scan [kind_type AS kt] cost=1.09
+                Index Scan [cast_info AS ci] cost=34.1
+              Hash cost=1.24
+                Seq Scan [role_type AS rt] cost=1.24
+            Index Scan [name AS n] cost=0.73
+
+
+qimdbload_11a1,7081.2 (baseline)
+Execution time: 7081.213
+---------------------------------------
+Sort cost=1243.786
+  SimpleAggregate cost=264104.6
+    Nested Loop cost=263016.32
+      Seq Scan [info_type AS it] cost=2.41
+      Gather cost=262469.77
+        Nested Loop cost=256028.37
+          Hash Join cost=243192.19
+            Nested Loop cost=243107.7
+              Hash Join cost=186585.74
+                Hash Join cost=186577.68
+                  Nested Loop cost=186567.77
+                    Hash Join cost=80418.36
+                      Hash Join cost=75356.23
+                        Seq Scan [movie_companies AS mc] cost=27206.55
+                        Hash cost=45478.46
+                          Seq Scan [title AS t] cost=45478.46
+                      Hash cost=4722.92
+                        Seq Scan [company_name AS cn] cost=4722.92
+                    Index Scan [movie_info AS mi1] cost=17.72
+                  Hash cost=1.04
+                    Seq Scan [company_type AS ct] cost=1.04
+                Hash cost=1.09
+                  Seq Scan [kind_type AS kt] cost=1.09
+              Index Scan [cast_info AS ci] cost=34.1
+            Hash cost=1.25
+              Seq Scan [role_type AS rt] cost=1.25
+          Index Scan [name AS n] cost=0.73
+
+
+qimdbload_11a2,1243.8 (baseline)
+Execution time: 1243.786
+---------------------------------------
+Sort cost=819.329
+  SimpleAggregate cost=65665.64
+    Sort cost=65665.62
+      Nested Loop cost=65665.61
+        Nested Loop cost=65665.45
+          Nested Loop cost=65664.25
+            Nested Loop cost=65661.39
+              Nested Loop cost=65658.97
+                Gather cost=65656.55
+                  Nested Loop cost=64656.45
+                    Nested Loop cost=64568.64
+                      Nested Loop cost=64568.15
+                        Hash Join cost=64499.29
+                          Nested Loop cost=64497.67
+                            Nested Loop cost=62226.69
+                              Seq Scan [person_info AS pi1] cost=62159.11
+                              Index Scan [name AS n] cost=8.45
+                            Index Scan [cast_info AS ci] cost=278.83
+                          Hash cost=1.25
+                            Seq Scan [role_type AS rt] cost=1.25
+                        Index Scan [title AS t] cost=1.32
+                      Index Scan [kind_type AS kt] cost=0.16
+                    Index Scan [movie_info AS mi1] cost=29.26
+                Seq Scan [info_type AS it2] cost=2.41
+              Seq Scan [info_type AS it1] cost=2.41
+            Index Scan [movie_companies AS mc] cost=2.79
+          Index Scan [company_name AS cn] cost=1.21
+        Index Only Scan [company_type AS ct] cost=0.15
+
+
+qimdbload_11b1,819.3 (baseline)
+Execution time: 819.329
+---------------------------------------
+Sort cost=2519.194
+  SimpleAggregate cost=721699.23
+    Sort cost=721364.61
+      Nested Loop cost=720149.09
+        Seq Scan [info_type AS it2] cost=2.41
+        Nested Loop cost=719979.36
+          Seq Scan [info_type AS it1] cost=2.41
+          Gather cost=719809.64
+            Hash Join cost=717136.54
+              Nested Loop cost=717120.38
+                Nested Loop cost=713758.7
+                  Hash Join cost=706048.96
+                    Hash Join cost=706028.48
+                      Hash Join cost=605390.79
+                        Seq Scan [cast_info AS ci] cost=313056.39
+                        Hash cost=266721.04
+                          Hash Join cost=266721.04
+                            Seq Scan [movie_info AS mi1] cost=206598.89
+                            Hash cost=48072.42
+                              Hash Join cost=48072.42
+                                Seq Scan [title AS t] cost=45478.46
+                                Hash cost=1.12
+                                  Seq Scan [kind_type AS kt] cost=1.12
+                      Hash cost=96890.84
+                        Nested Loop cost=96890.84
+                          Seq Scan [person_info AS pi1] cost=62159.11
+                          Index Scan [name AS n] cost=6.02
+                    Hash cost=1.21
+                      Seq Scan [role_type AS rt] cost=1.21
+                  Index Scan [movie_companies AS mc] cost=2.79
+                Index Scan [company_name AS cn] cost=1.21
+              Hash cost=1.04
+                Seq Scan [company_type AS ct] cost=1.04
+
+
+qimdbload_11b2,2519.2 (baseline)
+Execution time: 2519.194
+---------------------------------------
+FinalizeAggregate cost=302.807
+  Gather cost=45116.66
+    PartialAggregate cost=44116.36
+      Nested Loop cost=44116.32
+        Nested Loop cost=44113.69
+          Nested Loop cost=44111.86
+            Nested Loop cost=44111.59
+              Nested Loop cost=44111.43
+                Nested Loop cost=42574.25
+                  Nested Loop cost=41229.07
+                    Hash Join cost=36779.18
+                      Seq Scan [movie_companies AS mc] cost=31414.82
+                      Hash cost=4722.92
+                        Seq Scan [company_name AS cn] cost=4722.92
+                    Index Only Scan [aka_title AS aka_t] cost=2.32
+                  Index Scan [title AS t] cost=0.95
+                Index Scan [movie_info AS mi] cost=1.96
+              Index Only Scan [company_type AS ct] cost=0.15
+            Index Scan [info_type AS it1] cost=0.21
+          Index Scan [movie_keyword AS mk] cost=1.37
+        Index Only Scan [keyword AS k] cost=0.44
+
+
+qimdbload_15a_job_middle,302.8 (baseline)
+Execution time: 302.807
+---------------------------------------
+SimpleAggregate cost=187.396
+  Nested Loop cost=212876.69
+    Nested Loop cost=212874.27
+      Gather cost=212871.85
+        Nested Loop cost=211871.75
+          Nested Loop cost=211869.43
+            Nested Loop cost=211868.95
+              Nested Loop cost=211810.94
+                Hash Join cost=211434.42
+                  Nested Loop cost=211433.21
+                    Seq Scan [movie_info AS mi2] cost=210316.05
+                    Index Scan [title AS t] cost=8.28
+                  Hash cost=1.1
+                    Seq Scan [kind_type AS kt] cost=1.1
+                Index Scan [movie_info AS mi1] cost=47.06
+              Index Scan [cast_info AS ci] cost=57.62
+            Index Scan [role_type AS rt] cost=0.16
+          Index Scan [name AS n] cost=2.32
+      Seq Scan [info_type AS it1] cost=2.41
+    Seq Scan [info_type AS it2] cost=2.41
+
+
+qimdbload_1a796,187.4 (baseline)
+Execution time: 187.396
+---------------------------------------
+SimpleAggregate cost=855.393
+  Nested Loop cost=228842.06
+    Nested Loop cost=228839.64
+      Gather cost=228837.22
+        Nested Loop cost=227837.12
+          Nested Loop cost=227834.8
+            Nested Loop cost=227833.85
+              Nested Loop cost=227775.84
+                Hash Join cost=227115.53
+                  Nested Loop cost=227114.26
+                    Seq Scan [movie_info AS mi2] cost=225184.68
+                    Index Scan [title AS t] cost=8.14
+                  Hash cost=1.1
+                    Seq Scan [kind_type AS kt] cost=1.1
+                Index Scan [movie_info AS mi1] cost=47.16
+              Index Scan [cast_info AS ci] cost=57.62
+            Index Scan [role_type AS rt] cost=0.16
+          Index Scan [name AS n] cost=2.32
+      Seq Scan [info_type AS it1] cost=2.41
+    Seq Scan [info_type AS it2] cost=2.41
+
+
+qimdbload_1a807,855.4 (baseline)
+Execution time: 855.393
+---------------------------------------
+SimpleAggregate cost=6312.052
+  Nested Loop cost=13203.07
+    Nested Loop cost=13202.61
+      Nested Loop cost=13196.63
+        Nested Loop cost=13179.14
+          Seq Scan [kind_type AS kt] cost=1.09
+          Nested Loop cost=13177.79
+            Nested Loop cost=13166.52
+              Seq Scan [comp_cast_type AS cct2] cost=1.05
+              Nested Loop cost=13164.31
+                Seq Scan [comp_cast_type AS cct1] cost=1.05
+                Nested Loop cost=13158.59
+                  Nested Loop cost=13030.05
+                    Seq Scan [keyword AS k] cost=3632.4
+                    Index Scan [movie_keyword AS mk] cost=1171.67
+                  Index Scan [complete_cast AS cc] cost=0.46
+            Index Scan [title AS t] cost=0.49
+        Index Scan [cast_info AS ci] cost=5.34
+      Index Scan [char_name AS chn] cost=0.46
+    Index Only Scan [name AS n] cost=0.46
+
+
+qimdbload_20a_job_middle,6312.1 (baseline)
+Execution time: 6312.052
+---------------------------------------
+SimpleAggregate cost=162.555
+  Gather cost=207757.55
+    Nested Loop cost=206757.35
+      Nested Loop cost=206754.96
+        Nested Loop cost=206752.42
+          Nested Loop cost=206750.0
+            Nested Loop cost=206747.58
+              Nested Loop cost=206697.75
+                Nested Loop cost=206696.97
+                  Nested Loop cost=206636.96
+                    Nested Loop cost=206632.86
+                      Nested Loop cost=206632.7
+                        Seq Scan [movie_info AS mi2] cost=206598.89
+                        Index Scan [title AS t] cost=8.45
+                      Index Scan [kind_type AS kt] cost=0.15
+                    Index Scan [movie_keyword AS mk] cost=3.64
+                  Index Scan [cast_info AS ci] cost=59.52
+                Index Scan [role_type AS rt] cost=0.16
+              Index Scan [movie_info AS mi1] cost=49.81
+            Seq Scan [info_type AS it1] cost=2.41
+          Seq Scan [info_type AS it2] cost=2.41
+        Index Scan [name AS n] cost=2.54
+      Index Only Scan [keyword AS k] cost=2.39
+
+
+qimdbload_2a404,162.6 (baseline)
+Execution time: 162.555
+---------------------------------------
+SimpleAggregate cost=696.874
+  Nested Loop cost=265984.18
+    Seq Scan [info_type AS it2] cost=2.41
+    Nested Loop cost=265980.77
+      Seq Scan [info_type AS it1] cost=2.41
+      Gather cost=265977.35
+        Nested Loop cost=264967.35
+          Nested Loop cost=264919.47
+            Nested Loop cost=264876.41
+              Hash Join cost=264795.36
+                Nested Loop cost=264792.85
+                  Nested Loop cost=263231.27
+                    Hash Join cost=231335.92
+                      Nested Loop cost=231328.52
+                        Seq Scan [movie_info AS mi2] cost=217750.36
+                        Index Scan [title AS t] cost=6.47
+                      Hash cost=1.1
+                        Seq Scan [kind_type AS kt] cost=1.1
+                    Index Scan [movie_info AS mi1] cost=49.98
+                  Index Scan [cast_info AS ci] cost=59.67
+                Hash cost=1.15
+                  Seq Scan [role_type AS rt] cost=1.15
+              Index Scan [name AS n] cost=2.53
+            Index Scan [movie_keyword AS mk] cost=3.46
+          Index Only Scan [keyword AS k] cost=2.39
+
+
+qimdbload_2a5,696.9 (baseline)
+Execution time: 696.874
+---------------------------------------
+SimpleAggregate cost=716.486
+  Nested Loop cost=14335.46
+    Nested Loop cost=14332.93
+      Nested Loop cost=14332.76
+        Nested Loop cost=14272.75
+          Nested Loop cost=14270.33
+            Nested Loop cost=14219.99
+              Gather cost=14217.57
+                Nested Loop cost=13217.47
+                  Hash Join cost=12618.85
+                    Nested Loop cost=12617.59
+                      Nested Loop cost=12194.94
+                        Index Scan [keyword AS k] cost=6455.51
+                        Index Scan [movie_keyword AS mk] cost=1144.85
+                      Index Scan [title AS t] cost=2.5
+                    Hash cost=1.1
+                      Seq Scan [kind_type AS kt] cost=1.1
+                  Index Scan [movie_info AS mi1] cost=49.87
+              Seq Scan [info_type AS it1] cost=2.41
+            Index Scan [movie_info AS mi2] cost=50.32
+          Seq Scan [info_type AS it2] cost=2.41
+        Index Scan [cast_info AS ci] cost=59.52
+      Index Scan [role_type AS rt] cost=0.16
+    Index Scan [name AS n] cost=2.54
+
+
+qimdbload_2b179,716.5 (baseline)
+Execution time: 716.486
+---------------------------------------
+SimpleAggregate cost=3877.488
+  Nested Loop cost=20899.74
+    Nested Loop cost=20897.2
+      Nested Loop cost=20897.03
+        Nested Loop cost=20837.03
+          Nested Loop cost=20834.61
+            Nested Loop cost=20832.18
+              Gather cost=20782.05
+                Nested Loop cost=19781.95
+                  Hash Join cost=16389.77
+                    Nested Loop cost=16387.65
+                      Nested Loop cost=15754.93
+                        Index Scan [keyword AS k] cost=6874.79
+                        Index Scan [movie_keyword AS mk] cost=1106.98
+                      Index Scan [title AS t] cost=2.5
+                    Hash cost=1.09
+                      Seq Scan [kind_type AS kt] cost=1.09
+                  Index Scan [movie_info AS mi2] cost=49.87
+              Index Scan [movie_info AS mi1] cost=50.12
+            Seq Scan [info_type AS it1] cost=2.41
+          Seq Scan [info_type AS it2] cost=2.41
+        Index Scan [cast_info AS ci] cost=59.61
+      Index Scan [role_type AS rt] cost=0.16
+    Index Scan [name AS n] cost=2.54
+
+
+qimdbload_2b180,3877.5 (baseline)
+Execution time: 3877.488
+---------------------------------------
+SimpleAggregate cost=237.327
+  Nested Loop cost=114412.76
+    Nested Loop cost=114410.45
+      Nested Loop cost=114408.02
+        Gather cost=114405.6
+          Nested Loop cost=113405.5
+            Nested Loop cost=113359.02
+              Nested Loop cost=113357.93
+                Nested Loop cost=113250.72
+                  Hash Join cost=81032.7
+                    Seq Scan [title AS t] cost=81030.19
+                    Hash cost=1.11
+                      Seq Scan [kind_type AS kt] cost=1.11
+                  Index Scan [movie_info AS mi1] cost=142.55
+                Index Scan [cast_info AS ci] cost=106.72
+              Index Scan [role_type AS rt] cost=0.16
+            Index Scan [movie_info AS mi2] cost=46.47
+        Seq Scan [info_type AS it1] cost=2.41
+      Seq Scan [info_type AS it2] cost=2.41
+    Index Scan [name AS n] cost=2.32
+
+
+qimdbload_2c241,237.3 (baseline)
+Execution time: 237.327
+---------------------------------------
+SimpleAggregate cost=73.234
+  Gather cost=58801.86
+    Nested Loop cost=57801.66
+      Nested Loop cost=57799.35
+        Nested Loop cost=57796.93
+          Nested Loop cost=57794.5
+            Nested Loop cost=57748.27
+              Nested Loop cost=57747.64
+                Nested Loop cost=57681.47
+                  Hash Join cost=56540.23
+                    Seq Scan [title AS t] cost=56539.0
+                    Hash cost=1.12
+                      Seq Scan [kind_type AS kt] cost=1.12
+                  Index Scan [movie_info AS mi2] cost=163.03
+                Index Scan [cast_info AS ci] cost=65.68
+              Index Scan [role_type AS rt] cost=0.16
+            Index Scan [movie_info AS mi1] cost=46.22
+          Seq Scan [info_type AS it1] cost=2.41
+        Seq Scan [info_type AS it2] cost=2.41
+      Index Scan [name AS n] cost=2.32
+
+
+qimdbload_2c242,73.2 (baseline)
+Execution time: 73.234
+---------------------------------------
+SimpleAggregate cost=106.264
+  Nested Loop cost=3497.73
+    Nested Loop cost=3497.21
+      Nested Loop cost=3497.04
+        Nested Loop cost=3496.51
+          Nested Loop cost=3496.07
+            Nested Loop cost=3494.59
+              Nested Loop cost=3494.42
+                Nested Loop cost=3485.47
+                  Index Scan [info_type AS it2] cost=14.12
+                  Nested Loop cost=3471.33
+                    Nested Loop cost=3365.2
+                      Hash Join cost=3336.07
+                        Merge Join cost=3320.13
+                          Index Scan [movie_info_idx AS mii1] cost=53610.02
+                          Sort cost=654.8
+                            Hash Join cost=561.48
+                              Seq Scan [movie_link AS ml] cost=462.97
+                              Hash cost=1.23
+                                Seq Scan [link_type AS lt] cost=1.23
+                        Hash cost=2.41
+                          Seq Scan [info_type AS it1] cost=2.41
+                      Index Scan [movie_companies AS mc1] cost=0.6
+                    Index Scan [company_name AS cn1] cost=0.45
+                Index Scan [title AS t2] cost=4.47
+              Index Scan [kind_type AS kt2] cost=0.15
+            Index Scan [movie_companies AS mc2] cost=1.42
+          Index Scan [company_name AS cn2] cost=0.44
+        Index Scan [title AS t1] cost=0.52
+      Index Scan [kind_type AS kt1] cost=0.15
+    Index Scan [movie_info_idx AS mii2] cost=0.51
+
+
+qimdbload_33b_job_middle,106.3 (baseline)
+Execution time: 106.264
+---------------------------------------
+SimpleAggregate cost=53.475
+  Nested Loop cost=17131.2
+    Nested Loop cost=17130.74
+      Seq Scan [role_type AS rt] cost=1.15
+      Nested Loop cost=17129.42
+        Nested Loop cost=17127.34
+          Nested Loop cost=17101.26
+            Nested Loop cost=17097.02
+              Nested Loop cost=17028.65
+                Nested Loop cost=17016.56
+                  Nested Loop cost=16833.92
+                    Seq Scan [keyword AS k] cost=4135.54
+                    Index Scan [movie_keyword AS mk] cost=1151.36
+                  Index Scan [title AS t] cost=0.49
+                Materialize cost=1.11
+                  Seq Scan [kind_type AS kt] cost=1.1
+              Index Scan [movie_companies AS mc] cost=0.54
+            Materialize cost=1.06
+              Seq Scan [company_type AS ct] cost=1.05
+          Index Scan [company_name AS cn] cost=0.45
+        Index Scan [cast_info AS ci] cost=1.59
+    Index Scan [name AS n] cost=0.46
+
+
+qimdbload_3a1092,53.5 (baseline)
+Execution time: 53.475
+---------------------------------------
+SimpleAggregate cost=370.285
+  Nested Loop cost=7894.25
+    Nested Loop cost=7893.33
+      Nested Loop cost=7891.77
+        Nested Loop cost=7889.69
+          Nested Loop cost=7883.01
+            Seq Scan [company_type AS ct] cost=1.05
+            Nested Loop cost=7881.23
+              Nested Loop cost=7847.35
+                Nested Loop cost=7840.78
+                  Nested Loop cost=7774.32
+                    Seq Scan [keyword AS k] cost=2961.55
+                    Index Scan [movie_keyword AS mk] cost=1200.15
+                  Index Scan [title AS t] cost=0.49
+                Materialize cost=1.11
+                  Seq Scan [kind_type AS kt] cost=1.1
+              Index Scan [movie_companies AS mc] cost=0.54
+          Index Scan [company_name AS cn] cost=0.45
+        Index Scan [cast_info AS ci] cost=1.59
+      Materialize cost=1.16
+        Seq Scan [role_type AS rt] cost=1.15
+    Index Scan [name AS n] cost=0.46
+
+
+qimdbload_3a1108,370.3 (baseline)
+Execution time: 370.285
+---------------------------------------
+Sort cost=231.861
+  SimpleAggregate cost=39571.12
+    Sort cost=39571.1
+      Nested Loop cost=39571.08
+        Nested Loop cost=39570.91
+          Nested Loop cost=39570.76
+            Nested Loop cost=39570.32
+              Gather cost=39568.5
+                Nested Loop cost=38568.4
+                  Nested Loop cost=38566.11
+                    Nested Loop cost=38563.79
+                      Nested Loop cost=38563.56
+                        Hash Join cost=34156.29
+                          Seq Scan [movie_companies AS mc] cost=27206.55
+                          Hash cost=4722.92
+                            Seq Scan [company_name AS cn] cost=4722.92
+                        Index Scan [title AS t] cost=0.52
+                      Index Scan [kind_type AS kt] cost=0.21
+                    Index Scan [cast_info AS ci] cost=1.83
+                  Index Scan [name AS n] cost=0.46
+              Index Scan [movie_keyword AS mk] cost=1.24
+            Index Only Scan [keyword AS k] cost=0.44
+          Index Only Scan [company_type AS ct] cost=0.15
+        Index Scan [role_type AS rt] cost=0.17
+
+
+qimdbload_3b1,231.9 (baseline)
+Execution time: 231.861
+---------------------------------------
+Sort cost=601.59
+  FinalizeAggregate cost=80914.12
+    Gather Merge cost=80908.13
+      PartialAggregate cost=79873.55
+        Sort cost=79871.59
+          Nested Loop cost=79868.1
+            Nested Loop cost=79825.1
+              Hash Join cost=79725.14
+                Nested Loop cost=79723.75
+                  Hash Join cost=74926.47
+                    Nested Loop cost=74813.57
+                      Hash Join cost=69719.47
+                        Nested Loop cost=69702.13
+                          Hash Join cost=34278.98
+                            Seq Scan [movie_companies AS mc] cost=27206.55
+                            Hash cost=4722.92
+                              Seq Scan [company_name AS cn] cost=4722.92
+                          Index Scan [title AS t] cost=0.52
+                        Hash cost=1.1
+                          Seq Scan [kind_type AS kt] cost=1.1
+                      Index Scan [cast_info AS ci] cost=1.83
+                    Hash cost=1.18
+                      Seq Scan [role_type AS rt] cost=1.18
+                  Index Scan [name AS n] cost=0.46
+                Hash cost=1.04
+                  Seq Scan [company_type AS ct] cost=1.04
+              Index Scan [movie_keyword AS mk] cost=1.24
+            Index Only Scan [keyword AS k] cost=0.44
+
+
+qimdbload_3b2,601.6 (baseline)
+Execution time: 601.59
+---------------------------------------
+SimpleAggregate cost=358.642
+  Nested Loop cost=117118.76
+    Seq Scan [info_type AS it1] cost=2.41
+    Gather cost=117112.87
+      Hash Join cost=116078.07
+        Nested Loop cost=116075.91
+          Nested Loop cost=115218.97
+            Hash Join cost=80861.94
+              Seq Scan [person_info AS pi1] cost=60307.76
+              Hash cost=14303.56
+                Seq Scan [aka_name AS an] cost=14303.56
+            Index Scan [name AS n] cost=0.79
+          Index Scan [cast_info AS ci] cost=14.23
+        Hash cost=1.18
+          Seq Scan [role_type AS rt] cost=1.18
+
+
+qimdbload_4a279,358.6 (baseline)
+Execution time: 358.642
+---------------------------------------
+SimpleAggregate cost=676.026
+  Nested Loop cost=111944.01
+    Seq Scan [info_type AS it1] cost=2.41
+    Gather cost=111937.56
+      Hash Join cost=110897.16
+        Nested Loop cost=110894.1
+          Nested Loop cost=109319.78
+            Hash Join cost=102193.11
+              Seq Scan [aka_name AS an] cost=14303.56
+              Hash cost=86871.55
+                Seq Scan [name AS n] cost=86871.55
+            Index Scan [person_info AS pi1] cost=1.24
+          Index Scan [cast_info AS ci] cost=12.34
+        Hash cost=1.17
+          Seq Scan [role_type AS rt] cost=1.17
+
+
+qimdbload_4a326,676.0 (baseline)
+Execution time: 676.026
+---------------------------------------
+SimpleAggregate cost=1516.201
+  Gather cost=31305.38
+    Nested Loop cost=30305.18
+      Nested Loop cost=30304.74
+        Nested Loop cost=30302.32
+          Nested Loop cost=30299.89
+            Nested Loop cost=30297.47
+              Nested Loop cost=30297.31
+                Nested Loop cost=30295.77
+                  Nested Loop cost=30293.54
+                    Nested Loop cost=30285.38
+                      Seq Scan [movie_info_idx AS mii2] cost=26622.97
+                      Index Scan [movie_info_idx AS mi_idx] cost=7.97
+                    Index Scan [title AS t] cost=8.16
+                  Index Scan [movie_keyword AS mk] cost=1.77
+                Index Scan [movie_info AS mi1] cost=1.53
+              Index Scan [kind_type AS kt] cost=0.15
+            Seq Scan [info_type AS it1] cost=2.41
+          Seq Scan [info_type AS it3] cost=2.41
+        Seq Scan [info_type AS it4] cost=2.41
+      Index Only Scan [keyword AS k] cost=0.44
+
+
+qimdbload_5a250,1516.2 (baseline)
+Execution time: 1516.201
+---------------------------------------
+SimpleAggregate cost=288.483
+  Gather cost=31303.08
+    Nested Loop cost=30302.88
+      Nested Loop cost=30302.44
+        Nested Loop cost=30300.02
+          Nested Loop cost=30297.6
+            Nested Loop cost=30296.97
+              Nested Loop cost=30296.8
+                Nested Loop cost=30295.31
+                  Nested Loop cost=30293.54
+                    Nested Loop cost=30285.38
+                      Seq Scan [movie_info_idx AS mii2] cost=26622.97
+                      Index Scan [movie_info_idx AS mi_idx] cost=7.97
+                    Index Scan [title AS t] cost=8.16
+                  Index Scan [movie_keyword AS mk] cost=1.31
+                Index Scan [movie_info AS mi1] cost=1.48
+              Index Scan [kind_type AS kt] cost=0.15
+            Index Only Scan [info_type AS it1] cost=0.47
+          Seq Scan [info_type AS it3] cost=2.41
+        Seq Scan [info_type AS it4] cost=2.41
+      Index Only Scan [keyword AS k] cost=0.44
+
+
+qimdbload_5a276,288.5 (baseline)
+Execution time: 288.483
+---------------------------------------
+SimpleAggregate cost=1716.7
+  Nested Loop cost=31395.72
+    Nested Loop cost=31393.3
+      Nested Loop cost=31391.82
+        Nested Loop cost=31389.4
+          Seq Scan [info_type AS it5] cost=2.41
+          Gather cost=31386.98
+            Nested Loop cost=30386.88
+              Nested Loop cost=30374.45
+                Nested Loop cost=30372.67
+                  Nested Loop cost=30370.25
+                    Nested Loop cost=30339.37
+                      Nested Loop cost=30339.04
+                        Nested Loop cost=30337.98
+                          Nested Loop cost=30293.54
+                            Nested Loop cost=30285.38
+                              Seq Scan [movie_info_idx AS mii2] cost=26622.97
+                              Index Scan [movie_info_idx AS miidx] cost=7.97
+                            Index Scan [title AS t] cost=8.16
+                          Index Scan [cast_info AS ci] cost=44.2
+                        Index Scan [kind_type AS kt] cost=0.15
+                      Index Scan [role_type AS rt] cost=0.16
+                    Index Scan [movie_info AS mi1] cost=30.87
+                  Seq Scan [info_type AS it1] cost=2.41
+                Index Only Scan [aka_name AS an] cost=1.76
+              Index Scan [person_info AS pi1] cost=12.42
+        Seq Scan [info_type AS it4] cost=2.41
+      Index Scan [name AS n] cost=1.48
+    Seq Scan [info_type AS it3] cost=2.41
+
+
+qimdbload_6a104,1716.7 (baseline)
+Execution time: 1716.7
+---------------------------------------
+SimpleAggregate cost=2995.287
+  Nested Loop cost=31394.27
+    Nested Loop cost=31391.85
+      Nested Loop cost=31390.37
+        Nested Loop cost=31387.94
+          Seq Scan [info_type AS it5] cost=2.41
+          Gather cost=31385.52
+            Nested Loop cost=30385.42
+              Nested Loop cost=30372.99
+                Nested Loop cost=30371.21
+                  Nested Loop cost=30370.58
+                    Nested Loop cost=30339.65
+                      Nested Loop cost=30339.48
+                        Nested Loop cost=30338.87
+                          Nested Loop cost=30293.54
+                            Nested Loop cost=30285.38
+                              Seq Scan [movie_info_idx AS mii2] cost=26622.97
+                              Index Scan [movie_info_idx AS miidx] cost=7.97
+                            Index Scan [title AS t] cost=8.16
+                          Index Scan [cast_info AS ci] cost=45.09
+                        Index Scan [kind_type AS kt] cost=0.15
+                      Index Scan [role_type AS rt] cost=0.16
+                    Index Scan [movie_info AS mi1] cost=30.92
+                  Index Only Scan [info_type AS it1] cost=0.47
+                Index Only Scan [aka_name AS an] cost=1.76
+              Index Scan [person_info AS pi1] cost=12.42
+        Seq Scan [info_type AS it4] cost=2.41
+      Index Scan [name AS n] cost=1.48
+    Seq Scan [info_type AS it3] cost=2.41
+
+
+qimdbload_6a107,2995.3 (baseline)
+Execution time: 2995.287
+---------------------------------------
+SimpleAggregate cost=2213.286
+  Nested Loop cost=31421.58
+    Nested Loop cost=31421.41
+      Nested Loop cost=31418.99
+        Nested Loop cost=31417.42
+          Seq Scan [info_type AS it5] cost=2.41
+          Nested Loop cost=31415.0
+            Nested Loop cost=31399.3
+              Nested Loop cost=31398.67
+                Nested Loop cost=31398.5
+                  Nested Loop cost=31396.28
+                    Gather cost=31393.86
+                      Nested Loop cost=30393.76
+                        Nested Loop cost=30381.44
+                          Nested Loop cost=30333.1
+                            Nested Loop cost=30329.82
+                              Nested Loop cost=30293.54
+                                Nested Loop cost=30285.38
+                                  Seq Scan [movie_info_idx AS mii2] cost=26622.97
+                                  Index Scan [movie_info_idx AS mii1] cost=7.97
+                                Index Scan [title AS t] cost=8.16
+                              Index Scan [movie_info AS mi1] cost=36.26
+                            Index Scan [movie_keyword AS mk] cost=2.82
+                          Index Scan [cast_info AS ci] cost=48.04
+                        Index Scan [name AS n] cost=1.76
+                    Seq Scan [info_type AS it3] cost=2.41
+                  Index Only Scan [aka_name AS an] cost=2.2
+                Index Scan [kind_type AS kt] cost=0.15
+              Index Only Scan [info_type AS it1] cost=0.47
+            Index Scan [person_info AS pi1] cost=15.69
+        Index Only Scan [keyword AS k] cost=1.57
+      Seq Scan [info_type AS it4] cost=2.41
+    Index Scan [role_type AS rt] cost=0.16
+
+
+qimdbload_7a63,2213.3 (baseline)
+Execution time: 2213.286
+---------------------------------------
+SimpleAggregate cost=1692.063
+  Nested Loop cost=31423.41
+    Nested Loop cost=31423.24
+      Nested Loop cost=31420.82
+        Nested Loop cost=31419.25
+          Seq Scan [info_type AS it5] cost=2.41
+          Nested Loop cost=31416.83
+            Nested Loop cost=31401.13
+              Nested Loop cost=31400.5
+                Nested Loop cost=31400.33
+                  Nested Loop cost=31398.1
+                    Gather cost=31395.68
+                      Nested Loop cost=30395.58
+                        Nested Loop cost=30381.48
+                          Nested Loop cost=30333.04
+                            Nested Loop cost=30329.76
+                              Nested Loop cost=30293.54
+                                Nested Loop cost=30285.38
+                                  Seq Scan [movie_info_idx AS mii2] cost=26622.97
+                                  Index Scan [movie_info_idx AS mii1] cost=7.97
+                                Index Scan [title AS t] cost=8.16
+                              Index Scan [movie_info AS mi1] cost=36.21
+                            Index Scan [movie_keyword AS mk] cost=2.82
+                          Index Scan [cast_info AS ci] cost=48.13
+                        Index Scan [name AS n] cost=1.76
+                    Seq Scan [info_type AS it3] cost=2.41
+                  Index Only Scan [aka_name AS an] cost=2.2
+                Index Scan [kind_type AS kt] cost=0.15
+              Index Only Scan [info_type AS it1] cost=0.47
+            Index Scan [person_info AS pi1] cost=15.69
+        Index Only Scan [keyword AS k] cost=1.57
+      Seq Scan [info_type AS it4] cost=2.41
+    Index Scan [role_type AS rt] cost=0.16
+
+
+qimdbload_7a64,1692.1 (baseline)
+Execution time: 1692.063
+---------------------------------------
+FinalizeAggregate cost=4875.478
+  Gather cost=7004.76
+    PartialAggregate cost=6004.66
+      Nested Loop cost=6004.64
+        Nested Loop cost=6003.79
+          Nested Loop cost=6001.32
+            Nested Loop cost=5996.93
+              Nested Loop cost=5995.68
+                Nested Loop cost=5956.45
+                  Nested Loop cost=5954.02
+                    Hash Join cost=5786.3
+                      Nested Loop cost=5785.09
+                        Hash Join cost=5771.42
+                          Nested Loop cost=5770.21
+                            Seq Scan [company_name AS cn] cost=5068.5
+                            Index Scan [movie_companies AS mc] cost=349.53
+                          Hash cost=1.05
+                            Seq Scan [company_type AS ct] cost=1.05
+                        Index Scan [title AS t] cost=1.05
+                      Hash cost=1.1
+                        Seq Scan [kind_type AS kt] cost=1.1
+                    Index Scan [movie_info AS mi1] cost=23.95
+                  Seq Scan [info_type AS it1] cost=2.41
+                Index Scan [cast_info AS ci] cost=38.84
+              Index Scan [role_type AS rt] cost=0.16
+            Index Scan [name AS n] cost=1.1
+          Index Scan [movie_keyword AS mk] cost=2.01
+        Index Only Scan [keyword AS k] cost=0.86
+
+
+qimdbload_8a117,4875.5 (baseline)
+Execution time: 4875.478
+---------------------------------------
+FinalizeAggregate cost=290.585
+  Gather cost=6682.44
+    PartialAggregate cost=5682.34
+      Nested Loop cost=5682.33
+        Nested Loop cost=5681.47
+          Nested Loop cost=5678.98
+            Hash Join cost=5677.88
+              Nested Loop cost=5676.69
+                Nested Loop cost=5637.39
+                  Nested Loop cost=5634.97
+                    Nested Loop cost=5611.16
+                      Nested Loop cost=5610.23
+                        Hash Join cost=5600.77
+                          Nested Loop cost=5599.59
+                            Seq Scan [company_name AS cn] cost=4895.71
+                            Index Scan [movie_companies AS mc] cost=350.61
+                          Hash cost=1.05
+                            Seq Scan [company_type AS ct] cost=1.05
+                        Index Scan [title AS t] cost=1.05
+                      Index Scan [kind_type AS kt] cost=0.15
+                    Index Scan [movie_info AS mi1] cost=23.8
+                  Seq Scan [info_type AS it1] cost=2.41
+                Index Scan [cast_info AS ci] cost=38.81
+              Hash cost=1.15
+                Seq Scan [role_type AS rt] cost=1.15
+            Index Scan [name AS n] cost=1.09
+          Index Scan [movie_keyword AS mk] cost=2.03
+        Index Only Scan [keyword AS k] cost=0.86
+
+
+qimdbload_8a6,290.6 (baseline)
+Execution time: 290.585
+---------------------------------------
+SimpleAggregate cost=2009.63
+  Sort cost=687053.9
+    Nested Loop cost=685016.85
+      Seq Scan [info_type AS it2] cost=2.41
+      Nested Loop cost=684746.56
+        Seq Scan [info_type AS it1] cost=2.41
+        Gather cost=684476.28
+          Hash Join cost=680797.58
+            Nested Loop cost=680756.92
+              Hash Join cost=653903.9
+                Seq Scan [movie_info AS mi1] cost=206598.89
+                Hash cost=446398.22
+                  Hash Join cost=446398.22
+                    Hash Join cost=446196.58
+                      Seq Scan [cast_info AS ci] cost=313056.39
+                      Hash cost=110239.06
+                        Nested Loop cost=110239.06
+                          Seq Scan [person_info AS pi1] cost=62159.11
+                          Index Only Scan [name AS n] cost=4.94
+                    Hash cost=1.24
+                      Seq Scan [role_type AS rt] cost=1.24
+              Index Scan [title AS t] cost=1.05
+            Hash cost=1.1
+              Seq Scan [kind_type AS kt] cost=1.1
+
+
+qimdbload_9a1,2009.6 (baseline)
+Execution time: 2009.63
+---------------------------------------
+SimpleAggregate cost=1910.851
+  Sort cost=624728.49
+    Nested Loop cost=624641.1
+      Seq Scan [info_type AS it2] cost=2.41
+      Nested Loop cost=624622.97
+        Seq Scan [info_type AS it1] cost=2.41
+        Gather cost=624604.84
+          Hash Join cost=623447.64
+            Nested Loop cost=623444.9
+              Hash Join cost=622394.4
+                Hash Join cost=622389.09
+                  Seq Scan [movie_info AS mi1] cost=206598.89
+                  Hash cost=415565.05
+                    Hash Join cost=415565.05
+                      Seq Scan [cast_info AS ci] cost=313056.39
+                      Hash cost=79803.34
+                        Nested Loop cost=79803.34
+                          Seq Scan [person_info AS pi1] cost=62159.11
+                          Index Only Scan [name AS n] cost=7.13
+                Hash cost=1.29
+                  Seq Scan [role_type AS rt] cost=1.29
+              Index Scan [title AS t] cost=1.05
+            Hash cost=1.12
+              Seq Scan [kind_type AS kt] cost=1.12
+
+
+qimdbload_9a2,1910.9 (baseline)
+Execution time: 1910.851
+---------------------------------------
+SimpleAggregate cost=1045.185
+  Sort cost=294216.48
+    Nested Loop cost=294215.87
+      Seq Scan [info_type AS it2] cost=2.41
+      Gather cost=294213.22
+        Nested Loop cost=293210.82
+          Nested Loop cost=291844.17
+            Hash Join cost=289313.65
+              Nested Loop cost=289288.51
+                Hash Join cost=270339.85
+                  Nested Loop cost=270334.09
+                    Hash Join cost=263002.91
+                      Seq Scan [movie_info AS mi1] cost=262356.25
+                      Hash cost=2.55
+                        Seq Scan [info_type AS it1] cost=2.55
+                    Index Scan [title AS t] cost=1.17
+                  Hash cost=1.1
+                    Seq Scan [kind_type AS kt] cost=1.1
+                Index Scan [cast_info AS ci] cost=39.83
+              Hash cost=1.18
+                Seq Scan [role_type AS rt] cost=1.18
+            Index Scan [name AS n] cost=1.13
+          Index Scan [person_info AS pi1] cost=8.59
+
+
+qimdbload_9b1,1045.2 (baseline)
+Execution time: 1045.185
+---------------------------------------
+SimpleAggregate cost=668.989
+  Sort cost=255484.53
+    Gather cost=255484.48
+      Nested Loop cost=254484.08
+        Nested Loop cost=254481.66
+          Nested Loop cost=254438.48
+            Hash Join cost=253887.05
+              Nested Loop cost=253878.89
+                Hash Join cost=248410.61
+                  Nested Loop cost=248408.12
+                    Hash Join cost=247542.47
+                      Seq Scan [movie_info AS mi1] cost=247487.62
+                      Hash cost=2.41
+                        Seq Scan [info_type AS it1] cost=2.41
+                    Index Scan [title AS t] cost=2.54
+                  Hash cost=1.1
+                    Seq Scan [kind_type AS kt] cost=1.1
+                Index Scan [cast_info AS ci] cost=39.52
+              Hash cost=1.17
+                Seq Scan [role_type AS rt] cost=1.17
+            Index Scan [name AS n] cost=1.13
+          Index Scan [person_info AS pi1] cost=8.59
+        Seq Scan [info_type AS it2] cost=2.41
+
+
+qimdbload_9b2,669.0 (baseline)
+Execution time: 668.989
+latency_expert/workload (seconds): 71.65 (35 queries)
+latency_expert_test/workload (seconds): 0.00 (0 queries)
+Number of joins [5, 15], avg 9.4

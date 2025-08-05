@@ -1,0 +1,289 @@
+—— 模型 ER_2H_v1_Model ——
+  测试集模型选中提示总耗时（每 fold）： [tensor(225.0913), tensor(225.0913), tensor(225.0769), tensor(225.0913), tensor(236.5857), tensor(225.0913), tensor(254.8331), tensor(220.2249), tensor(220.2249), tensor(231.5475)]
+  测试集最优提示总耗时（每 fold）： [tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497)]
+  测试集基线（提示0）总耗时（每 fold）： [tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428)]
+
+—— 模型 ER_2H_v1_Model ——
+  测试集模型选中提示总耗时（每 fold）： [tensor(244.6077), tensor(223.0199), tensor(253.0140), tensor(255.9794), tensor(245.2218), tensor(253.8732), tensor(271.7249), tensor(244.6232), tensor(252.7503), tensor(259.4220)]
+  测试集最优提示总耗时（每 fold）： [tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497)]
+  测试集基线（提示0）总耗时（每 fold）： [tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428)]
+
+—— 模型 ER_3H_v1_Model ——
+  测试集模型选中提示总耗时（每 fold）： [tensor(222.3192), tensor(220.9331), tensor(368.2933), tensor(220.9331), tensor(220.9331), tensor(220.9331), tensor(225.0913), tensor(219.5471), tensor(220.9331), tensor(220.9331)]
+  测试集最优提示总耗时（每 fold）： [tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497)]
+  测试集基线（提示0）总耗时（每 fold）： [tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428)]
+
+—— 模型 ER_3H_v1_Model ——
+  测试集模型选中提示总耗时（每 fold）： [tensor(338.9628), tensor(263.8065), tensor(282.1786), tensor(309.3700), tensor(359.9265), tensor(316.2474), tensor(322.9999), tensor(307.4916), tensor(281.2862), tensor(332.6542)]
+  测试集最优提示总耗时（每 fold）： [tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497)]
+  测试集基线（提示0）总耗时（每 fold）： [tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428)]
+
+—— 模型 ER_3H_v2_Model ——
+  测试集模型选中提示总耗时（每 fold）： [tensor(220.7183), tensor(215.1493), tensor(253.3897), tensor(215.1493), tensor(236.5965), tensor(233.1889), tensor(254.5425), tensor(225.3650), tensor(239.9538), tensor(247.6479)]
+  测试集最优提示总耗时（每 fold）： [tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497)]
+  测试集基线（提示0）总耗时（每 fold）： [tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428)]
+
+—— 模型 ER_3H_v2_Model ——
+  测试集模型选中提示总耗时（每 fold）： [tensor(254.4747), tensor(233.9755), tensor(261.9221), tensor(286.1118), tensor(264.2796), tensor(252.2149), tensor(292.7301), tensor(245.4355), tensor(271.3126), tensor(288.0258)]
+  测试集最优提示总耗时（每 fold）： [tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497)]
+  测试集基线（提示0）总耗时（每 fold）： [tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428)]
+
+—— 模型 ER_3H_v3_Model ——
+  测试集模型选中提示总耗时（每 fold）： [tensor(225.0913), tensor(225.0913), tensor(245.9408), tensor(225.0913), tensor(257.0448), tensor(225.0913), tensor(225.0913), tensor(225.0913), tensor(225.0913), tensor(260.5681)]
+  测试集最优提示总耗时（每 fold）： [tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497)]
+  测试集基线（提示0）总耗时（每 fold）： [tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428)]
+
+—— 模型 ER_3H_v3_Model ——
+  测试集模型选中提示总耗时（每 fold）： [tensor(236.2051), tensor(230.4320), tensor(238.7698), tensor(230.0045), tensor(238.7698), tensor(246.4474), tensor(234.0678), tensor(219.3182), tensor(233.7719), tensor(238.7698)]
+  测试集最优提示总耗时（每 fold）： [tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497)]
+  测试集基线（提示0）总耗时（每 fold）： [tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428)]
+
+—— 模型 ER_4H_v1_Model ——
+  测试集模型选中提示总耗时（每 fold）： [tensor(225.0913), tensor(225.0913), tensor(225.0913), tensor(225.0913), tensor(225.0913), tensor(225.0913), tensor(225.0913), tensor(225.0913), tensor(225.0913), tensor(225.0913)]
+  测试集最优提示总耗时（每 fold）： [tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497)]
+  测试集基线（提示0）总耗时（每 fold）： [tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428)]
+
+—— 模型 ER_4H_v1_Model ——
+  测试集模型选中提示总耗时（每 fold）： [tensor(220.2249), tensor(225.0913), tensor(227.4916), tensor(220.2249), tensor(234.4953), tensor(225.0913), tensor(225.0913), tensor(225.0913), tensor(220.2249), tensor(220.2249)]
+  测试集最优提示总耗时（每 fold）： [tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497)]
+  测试集基线（提示0）总耗时（每 fold）： [tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428)]
+
+—— 模型 ER_4H_v2_Model ——
+  测试集模型选中提示总耗时（每 fold）： [tensor(225.0913), tensor(224.9363), tensor(238.7698), tensor(225.0913), tensor(236.6083), tensor(225.0913), tensor(225.0913), tensor(224.9363), tensor(225.0913), tensor(238.7698)]
+  测试集最优提示总耗时（每 fold）： [tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497)]
+  测试集基线（提示0）总耗时（每 fold）： [tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428)]
+
+—— 模型 ER_4H_v2_Model ——
+  测试集模型选中提示总耗时（每 fold）： [tensor(224.9363), tensor(219.9813), tensor(222.4831), tensor(224.9363), tensor(225.0733), tensor(324.8604), tensor(228.5005), tensor(224.9363), tensor(342.5062), tensor(224.9363)]
+  测试集最优提示总耗时（每 fold）： [tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497)]
+  测试集基线（提示0）总耗时（每 fold）： [tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428)]
+
+—— 模型 ER_5H_v1_Model ——
+  测试集模型选中提示总耗时（每 fold）： [tensor(225.0913), tensor(224.9363), tensor(408.9428), tensor(224.9363), tensor(408.9428), tensor(225.0913), tensor(224.9363), tensor(225.0913), tensor(224.9363), tensor(408.9428)]
+  测试集最优提示总耗时（每 fold）： [tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497)]
+  测试集基线（提示0）总耗时（每 fold）： [tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428)]
+
+—— 模型 ER_5H_v1_Model ——
+  测试集模型选中提示总耗时（每 fold）： [tensor(297.2497), tensor(218.3180), tensor(408.9428), tensor(225.0913), tensor(408.9428), tensor(225.0913), tensor(379.4616), tensor(408.9428), tensor(224.9363), tensor(408.9428)]
+  测试集最优提示总耗时（每 fold）： [tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497)]
+  测试集基线（提示0）总耗时（每 fold）： [tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428)]
+
+—— 模型 ER_5H_v2_Model ——
+  测试集模型选中提示总耗时（每 fold）： [tensor(225.0913), tensor(297.2497), tensor(238.7698), tensor(297.2497), tensor(238.7698), tensor(297.2497), tensor(297.2497), tensor(297.2497), tensor(297.2497), tensor(238.7698)]
+  测试集最优提示总耗时（每 fold）： [tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497)]
+  测试集基线（提示0）总耗时（每 fold）： [tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428)]
+
+—— 模型 ER_5H_v2_Model ——
+  测试集模型选中提示总耗时（每 fold）： [tensor(321.0165), tensor(289.9677), tensor(238.7698), tensor(297.2497), tensor(238.7698), tensor(222.3192), tensor(344.7834), tensor(238.7698), tensor(297.2497), tensor(238.7698)]
+  测试集最优提示总耗时（每 fold）： [tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497)]
+  测试集基线（提示0）总耗时（每 fold）： [tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428)]
+
+—— 模型 ER_6H_v1_Model ——
+  测试集模型选中提示总耗时（每 fold）： [tensor(225.3759), tensor(225.0913), tensor(225.0913), tensor(225.0913), tensor(225.0913), tensor(225.0913), tensor(225.3759), tensor(225.0913), tensor(225.0913), tensor(225.0913)]
+  测试集最优提示总耗时（每 fold）： [tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497)]
+  测试集基线（提示0）总耗时（每 fold）： [tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428)]
+
+—— 模型 ER_6H_v1_Model ——
+  测试集模型选中提示总耗时（每 fold）： [tensor(225.3759), tensor(297.2497), tensor(225.3759), tensor(225.3759), tensor(225.3759), tensor(225.3759), tensor(225.3759), tensor(225.3759), tensor(225.3759), tensor(225.3759)]
+  测试集最优提示总耗时（每 fold）： [tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497)]
+  测试集基线（提示0）总耗时（每 fold）： [tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428)]
+
+—— 模型 ER_6H_v2_Model ——
+  测试集模型选中提示总耗时（每 fold）： [tensor(225.0913), tensor(225.0913), tensor(225.0913), tensor(225.0913), tensor(225.0913), tensor(270.9437), tensor(225.0913), tensor(225.0913), tensor(225.0913), tensor(225.0913)]
+  测试集最优提示总耗时（每 fold）： [tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497)]
+  测试集基线（提示0）总耗时（每 fold）： [tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428)]
+
+—— 模型 ER_6H_v2_Model ——
+  测试集模型选中提示总耗时（每 fold）： [tensor(225.0913), tensor(225.0913), tensor(211.8522), tensor(225.0913), tensor(211.8522), tensor(225.0913), tensor(225.0913), tensor(225.0913), tensor(270.9437), tensor(211.8522)]
+  测试集最优提示总耗时（每 fold）： [tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497)]
+  测试集基线（提示0）总耗时（每 fold）： [tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428)]
+
+—— 模型 ER_7H_v1_Model ——
+  测试集模型选中提示总耗时（每 fold）： [tensor(225.0913), tensor(225.0913), tensor(225.0913), tensor(225.0913), tensor(225.0913), tensor(225.0913), tensor(225.0913), tensor(225.0913), tensor(225.0913), tensor(225.0913)]
+  测试集最优提示总耗时（每 fold）： [tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497)]
+  测试集基线（提示0）总耗时（每 fold）： [tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428)]
+
+—— 模型 ER_7H_v1_Model ——
+  测试集模型选中提示总耗时（每 fold）： [tensor(225.0913), tensor(225.0913), tensor(225.0913), tensor(225.0913), tensor(225.0913), tensor(225.0913), tensor(225.0913), tensor(225.0913), tensor(225.0913), tensor(225.0913)]
+  测试集最优提示总耗时（每 fold）： [tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497)]
+  测试集基线（提示0）总耗时（每 fold）： [tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428)]
+
+—— 模型 ER_7H_v2_Model ——
+  测试集模型选中提示总耗时（每 fold）： [tensor(270.9437), tensor(297.2497), tensor(225.0913), tensor(297.2497), tensor(225.0913), tensor(297.2497), tensor(225.0913), tensor(344.7834), tensor(297.2497), tensor(225.0913)]
+  测试集最优提示总耗时（每 fold）： [tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497)]
+  测试集基线（提示0）总耗时（每 fold）： [tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428)]
+
+—— 模型 ER_7H_v2_Model ——
+  测试集模型选中提示总耗时（每 fold）： [tensor(225.0913), tensor(225.0913), tensor(225.0913), tensor(225.0913), tensor(225.0913), tensor(225.0913), tensor(225.0913), tensor(225.0913), tensor(225.0913), tensor(225.0913)]
+  测试集最优提示总耗时（每 fold）： [tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497)]
+  测试集基线（提示0）总耗时（每 fold）： [tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428)]
+
+—— 模型 ER_2H_v1_LN_Model ——
+  测试集模型选中提示总耗时（每 fold）： [tensor(251.2207), tensor(237.0473), tensor(239.0327), tensor(237.6417), tensor(245.5172), tensor(225.0235), tensor(245.0891), tensor(245.0842), tensor(228.7593), tensor(243.7551)]
+  测试集最优提示总耗时（每 fold）： [tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497)]
+  测试集基线（提示0）总耗时（每 fold）： [tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428)]
+
+—— 模型 ER_2H_v1_LN_Model ——
+  测试集模型选中提示总耗时（每 fold）： [tensor(273.9289), tensor(224.9751), tensor(253.7466), tensor(246.4929), tensor(246.8798), tensor(249.0712), tensor(240.4978), tensor(253.0920), tensor(236.0238), tensor(262.9663)]
+  测试集最优提示总耗时（每 fold）： [tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497)]
+  测试集基线（提示0）总耗时（每 fold）： [tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428)]
+
+—— 模型 ER_3H_v1_LN_Model ——
+  测试集模型选中提示总耗时（每 fold）： [tensor(245.1004), tensor(218.9754), tensor(237.0339), tensor(224.4153), tensor(235.6346), tensor(221.0140), tensor(250.6857), tensor(220.9704), tensor(228.6057), tensor(242.3927)]
+  测试集最优提示总耗时（每 fold）： [tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497)]
+  测试集基线（提示0）总耗时（每 fold）： [tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428)]
+
+—— 模型 ER_3H_v1_LN_Model ——
+  测试集模型选中提示总耗时（每 fold）： [tensor(269.9758), tensor(225.0913), tensor(245.5018), tensor(235.0717), tensor(242.6634), tensor(233.3145), tensor(258.4782), tensor(225.1269), tensor(231.3183), tensor(263.7499)]
+  测试集最优提示总耗时（每 fold）： [tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497)]
+  测试集基线（提示0）总耗时（每 fold）： [tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428)]
+
+—— 模型 ER_3H_v2_LN_Model ——
+  测试集模型选中提示总耗时（每 fold）： [tensor(242.2377), tensor(232.8585), tensor(226.7945), tensor(232.3906), tensor(247.2135), tensor(234.0458), tensor(241.3489), tensor(242.4269), tensor(236.5544), tensor(253.5262)]
+  测试集最优提示总耗时（每 fold）： [tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497)]
+  测试集基线（提示0）总耗时（每 fold）： [tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428)]
+
+—— 模型 ER_3H_v2_LN_Model ——
+  测试集模型选中提示总耗时（每 fold）： [tensor(290.1204), tensor(227.5301), tensor(251.3671), tensor(234.7525), tensor(231.8790), tensor(225.9428), tensor(230.3849), tensor(232.8138), tensor(241.6257), tensor(264.5637)]
+  测试集最优提示总耗时（每 fold）： [tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497)]
+  测试集基线（提示0）总耗时（每 fold）： [tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428)]
+
+—— 模型 ER_3H_v3_LN_Model ——
+  测试集模型选中提示总耗时（每 fold）： [tensor(306.8793), tensor(221.6901), tensor(295.6313), tensor(231.6469), tensor(313.7653), tensor(215.0767), tensor(261.1705), tensor(245.3616), tensor(247.9541), tensor(281.6810)]
+  测试集最优提示总耗时（每 fold）： [tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497)]
+  测试集基线（提示0）总耗时（每 fold）： [tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428)]
+
+—— 模型 ER_3H_v3_LN_Model ——
+  测试集模型选中提示总耗时（每 fold）： [tensor(223.1951), tensor(317.0170), tensor(328.5078), tensor(225.1625), tensor(349.8639), tensor(232.0641), tensor(225.2514), tensor(221.6562), tensor(221.6327), tensor(225.0913)]
+  测试集最优提示总耗时（每 fold）： [tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497)]
+  测试集基线（提示0）总耗时（每 fold）： [tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428)]
+
+—— 模型 ER_4H_v1_LN_Model ——
+  测试集模型选中提示总耗时（每 fold）： [tensor(241.9350), tensor(233.2396), tensor(236.7315), tensor(225.1269), tensor(238.0859), tensor(220.9093), tensor(225.1802), tensor(228.9740), tensor(228.3522), tensor(242.2505)]
+  测试集最优提示总耗时（每 fold）： [tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497)]
+  测试集基线（提示0）总耗时（每 fold）： [tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428)]
+
+—— 模型 ER_4H_v1_LN_Model ——
+  测试集模型选中提示总耗时（每 fold）： [tensor(218.4989), tensor(225.1180), tensor(363.0511), tensor(225.1180), tensor(225.1625), tensor(272.0043), tensor(225.1447), tensor(225.1358), tensor(225.1447), tensor(225.1536)]
+  测试集最优提示总耗时（每 fold）： [tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497)]
+  测试集基线（提示0）总耗时（每 fold）： [tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428)]
+
+—— 模型 ER_4H_v2_LN_Model ——
+  测试集模型选中提示总耗时（每 fold）： [tensor(225.0913), tensor(220.9331), tensor(356.8026), tensor(222.3192), tensor(217.8540), tensor(215.3586), tensor(217.7918), tensor(220.2249), tensor(243.1309), tensor(263.4254)]
+  测试集最优提示总耗时（每 fold）： [tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497)]
+  测试集基线（提示0）总耗时（每 fold）： [tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428)]
+
+—— 模型 ER_4H_v2_LN_Model ——
+  测试集模型选中提示总耗时（每 fold）： [tensor(222.3192), tensor(225.0913), tensor(329.8988), tensor(231.3837), tensor(256.6606), tensor(247.7030), tensor(288.2299), tensor(249.5393), tensor(225.0913), tensor(288.2299)]
+  测试集最优提示总耗时（每 fold）： [tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497)]
+  测试集基线（提示0）总耗时（每 fold）： [tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428)]
+
+—— 模型 ER_5H_v1_LN_Model ——
+  测试集模型选中提示总耗时（每 fold）： [tensor(233.6886), tensor(225.0913), tensor(237.0406), tensor(218.9754), tensor(232.7177), tensor(225.0913), tensor(225.0913), tensor(211.7530), tensor(214.8981), tensor(260.2971)]
+  测试集最优提示总耗时（每 fold）： [tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497)]
+  测试集基线（提示0）总耗时（每 fold）： [tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428)]
+
+—— 模型 ER_5H_v1_LN_Model ——
+  测试集模型选中提示总耗时（每 fold）： [tensor(236.5544), tensor(222.9544), tensor(247.9372), tensor(221.0499), tensor(284.4572), tensor(225.0913), tensor(225.0913), tensor(224.9557), tensor(221.0499), tensor(286.8709)]
+  测试集最优提示总耗时（每 fold）： [tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497)]
+  测试集基线（提示0）总耗时（每 fold）： [tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428)]
+
+—— 模型 ER_5H_v2_LN_Model ——
+  测试集模型选中提示总耗时（每 fold）： [tensor(225.1358), tensor(225.0913), tensor(377.5291), tensor(222.3192), tensor(225.1091), tensor(219.5471), tensor(225.1713), tensor(225.0913), tensor(220.9331), tensor(219.5471)]
+  测试集最优提示总耗时（每 fold）： [tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497)]
+  测试集基线（提示0）总耗时（每 fold）： [tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428)]
+
+—— 模型 ER_5H_v2_LN_Model ——
+  测试集模型选中提示总耗时（每 fold）： [tensor(225.0913), tensor(225.0913), tensor(282.6160), tensor(225.0913), tensor(225.0913), tensor(225.0913), tensor(225.2603), tensor(225.1447), tensor(220.2249), tensor(225.2158)]
+  测试集最优提示总耗时（每 fold）： [tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497)]
+  测试集基线（提示0）总耗时（每 fold）： [tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428)]
+
+—— 模型 ER_6H_v1_LN_Model ——
+  测试集模型选中提示总耗时（每 fold）： [tensor(225.0913), tensor(225.0913), tensor(235.3114), tensor(225.0913), tensor(249.7348), tensor(225.0913), tensor(225.0913), tensor(225.0913), tensor(225.0913), tensor(237.9052)]
+  测试集最优提示总耗时（每 fold）： [tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497)]
+  测试集基线（提示0）总耗时（每 fold）： [tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428)]
+
+—— 模型 ER_6H_v1_LN_Model ——
+  测试集模型选中提示总耗时（每 fold）： [tensor(225.0913), tensor(225.0913), tensor(234.4468), tensor(225.0913), tensor(260.6997), tensor(225.0913), tensor(225.0913), tensor(225.0913), tensor(225.1536), tensor(227.2286)]
+  测试集最优提示总耗时（每 fold）： [tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497)]
+  测试集基线（提示0）总耗时（每 fold）： [tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428)]
+
+—— 模型 ER_6H_v2_LN_Model ——
+  测试集模型选中提示总耗时（每 fold）： [tensor(225.0913), tensor(225.0913), tensor(408.9428), tensor(225.0913), tensor(249.7348), tensor(225.0913), tensor(225.0913), tensor(225.0913), tensor(225.0913), tensor(217.7906)]
+  测试集最优提示总耗时（每 fold）： [tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497)]
+  测试集基线（提示0）总耗时（每 fold）： [tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428)]
+
+—— 模型 ER_6H_v2_LN_Model ——
+  测试集模型选中提示总耗时（每 fold）： [tensor(225.0913), tensor(225.0913), tensor(408.9428), tensor(225.0913), tensor(278.9747), tensor(225.0913), tensor(225.0913), tensor(225.0913), tensor(225.0913), tensor(225.0913)]
+  测试集最优提示总耗时（每 fold）： [tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497)]
+  测试集基线（提示0）总耗时（每 fold）： [tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428)]
+
+—— 模型 ER_7H_v1_LN_Model ——
+  测试集模型选中提示总耗时（每 fold）： [tensor(225.0913), tensor(225.0913), tensor(408.9428), tensor(225.0913), tensor(238.7698), tensor(225.0913), tensor(225.0913), tensor(225.0913), tensor(225.0913), tensor(238.7698)]
+  测试集最优提示总耗时（每 fold）： [tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497)]
+  测试集基线（提示0）总耗时（每 fold）： [tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428)]
+
+—— 模型 ER_7H_v1_LN_Model ——
+  测试集模型选中提示总耗时（每 fold）： [tensor(225.0913), tensor(225.0913), tensor(408.9428), tensor(225.0913), tensor(238.7698), tensor(225.0913), tensor(225.0913), tensor(225.0913), tensor(225.0913), tensor(238.7698)]
+  测试集最优提示总耗时（每 fold）： [tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497)]
+  测试集基线（提示0）总耗时（每 fold）： [tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428)]
+
+—— 模型 ER_7H_v2_LN_Model ——
+  测试集模型选中提示总耗时（每 fold）： [tensor(225.0913), tensor(225.0913), tensor(408.9428), tensor(225.0913), tensor(238.7698), tensor(225.0913), tensor(225.0913), tensor(225.0913), tensor(225.0913), tensor(238.7698)]
+  测试集最优提示总耗时（每 fold）： [tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497)]
+  测试集基线（提示0）总耗时（每 fold）： [tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428)]
+
+—— 模型 ER_7H_v2_LN_Model ——
+  测试集模型选中提示总耗时（每 fold）： [tensor(225.0913), tensor(225.0913), tensor(408.9428), tensor(225.0913), tensor(238.7698), tensor(225.0913), tensor(225.0913), tensor(225.0913), tensor(225.0913), tensor(238.7698)]
+  测试集最优提示总耗时（每 fold）： [tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497), tensor(50.5497)]
+  测试集基线（提示0）总耗时（每 fold）： [tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428), tensor(408.9428)]
+
+           model_name  test_model_mean  test_opt_mean  test_bench_mean
+0      ER_2H_v1_Model       228.885840      50.549686       408.942822
+1      ER_2H_v1_Model       250.423633      50.549686       408.942822
+2      ER_3H_v1_Model       236.084961      50.549686       408.942822
+3      ER_3H_v1_Model       311.492383      50.549686       408.942822
+4      ER_3H_v2_Model       234.170117      50.549686       408.942822
+5      ER_3H_v2_Model       265.048242      50.549686       408.942822
+6      ER_3H_v3_Model       233.919287      50.549686       408.942822
+7      ER_3H_v3_Model       234.655615      50.549686       408.942822
+8      ER_4H_v1_Model       225.091284      50.549686       408.942822
+9      ER_4H_v1_Model       224.325195      50.549686       408.942822
+10     ER_4H_v2_Model       228.947705      50.549686       408.942822
+11     ER_4H_v2_Model       246.314990      50.549686       408.942822
+12     ER_5H_v1_Model       280.184766      50.549686       408.942822
+13     ER_5H_v1_Model       320.591968      50.549686       408.942822
+14     ER_5H_v2_Model       272.489893      50.549686       408.942822
+15     ER_5H_v2_Model       272.766528      50.549686       408.942822
+16     ER_6H_v1_Model       225.148218      50.549686       408.942822
+17     ER_6H_v1_Model       232.563330      50.549686       408.942822
+18     ER_6H_v2_Model       229.676538      50.549686       408.942822
+19     ER_6H_v2_Model       225.704810      50.549686       408.942822
+20     ER_7H_v1_Model       225.091284      50.549686       408.942822
+21     ER_7H_v1_Model       225.091284      50.549686       408.942822
+22     ER_7H_v2_Model       270.509131      50.549686       408.942822
+23     ER_7H_v2_Model       225.091284      50.549686       408.942822
+24  ER_2H_v1_LN_Model       239.817065      50.549686       408.942822
+25  ER_2H_v1_LN_Model       248.767456      50.549686       408.942822
+26  ER_3H_v1_LN_Model       232.482812      50.549686       408.942822
+27  ER_3H_v1_LN_Model       243.029199      50.549686       408.942822
+28  ER_3H_v2_LN_Model       238.939673      50.549686       408.942822
+29  ER_3H_v2_LN_Model       243.097998      50.549686       408.942822
+30  ER_3H_v3_LN_Model       262.085645      50.549686       408.942822
+31  ER_3H_v3_LN_Model       256.944189      50.549686       408.942822
+32  ER_4H_v1_LN_Model       232.078516      50.549686       408.942822
+33  ER_4H_v1_LN_Model       242.953125      50.549686       408.942822
+34  ER_4H_v2_LN_Model       240.293213      50.549686       408.942822
+35  ER_4H_v2_LN_Model       256.414697      50.549686       408.942822
+36  ER_5H_v1_LN_Model       228.464429      50.549686       408.942822
+37  ER_5H_v1_LN_Model       239.601221      50.549686       408.942822
+38  ER_5H_v2_LN_Model       238.547437      50.549686       408.942822
+39  ER_5H_v2_LN_Model       230.391821      50.549686       408.942822
+40  ER_6H_v1_LN_Model       229.859058      50.549686       408.942822
+41  ER_6H_v1_LN_Model       229.807642      50.549686       408.942822
+42  ER_6H_v2_LN_Model       245.210718      50.549686       408.942822
+43  ER_6H_v2_LN_Model       248.864795      50.549686       408.942822
+44  ER_7H_v1_LN_Model       246.212134      50.549686       408.942822
+45  ER_7H_v1_LN_Model       246.212134      50.549686       408.942822
+46  ER_7H_v2_LN_Model       246.212134      50.549686       408.942822
+47  ER_7H_v2_LN_Model       246.212134      50.549686       408.942822

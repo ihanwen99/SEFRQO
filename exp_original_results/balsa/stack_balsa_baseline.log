@@ -1,0 +1,2098 @@
+plans_lib.FilterScansOrJoins()
+plans_lib.GatherUnaryFiltersInfo()
+postgres.EstimateFilterRows()
+Warning: Failed to estimate rows for answer AS a1: missing FROM-clause entry for table "u1"
+LINE 1: ...IN(format json) SELECT * FROM answer AS a1 WHERE (u1.site_id...
+                                                             ^
+
+Query was: EXPLAIN(format json) SELECT * FROM answer AS a1 WHERE (u1.site_id = a1.site_id)
+Warning: Failed to estimate rows for badge AS b1: missing FROM-clause entry for table "b2"
+LINE 1: ...AIN(format json) SELECT * FROM badge AS b1 WHERE (b2.date > ...
+                                                             ^
+
+Query was: EXPLAIN(format json) SELECT * FROM badge AS b1 WHERE (b2.date > (b1.date + '7 mons'::interval))
+171 unique filters
+{('account AS acc', "((acc.website_url)::text <> ''::text)"): 742029,
+ ('account AS acc', "((acc.website_url)::text ~~* '%'::text)"): 2368408,
+ ('account AS acc', "((acc.website_url)::text ~~* '%com'::text)"): 284819,
+ ('account AS acc', "((acc.website_url)::text ~~* '%de'::text)"): 14990,
+ ('account AS acc', "((acc.website_url)::text ~~* '%en'::text)"): 74,
+ ('account AS acc', "((acc.website_url)::text ~~* '%io'::text)"): 7495,
+ ('answer AS a1', '(u1.site_id = a1.site_id)'): 1000,
+ ('badge AS b', '((b.name)::text = ANY (\'{"Citizen Patrol",Excavator,Informed}\'::text[]))'): 3750572,
+ ('badge AS b', '((b.name)::text = ANY (\'{Analytical,Beta,Deputy,Fanatic,"Great Question","Not a Robot","Unsung Hero"}\'::text[]))'): 192343,
+ ('badge AS b', '((b.name)::text = ANY (\'{Announcer,Custodian,Necromancer,"Nice Question"}\'::text[]))'): 3007631,
+ ('badge AS b', '((b.name)::text = ANY (\'{Autobiographer,Caucus,"Citizen Patrol",Critic,Editor,"Famous Question",Informed,"Nice Answer","Notable Question","Popular Question",Scholar,Student,Supporter,Teacher}\'::text[]))'): 37223919,
+ ('badge AS b', "((b.name)::text = ANY ('{Autobiographer,Scholar,Student}'::text[]))"): 10901595,
+ ('badge AS b', '((b.name)::text = ANY (\'{Cleanup,Fanatic,Inquisitive,Mortarboard,"Tag Editor",Talkative}\'::text[]))'): 250738,
+ ('badge AS b', '((b.name)::text = ANY (\'{Commentator,Curious,"Good Question",Organizer,Revival,Scholar,Self-Learner,Student,Supporter,Tumbleweed}\'::text[]))'): 15103056,
+ ('badge AS b', "((b.name)::text = ANY ('{Suffrage,Talkative}'::text[]))"): 93610,
+ ('badge AS b', "((b.name)::text ~~* '%ste%'::text)"): 18797,
+ ('badge AS b', "((b.name)::text ~~* '%su%'::text)"): 3986192,
+ ('badge AS b1', "((b1.name)::text = 'API Evangelist'::text)"): 8214,
+ ('badge AS b1', "((b1.name)::text = 'Constable'::text)"): 8214,
+ ('badge AS b1', "((b1.name)::text = 'Custodian'::text)"): 1074276,
+ ('badge AS b1', "((b1.name)::text = 'Illuminator'::text)"): 8214,
+ ('badge AS b1', "(b2.date > (b1.date + '7 mons'::interval))"): 1000,
+ ('badge AS b2', "((b2.name)::text = 'Constable'::text)"): 8214,
+ ('question AS q1', '((q1.favorite_count >= 0) AND (q1.favorite_count <= 1))'): 2203735,
+ ('question AS q1', '((q1.favorite_count >= 0) AND (q1.favorite_count <= 10000))'): 3375348,
+ ('question AS q1', '((q1.favorite_count >= 1) AND (q1.favorite_count <= 10))'): 2801602,
+ ('question AS q1', '((q1.favorite_count >= 5) AND (q1.favorite_count <= 5000))'): 356418,
+ ('question AS q1', '((q1.score > 11) AND (q1.view_count < 1565))'): 407906,
+ ('question AS q1', '((q1.score > 15) AND (q1.view_count < 2936))'): 296042,
+ ('question AS q1', '((q1.score > 7) AND (q1.view_count < 1940))'): 688969,
+ ('question AS q1', '((q1.score > 8) AND (q1.view_count < 1785))'): 591592,
+ ('question AS q1', '((q1.score > 8) AND (q1.view_count < 2534))'): 621410,
+ ('question AS q1', '((q1.score >= 0) AND (q1.score <= 5))'): 10559641,
+ ('question AS q1', '((q1.score >= 1) AND (q1.score <= 10))'): 6359449,
+ ('question AS q1', '((q1.score >= 10) AND (q1.score <= 1000))'): 631042,
+ ('question AS q1', '((q1.view_count >= 0) AND (q1.view_count <= 100))'): 3657835,
+ ('question AS q1', '((q1.view_count >= 10) AND (q1.view_count <= 1000))'): 9154149,
+ ('question AS q1', '((q1.view_count >= 100) AND (q1.view_count <= 100000))'): 8970114,
+ ('question AS q1', "(q1.creation_date > '2016-01-01'::date)"): 5872372,
+ ('question AS q1', "(q1.creation_date > '2018-01-01'::date)"): 2670551,
+ ('site AS s', "((s.site_name)::text = 'aviation'::text)"): 1,
+ ('site AS s', "((s.site_name)::text = 'cseducators'::text)"): 1,
+ ('site AS s', "((s.site_name)::text = 'hinduism'::text)"): 1,
+ ('site AS s', "((s.site_name)::text = 'martialarts'::text)"): 1,
+ ('site AS s', "((s.site_name)::text = 'pm'::text)"): 1,
+ ('site AS s1', "((s1.site_name)::text = 'askubuntu'::text)"): 1,
+ ('site AS s1', "((s1.site_name)::text = 'avp'::text)"): 1,
+ ('site AS s1', "((s1.site_name)::text = 'chemistry'::text)"): 1,
+ ('site AS s1', "((s1.site_name)::text = 'cs'::text)"): 1,
+ ('site AS s1', "((s1.site_name)::text = 'dba'::text)"): 1,
+ ('site AS s1', "((s1.site_name)::text = 'diy'::text)"): 1,
+ ('site AS s1', "((s1.site_name)::text = 'drupal'::text)"): 1,
+ ('site AS s1', "((s1.site_name)::text = 'english'::text)"): 1,
+ ('site AS s1', "((s1.site_name)::text = 'german'::text)"): 1,
+ ('site AS s1', "((s1.site_name)::text = 'math'::text)"): 1,
+ ('site AS s1', "((s1.site_name)::text = 'physics'::text)"): 1,
+ ('site AS s1', "((s1.site_name)::text = 'pm'::text)"): 1,
+ ('site AS s1', "((s1.site_name)::text = 'scifi'::text)"): 1,
+ ('site AS s1', "((s1.site_name)::text = 'sharepoint'::text)"): 1,
+ ('site AS s1', "((s1.site_name)::text = 'softwareengineering'::text)"): 1,
+ ('site AS s1', "((s1.site_name)::text = 'stackoverflow'::text)"): 1,
+ ('site AS s1', "((s1.site_name)::text = 'stats'::text)"): 1,
+ ('site AS s1', "((s1.site_name)::text = 'superuser'::text)"): 1,
+ ('site AS s1', "((s1.site_name)::text = 'ux'::text)"): 1,
+ ('site AS s1', "((s1.site_name)::text = ANY ('{android,gamedev,judaism,sharepoint}'::text[]))"): 4,
+ ('site AS s1', "((s1.site_name)::text = ANY ('{apple,ru,stats}'::text[]))"): 3,
+ ('site AS s1', "((s1.site_name)::text = ANY ('{askubuntu,math}'::text[]))"): 2,
+ ('site AS s1', "((s1.site_name)::text = ANY ('{drupal,physics}'::text[]))"): 2,
+ ('site AS s1', "((s1.site_name)::text = ANY ('{mathoverflow,ru}'::text[]))"): 2,
+ ('site AS s1', "((s1.site_name)::text = ANY ('{money,scifi,security,webapps}'::text[]))"): 4,
+ ('site AS s1', "((s1.site_name)::text = ANY ('{physics,pt,ru,salesforce,serverfault}'::text[]))"): 5,
+ ('site AS s1', "((s1.site_name)::text = ANY ('{softwareengineering,webapps}'::text[]))"): 2,
+ ('site AS s1', "((s1.site_name)::text = ANY ('{stackoverflow,superuser}'::text[]))"): 2,
+ ('site AS s2', "((s2.site_name)::text = 'english'::text)"): 1,
+ ('site AS s2', "((s2.site_name)::text = 'math'::text)"): 1,
+ ('site AS s2', "((s2.site_name)::text = 'physics'::text)"): 1,
+ ('site AS s2', "((s2.site_name)::text = 'ru'::text)"): 1,
+ ('site AS s2', "((s2.site_name)::text = 'stackoverflow'::text)"): 1,
+ ('site AS s2', "((s2.site_name)::text = 'superuser'::text)"): 1,
+ ('so_user AS u1', '((u1.downvotes >= 0) AND (u1.downvotes <= 1))'): 20728199,
+ ('so_user AS u1', '((u1.downvotes >= 0) AND (u1.downvotes <= 10))'): 20971522,
+ ('so_user AS u1', '((u1.downvotes >= 10) AND (u1.downvotes <= 100000))'): 133594,
+ ('so_user AS u1', '((u1.reputation >= 0) AND (u1.reputation <= 100))'): 17205548,
+ ('so_user AS u1', '((u1.reputation >= 10) AND (u1.reputation <= 100000))'): 6677476,
+ ('so_user AS u1', '((u1.upvotes >= 1) AND (u1.upvotes <= 100))'): 3079900,
+ ('so_user AS u1', '((u1.upvotes >= 10) AND (u1.upvotes <= 1000000))'): 1174343,
+ ('so_user AS u1', '(u1.reputation > 113)'): 1363797,
+ ('so_user AS u1', '(u1.reputation > 118)'): 1290031,
+ ('so_user AS u1', '(u1.reputation > 124)'): 1200168,
+ ('so_user AS u1', '(u1.reputation > 126)'): 1181492,
+ ('so_user AS u1', '(u1.reputation > 96)'): 3916512,
+ ('tag AS t1', "((t1.name)::text = 'audio'::text)"): 62,
+ ('tag AS t1', "((t1.name)::text = 'authentication'::text)"): 3,
+ ('tag AS t1', "((t1.name)::text = 'codeigniter'::text)"): 3,
+ ('tag AS t1', "((t1.name)::text = 'command-line'::text)"): 3,
+ ('tag AS t1', "((t1.name)::text = 'convergence'::text)"): 3,
+ ('tag AS t1', "((t1.name)::text = 'debugging'::text)"): 3,
+ ('tag AS t1', "((t1.name)::text = 'delays'::text)"): 3,
+ ('tag AS t1', "((t1.name)::text = 'file-io'::text)"): 3,
+ ('tag AS t1', "((t1.name)::text = 'forms'::text)"): 3,
+ ('tag AS t1', "((t1.name)::text = 'heatmap'::text)"): 3,
+ ('tag AS t1', "((t1.name)::text = 'homework-and-exercises'::text)"): 3,
+ ('tag AS t1', "((t1.name)::text = 'machine-learning'::text)"): 3,
+ ('tag AS t1', "((t1.name)::text = 'matrix'::text)"): 3,
+ ('tag AS t1', "((t1.name)::text = 'meaning'::text)"): 50,
+ ('tag AS t1', "((t1.name)::text = 'olap'::text)"): 3,
+ ('tag AS t1', "((t1.name)::text = 'opencv'::text)"): 3,
+ ('tag AS t1', "((t1.name)::text = 'optimization'::text)"): 3,
+ ('tag AS t1', "((t1.name)::text = 'organic-chemistry'::text)"): 3,
+ ('tag AS t1', "((t1.name)::text = 'rivets'::text)"): 3,
+ ('tag AS t1', "((t1.name)::text = 'split'::text)"): 3,
+ ('tag AS t1', "((t1.name)::text = 'steins-gate'::text)"): 3,
+ ('tag AS t1', "((t1.name)::text = 'tensorflow'::text)"): 3,
+ ('tag AS t1', "((t1.name)::text = 'theming'::text)"): 3,
+ ('tag AS t1', "((t1.name)::text = 'unity3d'::text)"): 3,
+ ('tag AS t1', "((t1.name)::text = 'vector-spaces'::text)"): 3,
+ ('tag AS t1', "((t1.name)::text = 'web-scraping'::text)"): 3,
+ ('tag AS t1', "((t1.name)::text = ANY ('{14.04,drivers,python,virtualization}'::text[]))"): 95,
+ ('tag AS t1', "((t1.name)::text = ANY ('{1с,categorical-encoding,estimators,filter,ftp,iframe,kohana,kolmogorov-smirnov,marginal,path,websocket,криптография,шаблоны-проектирования}'::text[]))"): 34,
+ ('tag AS t1', "((t1.name)::text = ANY ('{aes,bios,build,decorator,foreach,html-table,prototype,tags,ubuntu-16.04}'::text[]))"): 23,
+ ('tag AS t1', "((t1.name)::text = ANY ('{ajax,banco-de-dados,c#,electromagnetism,electrostatics,jquery,json,laravel,linux,quantum-field-theory,thermodynamics,база-данных,регулярные-выражения}'::text[]))"): 122,
+ ('tag AS t1', "((t1.name)::text = ANY ('{algorithm-analysis,complexity-theory,computability,data-structures,formal-languages,graphs}'::text[]))"): 16,
+ ('tag AS t1', "((t1.name)::text = ANY ('{alias,case,mongodb-3.0,downgrade,pg-stat-activity}'::text[]))"): 54,
+ ('tag AS t1', "((t1.name)::text = ANY ('{aliens,canada,certificates,cryptography,dc,india,network,passwords,privacy,windows}'::text[]))"): 127,
+ ('tag AS t1', "((t1.name)::text = ANY ('{android-asynctask,asp.net-mvc-4,css3,entity-framework-4,inner-join,jquery,sublimetext3}'::text[]))"): 18,
+ ('tag AS t1', "((t1.name)::text = ANY ('{android-custom-view,export-to-excel,filenames}'::text[]))"): 8,
+ ('tag AS t1', "((t1.name)::text = ANY ('{angularjs,excel}'::text[]))"): 40,
+ ('tag AS t1', "((t1.name)::text = ANY ('{apache-poi,branch,csrf,focus,glassfish,grand-central-dispatch,interpolation,osgi,pyqt4,return-value,textarea,uilabel,window}'::text[]))"): 34,
+ ('tag AS t1', "((t1.name)::text = ANY ('{api,audio,events,file-io,forms,functional-programming,java-ee,serialization,sqlite,ubuntu,unicode}'::text[]))"): 183,
+ ('tag AS t1', "((t1.name)::text = ANY ('{apple-push-notifications,argparse,automation,charts,clickonce,deprecated,git-merge,lodash,new-operator,project-management}'::text[]))"): 61,
+ ('tag AS t1', "((t1.name)::text = ANY ('{architecture,design,design-patterns,gmail,google-sheets,java,object-oriented}'::text[]))"): 59,
+ ('tag AS t1', "((t1.name)::text = ANY ('{architecture,design,design-patterns}'::text[]))"): 8,
+ ('tag AS t1', "((t1.name)::text = ANY ('{avaudiosession,bayesian,eclipse-cdt,es6-modules,functor,guzzle,has-and-belongs-to-many,keychain,nib,nsurlrequest,qa,simple-form}'::text[]))"): 31,
+ ('tag AS t1', "((t1.name)::text = ANY ('{avr,chromium,clang++,comparator,nginx,paypal,sqoop}'::text[]))"): 18,
+ ('tag AS t1', "((t1.name)::text = ANY ('{bash,boot,command-line,google-chrome,laptop,microsoft-excel-2010,microsoft-word,partitioning,router,windows-8}'::text[]))"): 26,
+ ('tag AS t1', "((t1.name)::text = ANY ('{binary-tree,commit,google-cloud-platform,hudson,jetty}'::text[]))"): 13,
+ ('tag AS t1', "((t1.name)::text = ANY ('{binding,makefile,replace}'::text[]))"): 8,
+ ('tag AS t1', "((t1.name)::text = ANY ('{browser,data-binding,json,unix}'::text[]))"): 10,
+ ('tag AS t1', "((t1.name)::text = ANY ('{c-preprocessor,cursor,iteration,left-join,multiprocessing,phpstorm,polymorphism,printf,pyqt5,sdk,tabs,uibutton,uinavigationcontroller,vb6}'::text[]))"): 36,
+ ('tag AS t1', "((t1.name)::text = ANY ('{cloud,contained-database}'::text[]))"): 5,
+ ('tag AS t1', "((t1.name)::text = ANY ('{congruences,sheaf-theory}'::text[]))"): 5,
+ ('tag AS t1', "((t1.name)::text = ANY ('{corpus,httplistener,modx-revolution}'::text[]))"): 8,
+ ('tag AS t1', "((t1.name)::text = ANY ('{design,security,user-expectation}'::text[]))"): 67,
+ ('tag AS t1', "((t1.name)::text = ANY ('{design-patterns,user-centered-design}'::text[]))"): 5,
+ ('tag AS t1', "((t1.name)::text = ANY ('{discrete-mathematics,elementary-number-theory,ordinary-differential-equations,statistics,systems-of-equations,vectors}'::text[]))"): 100,
+ ('tag AS t1', "((t1.name)::text = ANY ('{editing,footage,nikon,cc-2017}'::text[]))"): 10,
+ ('tag AS t1', "((t1.name)::text = ANY ('{emails,composer,drush,theming,tokens,distributions,rating,navigation,path-aliases,entities}'::text[]))"): 26,
+ ('tag AS t1', "((t1.name)::text = ANY ('{empty-string,ssis-2008,candidate-key,insert,performance-tuning}'::text[]))"): 13,
+ ('tag AS t1', "((t1.name)::text = ANY ('{excel,google-cloud-storage,javafx-2,listview,mobile-safari,npgsql,out-of-memory,system.reactive,word-wrap,wxpython}'::text[]))"): 61,
+ ('tag AS t1', "((t1.name)::text = ANY ('{forces,nodes,views}'::text[]))"): 8,
+ ('tag AS t1', "((t1.name)::text = ANY ('{harry-potter,short-stories,star-trek,star-wars}'::text[]))"): 10,
+ ('tag AS t1', "((t1.name)::text = ANY ('{homotopy-theory,функции}'::text[]))"): 5,
+ ('tag AS t1', "((t1.name)::text = ANY ('{java,opengl,powershell,sharepoint-enterprise,sharepoint-foundation,sharepoint-online,sources-mekorot,web-part,xna}'::text[]))"): 64,
+ ('tag AS t1', "((t1.name)::text = ANY ('{jquery,android,excel,iphone,sql-server}'::text[]))"): 114,
+ ('tag AS t1', "((t1.name)::text = ANY ('{model-selection,optimization,p-value,poisson-distribution}'::text[]))"): 10,
+ ('tag AS t1', "((t1.name)::text = ANY ('{pgadmin,aggregate}'::text[]))"): 5,
+ ('tag AS t1', "((t1.name)::text = ANY ('{python-3.x,html}'::text[]))"): 5,
+ ('tag AS t1', "((t1.name)::text = ANY ('{readability,desktop-application,touch-screen}'::text[]))"): 8,
+ ('tag AS t1', "((t1.name)::text = ANY ('{ruby-on-rails,javascript,python-3.x,excel}'::text[]))"): 111,
+ ('tag AS t1', "((t1.name)::text = ANY ('{security,hyperlinks}'::text[]))"): 65,
+ ('tag AS t1', "((t1.name)::text = ANY ('{sql-server,c#,asp.net,objective-c}'::text[]))"): 51,
+ ('tag AS t2', "((t2.name)::text = 'geometry'::text)"): 3,
+ ('tag AS t2', "((t2.name)::text = 'heroku'::text)"): 3,
+ ('tag AS t2', "((t2.name)::text = 'javascript'::text)"): 68,
+ ('tag AS t2', "((t2.name)::text = 'jsf'::text)"): 3,
+ ('tag AS t2', "((t2.name)::text = 'microsoft-excel'::text)"): 3,
+ ('tag AS t2', "((t2.name)::text = 'networking'::text)"): 37,
+ ('tag AS t2', "((t2.name)::text = 'php'::text)"): 37,
+ ('tag AS t2', "((t2.name)::text = 'polynomials'::text)"): 3,
+ ('tag AS t2', "((t2.name)::text = 'quantum-mechanics'::text)"): 3,
+ ('tag AS t2', "((t2.name)::text = 'single-word-requests'::text)"): 3}
+Dropping buffer cache.
+Running queries as-is (baseline PG performance)...
+---------------------------------------
+SimpleAggregate cost=15.484
+  Gather cost=3744.23
+    Nested Loop cost=2744.13
+      Nested Loop cost=2612.51
+        Merge Join cost=2550.52
+          Sort cost=2547.32
+            Seq Scan [tag AS t1] cost=2547.31
+          Sort cost=3.18
+            Seq Scan [site AS s1] cost=3.16
+        Index Only Scan [tag_question AS tq1] cost=61.69
+      Index Only Scan [question AS q1] cost=6.25
+
+
+qsoload_q1-001,15.5 (baseline)
+Execution time: 15.484
+---------------------------------------
+SimpleAggregate cost=14.103
+  Gather cost=3744.23
+    Nested Loop cost=2744.13
+      Nested Loop cost=2612.51
+        Merge Join cost=2550.52
+          Sort cost=2547.32
+            Seq Scan [tag AS t1] cost=2547.31
+          Sort cost=3.18
+            Seq Scan [site AS s1] cost=3.16
+        Index Only Scan [tag_question AS tq1] cost=61.69
+      Index Only Scan [question AS q1] cost=6.25
+
+
+qsoload_q1-002,14.1 (baseline)
+Execution time: 14.103
+---------------------------------------
+SimpleAggregate cost=10.368
+  Gather cost=3744.23
+    Nested Loop cost=2744.13
+      Nested Loop cost=2612.51
+        Merge Join cost=2550.52
+          Sort cost=2547.32
+            Seq Scan [tag AS t1] cost=2547.31
+          Sort cost=3.18
+            Seq Scan [site AS s1] cost=3.16
+        Index Only Scan [tag_question AS tq1] cost=61.69
+      Index Only Scan [question AS q1] cost=6.25
+
+
+qsoload_q1-003,10.4 (baseline)
+Execution time: 10.368
+---------------------------------------
+SimpleAggregate cost=6.533
+  Gather cost=3744.23
+    Nested Loop cost=2744.13
+      Nested Loop cost=2612.51
+        Merge Join cost=2550.52
+          Sort cost=2547.32
+            Seq Scan [tag AS t1] cost=2547.31
+          Sort cost=3.18
+            Seq Scan [site AS s1] cost=3.16
+        Index Only Scan [tag_question AS tq1] cost=61.69
+      Index Only Scan [question AS q1] cost=6.25
+
+
+qsoload_q1-004,6.5 (baseline)
+Execution time: 6.533
+---------------------------------------
+SimpleAggregate cost=7.512
+  Gather cost=3744.23
+    Nested Loop cost=2744.13
+      Nested Loop cost=2612.51
+        Merge Join cost=2550.52
+          Sort cost=2547.32
+            Seq Scan [tag AS t1] cost=2547.31
+          Sort cost=3.18
+            Seq Scan [site AS s1] cost=3.16
+        Index Only Scan [tag_question AS tq1] cost=61.69
+      Index Only Scan [question AS q1] cost=6.25
+
+
+qsoload_q1-005,7.5 (baseline)
+Execution time: 7.512
+---------------------------------------
+SimpleAggregate cost=743.158
+  Gather cost=52651.79
+    Nested Loop cost=51651.49
+      Nested Loop cost=51643.33
+        Nested Loop cost=51618.86
+          Nested Loop cost=51594.39
+            Nested Loop cost=51536.31
+              Nested Loop cost=51378.67
+                Hash Join cost=50963.84
+                  Seq Scan [post_link AS pl1] cost=21727.3
+                  Hash cost=23694.82
+                    Hash Join cost=23694.82
+                      Seq Scan [post_link AS pl2] cost=21727.3
+                      Hash cost=3.16
+                        Seq Scan [site AS s] cost=3.16
+                Index Only Scan [comment AS c1] cost=8.28
+              Index Only Scan [comment AS c2] cost=8.28
+            Index Only Scan [comment AS c3] cost=8.28
+          Index Scan [question AS q1] cost=8.14
+        Index Scan [question AS q3] cost=8.14
+      Index Only Scan [question AS q2] cost=8.14
+
+
+qsoload_q10-001,743.2 (baseline)
+Execution time: 743.158
+---------------------------------------
+SimpleAggregate cost=1002.049
+  Gather cost=52651.79
+    Nested Loop cost=51651.49
+      Nested Loop cost=51643.33
+        Nested Loop cost=51618.86
+          Nested Loop cost=51594.39
+            Nested Loop cost=51536.31
+              Nested Loop cost=51378.67
+                Hash Join cost=50963.84
+                  Seq Scan [post_link AS pl1] cost=21727.3
+                  Hash cost=23694.82
+                    Hash Join cost=23694.82
+                      Seq Scan [post_link AS pl2] cost=21727.3
+                      Hash cost=3.16
+                        Seq Scan [site AS s] cost=3.16
+                Index Only Scan [comment AS c1] cost=8.28
+              Index Only Scan [comment AS c2] cost=8.28
+            Index Only Scan [comment AS c3] cost=8.28
+          Index Scan [question AS q1] cost=8.14
+        Index Scan [question AS q3] cost=8.14
+      Index Only Scan [question AS q2] cost=8.14
+
+
+qsoload_q10-002,1002.0 (baseline)
+Execution time: 1002.049
+---------------------------------------
+SimpleAggregate cost=215.738
+  Gather cost=52651.79
+    Nested Loop cost=51651.49
+      Nested Loop cost=51643.33
+        Nested Loop cost=51618.86
+          Nested Loop cost=51594.39
+            Nested Loop cost=51536.31
+              Nested Loop cost=51378.67
+                Hash Join cost=50963.84
+                  Seq Scan [post_link AS pl1] cost=21727.3
+                  Hash cost=23694.82
+                    Hash Join cost=23694.82
+                      Seq Scan [post_link AS pl2] cost=21727.3
+                      Hash cost=3.16
+                        Seq Scan [site AS s] cost=3.16
+                Index Only Scan [comment AS c1] cost=8.28
+              Index Only Scan [comment AS c2] cost=8.28
+            Index Only Scan [comment AS c3] cost=8.28
+          Index Scan [question AS q1] cost=8.14
+        Index Scan [question AS q3] cost=8.14
+      Index Only Scan [question AS q2] cost=8.14
+
+
+qsoload_q10-003,215.7 (baseline)
+Execution time: 215.738
+---------------------------------------
+SimpleAggregate cost=130.467
+  Gather cost=52651.79
+    Nested Loop cost=51651.49
+      Nested Loop cost=51643.33
+        Nested Loop cost=51618.86
+          Nested Loop cost=51594.39
+            Nested Loop cost=51536.31
+              Nested Loop cost=51378.67
+                Hash Join cost=50963.84
+                  Seq Scan [post_link AS pl1] cost=21727.3
+                  Hash cost=23694.82
+                    Hash Join cost=23694.82
+                      Seq Scan [post_link AS pl2] cost=21727.3
+                      Hash cost=3.16
+                        Seq Scan [site AS s] cost=3.16
+                Index Only Scan [comment AS c1] cost=8.28
+              Index Only Scan [comment AS c2] cost=8.28
+            Index Only Scan [comment AS c3] cost=8.28
+          Index Scan [question AS q1] cost=8.14
+        Index Scan [question AS q3] cost=8.14
+      Index Only Scan [question AS q2] cost=8.14
+
+
+qsoload_q10-004,130.5 (baseline)
+Execution time: 130.467
+---------------------------------------
+SimpleAggregate cost=118.932
+  Gather cost=52651.79
+    Nested Loop cost=51651.49
+      Nested Loop cost=51643.33
+        Nested Loop cost=51618.86
+          Nested Loop cost=51594.39
+            Nested Loop cost=51536.31
+              Nested Loop cost=51378.67
+                Hash Join cost=50963.84
+                  Seq Scan [post_link AS pl1] cost=21727.3
+                  Hash cost=23694.82
+                    Hash Join cost=23694.82
+                      Seq Scan [post_link AS pl2] cost=21727.3
+                      Hash cost=3.16
+                        Seq Scan [site AS s] cost=3.16
+                Index Only Scan [comment AS c1] cost=8.28
+              Index Only Scan [comment AS c2] cost=8.28
+            Index Only Scan [comment AS c3] cost=8.28
+          Index Scan [question AS q1] cost=8.14
+        Index Scan [question AS q3] cost=8.14
+      Index Only Scan [question AS q2] cost=8.14
+
+
+qsoload_q10-005,118.9 (baseline)
+Execution time: 118.932
+---------------------------------------
+SimpleAggregate cost=20035.453
+  Gather cost=4983.73
+    Nested Loop cost=3983.63
+      Nested Loop cost=3851.9
+        Merge Join cost=3790.66
+          Sort cost=3787.2
+            Seq Scan [tag AS t1] cost=3783.29
+          Sort cost=3.18
+            Seq Scan [site AS s1] cost=3.16
+        Index Only Scan [tag_question AS tq1] cost=60.93
+      Index Scan [question AS q1] cost=6.26
+
+
+qsoload_q11-001,20035.5 (baseline)
+Execution time: 20035.453
+---------------------------------------
+SimpleAggregate cost=211.6
+  Gather cost=3881.73
+    Nested Loop cost=2881.63
+      Nested Loop cost=2749.91
+        Merge Join cost=2687.91
+          Sort cost=2684.71
+            Seq Scan [tag AS t1] cost=2684.64
+          Sort cost=3.18
+            Seq Scan [site AS s1] cost=3.16
+        Index Only Scan [tag_question AS tq1] cost=61.69
+      Index Scan [question AS q1] cost=6.26
+
+
+qsoload_q11-002,211.6 (baseline)
+Execution time: 211.6
+---------------------------------------
+SimpleAggregate cost=125.292
+  Gather cost=4019.08
+    Nested Loop cost=3018.98
+      Nested Loop cost=2887.26
+        Merge Join cost=2825.27
+          Sort cost=2822.06
+            Seq Scan [tag AS t1] cost=2821.97
+          Sort cost=3.18
+            Seq Scan [site AS s1] cost=3.16
+        Index Only Scan [tag_question AS tq1] cost=61.69
+      Index Scan [question AS q1] cost=6.26
+
+
+qsoload_q11-003,125.3 (baseline)
+Execution time: 125.292
+---------------------------------------
+SimpleAggregate cost=14459.551
+  Gather cost=4019.08
+    Nested Loop cost=3018.98
+      Nested Loop cost=2887.26
+        Merge Join cost=2825.27
+          Sort cost=2822.06
+            Seq Scan [tag AS t1] cost=2821.97
+          Sort cost=3.18
+            Seq Scan [site AS s1] cost=3.16
+        Index Only Scan [tag_question AS tq1] cost=61.69
+      Index Scan [question AS q1] cost=6.26
+
+
+qsoload_q11-004,14459.6 (baseline)
+Execution time: 14459.551
+---------------------------------------
+SimpleAggregate cost=161.391
+  Gather cost=4293.83
+    Nested Loop cost=3293.73
+      Nested Loop cost=3162.0
+        Merge Join cost=3100.01
+          Sort cost=3096.8
+            Seq Scan [tag AS t1] cost=3096.63
+          Sort cost=3.18
+            Seq Scan [site AS s1] cost=3.16
+        Index Only Scan [tag_question AS tq1] cost=61.69
+      Index Scan [question AS q1] cost=6.26
+
+
+qsoload_q11-005,161.4 (baseline)
+Execution time: 161.391
+---------------------------------------
+SimpleAggregate cost=441.721
+  Sort cost=4736.14
+    Gather cost=4736.13
+      Nested Loop cost=3736.03
+        Nested Loop cost=3729.01
+          Nested Loop cost=3722.0
+            Nested Loop cost=3575.3
+              Merge Join cost=3513.48
+                Sort cost=3509.72
+                  Seq Scan [tag AS t1] cost=3508.62
+                Sort cost=3.64
+                  Seq Scan [site AS s1] cost=3.59
+              Index Only Scan [tag_question AS tq1] cost=61.44
+            Index Scan [answer AS a1] cost=6.97
+          Index Scan [question AS q1] cost=6.99
+        Index Scan [so_user AS u1] cost=7.0
+
+
+qsoload_q12-001,441.7 (baseline)
+Execution time: 441.721
+---------------------------------------
+SimpleAggregate cost=696.571
+  Gather cost=3774.04
+    Nested Loop cost=2773.94
+      Nested Loop cost=2766.93
+        Nested Loop cost=2759.91
+          Nested Loop cost=2613.21
+            Merge Join cost=2551.35
+              Sort cost=2548.09
+                Seq Scan [tag AS t1] cost=2547.31
+              Sort cost=3.18
+                Seq Scan [site AS s1] cost=3.16
+            Index Only Scan [tag_question AS tq1] cost=61.47
+          Index Scan [answer AS a1] cost=6.97
+        Index Scan [so_user AS u1] cost=7.01
+      Index Scan [question AS q1] cost=6.99
+
+
+qsoload_q12-002,696.6 (baseline)
+Execution time: 696.571
+---------------------------------------
+SimpleAggregate cost=550.218
+  Sort cost=3910.83
+    Gather cost=3910.81
+      Nested Loop cost=2910.71
+        Nested Loop cost=2903.71
+          Nested Loop cost=2896.69
+            Nested Loop cost=2749.99
+              Merge Join cost=2687.92
+                Sort cost=2684.71
+                  Seq Scan [tag AS t1] cost=2684.64
+                Sort cost=3.18
+                  Seq Scan [site AS s1] cost=3.16
+              Index Only Scan [tag_question AS tq1] cost=61.69
+            Index Scan [answer AS a1] cost=6.97
+          Index Scan [so_user AS u1] cost=7.01
+        Index Scan [question AS q1] cost=6.99
+
+
+qsoload_q12-003,550.2 (baseline)
+Execution time: 550.218
+---------------------------------------
+SimpleAggregate cost=6635.781
+  Sort cost=5421.8
+    Gather cost=5421.79
+      Nested Loop cost=4421.69
+        Nested Loop cost=4414.68
+          Nested Loop cost=4407.66
+            Nested Loop cost=4260.96
+              Merge Join cost=4199.04
+                Sort cost=4195.79
+                  Seq Scan [tag AS t1] cost=4195.28
+                Sort cost=3.18
+                  Seq Scan [site AS s1] cost=3.16
+              Index Only Scan [tag_question AS tq1] cost=61.54
+            Index Scan [answer AS a1] cost=6.97
+          Index Scan [so_user AS u1] cost=7.01
+        Index Scan [question AS q1] cost=6.99
+
+
+qsoload_q12-004,6635.8 (baseline)
+Execution time: 6635.781
+---------------------------------------
+SimpleAggregate cost=331.162
+  Sort cost=3773.45
+    Gather cost=3773.44
+      Nested Loop cost=2773.34
+        Nested Loop cost=2766.32
+          Nested Loop cost=2759.31
+            Nested Loop cost=2612.61
+              Merge Join cost=2550.54
+                Sort cost=2547.34
+                  Seq Scan [tag AS t1] cost=2547.31
+                Sort cost=3.18
+                  Seq Scan [site AS s1] cost=3.16
+              Index Only Scan [tag_question AS tq1] cost=61.69
+            Index Scan [answer AS a1] cost=6.97
+          Index Scan [question AS q1] cost=6.99
+        Index Scan [so_user AS u1] cost=7.0
+
+
+qsoload_q12-005,331.2 (baseline)
+Execution time: 331.162
+---------------------------------------
+Limit cost=677.231
+  Sort cost=4480.55
+    SimpleAggregate cost=4480.54
+      Sort cost=4480.52
+        Nested Loop cost=4480.51
+          Gather cost=4473.31
+            Nested Loop cost=3473.21
+              Nested Loop cost=3465.75
+                Nested Loop cost=3458.53
+                  Nested Loop cost=3451.3
+                    Nested Loop cost=3300.06
+                      Merge Join cost=3238.23
+                        Sort cost=3234.95
+                          Seq Scan [tag AS t1] cost=3233.96
+                        Sort cost=3.18
+                          Seq Scan [site AS s1] cost=3.16
+                      Index Only Scan [tag_question AS tq1] cost=61.45
+                    Index Scan [answer AS a1] cost=7.19
+                  Index Scan [so_user AS u1] cost=7.22
+                Index Scan [question AS q1] cost=7.2
+              Index Only Scan [badge AS b] cost=7.44
+          Index Scan [account AS acc] cost=7.2
+
+
+qsoload_q13-001,677.2 (baseline)
+Execution time: 677.231
+---------------------------------------
+Limit cost=519.346
+  Sort cost=4067.87
+    SimpleAggregate cost=4067.86
+      Sort cost=4067.84
+        Nested Loop cost=4067.83
+          Gather cost=4060.57
+            Nested Loop cost=3060.47
+              Nested Loop cost=3053.03
+                Nested Loop cost=3045.81
+                  Nested Loop cost=3038.58
+                    Nested Loop cost=2887.34
+                      Merge Join cost=2825.27
+                        Sort cost=2822.06
+                          Seq Scan [tag AS t1] cost=2821.97
+                        Sort cost=3.18
+                          Seq Scan [site AS s1] cost=3.16
+                      Index Only Scan [tag_question AS tq1] cost=61.69
+                    Index Scan [answer AS a1] cost=7.19
+                  Index Scan [so_user AS u1] cost=7.22
+                Index Scan [question AS q1] cost=7.2
+              Index Only Scan [badge AS b] cost=7.43
+          Index Scan [account AS acc] cost=7.26
+
+
+qsoload_q13-002,519.3 (baseline)
+Execution time: 519.346
+---------------------------------------
+Limit cost=721.221
+  Sort cost=5258.45
+    SimpleAggregate cost=5258.44
+      Sort cost=5258.42
+        Nested Loop cost=5258.41
+          Gather cost=5251.15
+            Nested Loop cost=4251.05
+              Nested Loop cost=4243.61
+                Nested Loop cost=4236.39
+                  Nested Loop cost=4229.16
+                    Nested Loop cost=3775.44
+                      Merge Join cost=3652.34
+                        Sort cost=3648.48
+                          Seq Scan [tag AS t1] cost=3645.96
+                        Sort cost=3.64
+                          Seq Scan [site AS s1] cost=3.59
+                      Index Only Scan [tag_question AS tq1] cost=61.16
+                    Index Scan [answer AS a1] cost=7.19
+                  Index Scan [so_user AS u1] cost=7.22
+                Index Scan [question AS q1] cost=7.2
+              Index Only Scan [badge AS b] cost=7.43
+          Index Scan [account AS acc] cost=7.26
+
+
+qsoload_q13-003,721.2 (baseline)
+Execution time: 721.221
+---------------------------------------
+Limit cost=2055.136
+  Sort cost=5823.06
+    SimpleAggregate cost=5823.05
+      Sort cost=5823.03
+        Nested Loop cost=5823.02
+          Gather cost=5815.82
+            Nested Loop cost=4815.72
+              Nested Loop cost=4808.28
+                Nested Loop cost=4801.05
+                  Nested Loop cost=4793.85
+                    Nested Loop cost=4187.58
+                      Merge Join cost=4064.44
+                        Sort cost=4060.35
+                          Seq Scan [tag AS t1] cost=4057.95
+                        Sort cost=3.88
+                          Seq Scan [site AS s1] cost=3.81
+                      Index Only Scan [tag_question AS tq1] cost=61.18
+                    Index Scan [question AS q1] cost=7.2
+                  Index Scan [answer AS a1] cost=7.19
+                Index Scan [so_user AS u1] cost=7.22
+              Index Only Scan [badge AS b] cost=7.43
+          Index Scan [account AS acc] cost=7.2
+
+
+qsoload_q13-004,2055.1 (baseline)
+Execution time: 2055.136
+---------------------------------------
+Limit cost=7447.787
+  Sort cost=5304.12
+    SimpleAggregate cost=5304.11
+      Sort cost=5304.09
+        Nested Loop cost=5304.08
+          Gather cost=5296.88
+            Nested Loop cost=4296.78
+              Nested Loop cost=4289.33
+                Nested Loop cost=4282.11
+                  Nested Loop cost=4274.88
+                    Nested Loop cost=4123.64
+                      Merge Join cost=4061.67
+                        Sort cost=4058.43
+                          Seq Scan [tag AS t1] cost=4057.95
+                        Sort cost=3.18
+                          Seq Scan [site AS s1] cost=3.16
+                      Index Only Scan [tag_question AS tq1] cost=61.58
+                    Index Scan [answer AS a1] cost=7.19
+                  Index Scan [so_user AS u1] cost=7.22
+                Index Scan [question AS q1] cost=7.2
+              Index Only Scan [badge AS b] cost=7.44
+          Index Scan [account AS acc] cost=7.2
+
+
+qsoload_q13-005,7447.8 (baseline)
+Execution time: 7447.787
+---------------------------------------
+SimpleAggregate cost=42964.368
+  Nested Loop cost=4479.9
+    Gather cost=4472.71
+      Nested Loop cost=3472.61
+        Nested Loop cost=3465.16
+          Nested Loop cost=3457.94
+            Nested Loop cost=3450.71
+              Nested Loop cost=3299.47
+                Merge Join cost=3237.4
+                  Sort cost=3234.18
+                    Seq Scan [tag AS t1] cost=3233.96
+                  Sort cost=3.18
+                    Seq Scan [site AS s1] cost=3.16
+                Index Only Scan [tag_question AS tq1] cost=61.69
+              Index Scan [answer AS a1] cost=7.19
+            Index Scan [so_user AS u1] cost=7.22
+          Index Scan [question AS q1] cost=7.2
+        Index Only Scan [badge AS b] cost=7.43
+    Index Only Scan [account AS acc] cost=7.2
+
+
+qsoload_q14-001,42964.4 (baseline)
+Execution time: 42964.368
+---------------------------------------
+SimpleAggregate cost=1023.306
+  Nested Loop cost=4891.94
+    Gather cost=4884.75
+      Nested Loop cost=3884.65
+        Nested Loop cost=3877.21
+          Nested Loop cost=3869.99
+            Nested Loop cost=3862.76
+              Nested Loop cost=3711.52
+                Merge Join cost=3649.51
+                  Sort cost=3646.29
+                    Seq Scan [tag AS t1] cost=3645.96
+                  Sort cost=3.18
+                    Seq Scan [site AS s1] cost=3.16
+                Index Only Scan [tag_question AS tq1] cost=61.62
+              Index Scan [answer AS a1] cost=7.19
+            Index Scan [so_user AS u1] cost=7.22
+          Index Scan [question AS q1] cost=7.2
+        Index Only Scan [badge AS b] cost=7.43
+    Index Only Scan [account AS acc] cost=7.2
+
+
+qsoload_q14-002,1023.3 (baseline)
+Execution time: 1023.306
+---------------------------------------
+SimpleAggregate cost=2031.319
+  Nested Loop cost=4754.58
+    Gather cost=4747.38
+      Nested Loop cost=3747.28
+        Nested Loop cost=3739.84
+          Nested Loop cost=3732.62
+            Nested Loop cost=3725.39
+              Nested Loop cost=3574.15
+                Merge Join cost=3512.15
+                  Sort cost=3508.93
+                    Seq Scan [tag AS t1] cost=3508.62
+                  Sort cost=3.18
+                    Seq Scan [site AS s1] cost=3.16
+                Index Only Scan [tag_question AS tq1] cost=61.61
+              Index Scan [answer AS a1] cost=7.19
+            Index Scan [so_user AS u1] cost=7.22
+          Index Scan [question AS q1] cost=7.2
+        Index Only Scan [badge AS b] cost=7.43
+    Index Only Scan [account AS acc] cost=7.2
+
+
+qsoload_q14-003,2031.3 (baseline)
+Execution time: 2031.319
+---------------------------------------
+SimpleAggregate cost=2489.37
+  Nested Loop cost=4343.95
+    Gather cost=4336.75
+      Nested Loop cost=3336.65
+        Nested Loop cost=3329.21
+          Nested Loop cost=3321.99
+            Nested Loop cost=3314.77
+              Nested Loop cost=3163.53
+                Merge Join cost=3101.86
+                  Sort cost=3098.52
+                    Seq Scan [tag AS t1] cost=3096.63
+                  Sort cost=3.18
+                    Seq Scan [site AS s1] cost=3.16
+                Index Only Scan [tag_question AS tq1] cost=61.28
+              Index Scan [answer AS a1] cost=7.19
+            Index Scan [so_user AS u1] cost=7.22
+          Index Scan [question AS q1] cost=7.2
+        Index Only Scan [badge AS b] cost=7.43
+    Index Only Scan [account AS acc] cost=7.2
+
+
+qsoload_q14-004,2489.4 (baseline)
+Execution time: 2489.37
+---------------------------------------
+SimpleAggregate cost=87.259
+  Nested Loop cost=3793.04
+    Gather cost=3785.84
+      Nested Loop cost=2785.74
+        Nested Loop cost=2778.3
+          Nested Loop cost=2771.08
+            Nested Loop cost=2763.85
+              Nested Loop cost=2612.61
+                Merge Join cost=2550.54
+                  Sort cost=2547.34
+                    Seq Scan [tag AS t1] cost=2547.31
+                  Sort cost=3.18
+                    Seq Scan [site AS s1] cost=3.16
+                Index Only Scan [tag_question AS tq1] cost=61.69
+              Index Scan [answer AS a1] cost=7.19
+            Index Scan [so_user AS u1] cost=7.22
+          Index Scan [question AS q1] cost=7.2
+        Index Only Scan [badge AS b] cost=7.43
+    Index Only Scan [account AS acc] cost=7.2
+
+
+qsoload_q14-005,87.3 (baseline)
+Execution time: 87.259
+---------------------------------------
+Limit cost=2743.745
+  Sort cost=4081.1
+    SimpleAggregate cost=4081.08
+      Sort cost=4081.07
+        Nested Loop cost=4081.05
+          Gather cost=4074.22
+            Nested Loop cost=3074.12
+              Nested Loop cost=3066.99
+                Nested Loop cost=3032.65
+                  Nested Loop cost=2888.75
+                    Merge Join cost=2827.07
+                      Sort cost=2823.74
+                        Seq Scan [tag AS t1] cost=2821.97
+                      Sort cost=3.18
+                        Seq Scan [site AS s1] cost=3.16
+                    Index Only Scan [tag_question AS tq1] cost=61.3
+                  Index Scan [question AS q1] cost=6.84
+                Index Scan [so_user AS u1] cost=6.86
+              Index Only Scan [badge AS b1] cost=7.12
+          Index Scan [account AS acc] cost=6.83
+
+
+qsoload_q15-001,2743.7 (baseline)
+Execution time: 2743.745
+---------------------------------------
+Limit cost=2107.232
+  Sort cost=3914.89
+    SimpleAggregate cost=3914.87
+      Sort cost=3914.86
+        Nested Loop cost=3914.84
+          Gather cost=3908.01
+            Nested Loop cost=2907.91
+              Nested Loop cost=2900.78
+                Nested Loop cost=2893.88
+                  Nested Loop cost=2749.99
+                    Merge Join cost=2687.92
+                      Sort cost=2684.71
+                        Seq Scan [tag AS t1] cost=2684.64
+                      Sort cost=3.18
+                        Seq Scan [site AS s1] cost=3.16
+                    Index Only Scan [tag_question AS tq1] cost=61.69
+                  Index Scan [question AS q1] cost=6.84
+                Index Scan [so_user AS u1] cost=6.88
+              Index Only Scan [badge AS b1] cost=7.12
+          Index Scan [account AS acc] cost=6.83
+
+
+qsoload_q15-002,2107.2 (baseline)
+Execution time: 2107.232
+---------------------------------------
+Limit cost=4477.115
+  Sort cost=4560.58
+    SimpleAggregate cost=4560.57
+      Sort cost=4560.55
+        Nested Loop cost=4560.54
+          Gather cost=4553.53
+            Nested Loop cost=3553.43
+              Nested Loop cost=3546.3
+                Nested Loop cost=3443.37
+                  Nested Loop cost=3299.47
+                    Merge Join cost=3237.4
+                      Sort cost=3234.18
+                        Seq Scan [tag AS t1] cost=3233.96
+                      Sort cost=3.18
+                        Seq Scan [site AS s1] cost=3.16
+                    Index Only Scan [tag_question AS tq1] cost=61.69
+                  Index Scan [question AS q1] cost=6.84
+                Index Scan [so_user AS u1] cost=6.85
+              Index Only Scan [badge AS b1] cost=7.12
+          Index Scan [account AS acc] cost=6.83
+
+
+qsoload_q15-003,4477.1 (baseline)
+Execution time: 4477.115
+---------------------------------------
+Limit cost=739.95
+  Sort cost=5384.82
+    SimpleAggregate cost=5384.8
+      Sort cost=5384.79
+        Nested Loop cost=5384.77
+          Gather cost=5377.94
+            Nested Loop cost=4377.84
+              Nested Loop cost=4370.71
+                Nested Loop cost=4267.77
+                  Nested Loop cost=4123.88
+                    Merge Join cost=4061.91
+                      Sort cost=4058.43
+                        Seq Scan [tag AS t1] cost=4057.95
+                      Sort cost=3.41
+                        Seq Scan [site AS s1] cost=3.38
+                    Index Only Scan [tag_question AS tq1] cost=61.58
+                  Index Scan [question AS q1] cost=6.84
+                Index Scan [so_user AS u1] cost=6.85
+              Index Only Scan [badge AS b1] cost=7.12
+          Index Scan [account AS acc] cost=6.83
+
+
+qsoload_q15-004,740.0 (baseline)
+Execution time: 739.95
+---------------------------------------
+Limit cost=236.92
+  Sort cost=4010.93
+    SimpleAggregate cost=4010.91
+      Sort cost=4010.9
+        Nested Loop cost=4010.88
+          Gather cost=4004.05
+            Nested Loop cost=3003.95
+              Nested Loop cost=2996.82
+                Nested Loop cost=2893.88
+                  Nested Loop cost=2749.99
+                    Merge Join cost=2687.92
+                      Sort cost=2684.71
+                        Seq Scan [tag AS t1] cost=2684.64
+                      Sort cost=3.18
+                        Seq Scan [site AS s1] cost=3.16
+                    Index Only Scan [tag_question AS tq1] cost=61.69
+                  Index Scan [question AS q1] cost=6.84
+                Index Scan [so_user AS u1] cost=6.85
+              Index Only Scan [badge AS b1] cost=7.12
+          Index Scan [account AS acc] cost=6.83
+
+
+qsoload_q15-005,236.9 (baseline)
+Execution time: 236.92
+---------------------------------------
+SimpleAggregate cost=1165.847
+  Nested Loop cost=4189.58
+    Gather cost=4182.75
+      Nested Loop cost=3182.65
+        Nested Loop cost=3175.52
+          Nested Loop cost=3168.62
+            Nested Loop cost=3024.72
+              Merge Join cost=2962.65
+                Sort cost=2959.44
+                  Seq Scan [tag AS t1] cost=2959.3
+                Sort cost=3.18
+                  Seq Scan [site AS s1] cost=3.16
+              Index Only Scan [tag_question AS tq1] cost=61.69
+            Index Scan [question AS q1] cost=6.84
+          Index Scan [so_user AS u1] cost=6.88
+        Index Only Scan [badge AS b1] cost=7.12
+    Index Scan [account AS acc] cost=6.83
+
+
+qsoload_q16-001,1165.8 (baseline)
+Execution time: 1165.847
+---------------------------------------
+SimpleAggregate cost=1893.21
+  Nested Loop cost=4876.96
+    Gather cost=4870.12
+      Nested Loop cost=3870.02
+        Nested Loop cost=3862.89
+          Nested Loop cost=3856.0
+            Nested Loop cost=3712.1
+              Merge Join cost=3650.26
+                Sort cost=3646.98
+                  Seq Scan [tag AS t1] cost=3645.96
+                Sort cost=3.18
+                  Seq Scan [site AS s1] cost=3.16
+              Index Only Scan [tag_question AS tq1] cost=61.46
+            Index Scan [question AS q1] cost=6.84
+          Index Scan [so_user AS u1] cost=6.88
+        Index Only Scan [badge AS b1] cost=7.12
+    Index Scan [account AS acc] cost=6.83
+
+
+qsoload_q16-002,1893.2 (baseline)
+Execution time: 1893.21
+---------------------------------------
+SimpleAggregate cost=1084.328
+  Nested Loop cost=5171.68
+    Gather cost=5164.84
+      Nested Loop cost=4164.74
+        Nested Loop cost=4157.61
+          Nested Loop cost=4130.13
+            Nested Loop cost=3986.23
+              Merge Join cost=3924.27
+                Sort cost=3921.04
+                  Seq Scan [tag AS t1] cost=3920.62
+                Sort cost=3.18
+                  Seq Scan [site AS s1] cost=3.16
+              Index Only Scan [tag_question AS tq1] cost=61.57
+            Index Scan [question AS q1] cost=6.84
+          Index Scan [so_user AS u1] cost=6.86
+        Index Only Scan [badge AS b1] cost=7.12
+    Index Scan [account AS acc] cost=6.83
+
+
+qsoload_q16-003,1084.3 (baseline)
+Execution time: 1084.328
+---------------------------------------
+SimpleAggregate cost=7346.245
+  Nested Loop cost=4897.54
+    Gather cost=4890.71
+      Nested Loop cost=3890.61
+        Nested Loop cost=3883.48
+          Nested Loop cost=3856.0
+            Nested Loop cost=3712.1
+              Merge Join cost=3650.26
+                Sort cost=3646.98
+                  Seq Scan [tag AS t1] cost=3645.96
+                Sort cost=3.18
+                  Seq Scan [site AS s1] cost=3.16
+              Index Only Scan [tag_question AS tq1] cost=61.46
+            Index Scan [question AS q1] cost=6.84
+          Index Scan [so_user AS u1] cost=6.86
+        Index Only Scan [badge AS b1] cost=7.12
+    Index Scan [account AS acc] cost=6.83
+
+
+qsoload_q16-004,7346.2 (baseline)
+Execution time: 7346.245
+---------------------------------------
+SimpleAggregate cost=494.611
+  Nested Loop cost=3949.15
+    Gather cost=3942.31
+      Nested Loop cost=2942.21
+        Nested Loop cost=2935.08
+          Nested Loop cost=2893.88
+            Nested Loop cost=2749.99
+              Merge Join cost=2687.91
+                Sort cost=2684.71
+                  Seq Scan [tag AS t1] cost=2684.64
+                Sort cost=3.18
+                  Seq Scan [site AS s1] cost=3.16
+              Index Only Scan [tag_question AS tq1] cost=61.69
+            Index Scan [question AS q1] cost=6.84
+          Index Scan [so_user AS u1] cost=6.85
+        Index Only Scan [badge AS b1] cost=7.12
+    Index Scan [account AS acc] cost=6.83
+
+
+qsoload_q16-005,494.6 (baseline)
+Execution time: 494.611
+---------------------------------------
+Unique cost=2194.384
+  Sort cost=6562.1
+    Nested Loop cost=6562.08
+      Gather cost=6554.61
+        Hash Join cost=5554.51
+          Nested Loop cost=2777.24
+            Nested Loop cost=2769.75
+              Nested Loop cost=2612.51
+                Merge Join cost=2550.52
+                  Sort cost=2547.32
+                    Seq Scan [tag AS t1] cost=2547.31
+                  Sort cost=3.18
+                    Seq Scan [site AS s1] cost=3.16
+                Index Only Scan [tag_question AS tq1] cost=61.69
+              Index Scan [question AS q1] cost=7.47
+            Index Scan [so_user AS u1] cost=7.48
+          Hash cost=2777.24
+            Nested Loop cost=2777.24
+              Nested Loop cost=2769.75
+                Nested Loop cost=2612.51
+                  Merge Join cost=2550.52
+                    Sort cost=2547.32
+                      Seq Scan [tag AS t2] cost=2547.31
+                    Sort cost=3.18
+                      Seq Scan [site AS s2] cost=3.16
+                  Index Only Scan [tag_question AS tq2] cost=61.69
+                Index Scan [question AS q2] cost=7.47
+              Index Scan [so_user AS u2] cost=7.48
+      Index Scan [account AS acc] cost=7.47
+
+
+qsoload_q2-001,2194.4 (baseline)
+Execution time: 2194.384
+---------------------------------------
+Unique cost=233.629
+  Sort cost=6562.1
+    Nested Loop cost=6562.08
+      Gather cost=6554.61
+        Hash Join cost=5554.51
+          Nested Loop cost=2777.24
+            Nested Loop cost=2769.75
+              Nested Loop cost=2612.51
+                Merge Join cost=2550.52
+                  Sort cost=2547.32
+                    Seq Scan [tag AS t1] cost=2547.31
+                  Sort cost=3.18
+                    Seq Scan [site AS s1] cost=3.16
+                Index Only Scan [tag_question AS tq1] cost=61.69
+              Index Scan [question AS q1] cost=7.47
+            Index Scan [so_user AS u1] cost=7.48
+          Hash cost=2777.24
+            Nested Loop cost=2777.24
+              Nested Loop cost=2769.75
+                Nested Loop cost=2612.51
+                  Merge Join cost=2550.52
+                    Sort cost=2547.32
+                      Seq Scan [tag AS t2] cost=2547.31
+                    Sort cost=3.18
+                      Seq Scan [site AS s2] cost=3.16
+                  Index Only Scan [tag_question AS tq2] cost=61.69
+                Index Scan [question AS q2] cost=7.47
+              Index Scan [so_user AS u2] cost=7.48
+      Index Scan [account AS acc] cost=7.47
+
+
+qsoload_q2-001test,233.6 (baseline)
+Execution time: 233.629
+---------------------------------------
+Unique cost=1713.258
+  Sort cost=6562.1
+    Nested Loop cost=6562.08
+      Gather cost=6554.61
+        Hash Join cost=5554.51
+          Nested Loop cost=2777.24
+            Nested Loop cost=2769.75
+              Nested Loop cost=2612.51
+                Merge Join cost=2550.52
+                  Sort cost=2547.32
+                    Seq Scan [tag AS t1] cost=2547.31
+                  Sort cost=3.18
+                    Seq Scan [site AS s1] cost=3.16
+                Index Only Scan [tag_question AS tq1] cost=61.69
+              Index Scan [question AS q1] cost=7.47
+            Index Scan [so_user AS u1] cost=7.48
+          Hash cost=2777.24
+            Nested Loop cost=2777.24
+              Nested Loop cost=2769.75
+                Nested Loop cost=2612.51
+                  Merge Join cost=2550.52
+                    Sort cost=2547.32
+                      Seq Scan [tag AS t2] cost=2547.31
+                    Sort cost=3.18
+                      Seq Scan [site AS s2] cost=3.16
+                  Index Only Scan [tag_question AS tq2] cost=61.69
+                Index Scan [question AS q2] cost=7.47
+              Index Scan [so_user AS u2] cost=7.48
+      Index Scan [account AS acc] cost=7.47
+
+
+qsoload_q2-002,1713.3 (baseline)
+Execution time: 1713.258
+---------------------------------------
+Unique cost=283.435
+  Sort cost=6562.54
+    Nested Loop cost=6562.52
+      Gather cost=6555.05
+        Hash Join cost=5554.95
+          Nested Loop cost=2777.24
+            Nested Loop cost=2769.75
+              Nested Loop cost=2612.51
+                Merge Join cost=2550.52
+                  Sort cost=2547.32
+                    Seq Scan [tag AS t1] cost=2547.31
+                  Sort cost=3.18
+                    Seq Scan [site AS s1] cost=3.16
+                Index Only Scan [tag_question AS tq1] cost=61.69
+              Index Scan [question AS q1] cost=7.47
+            Index Scan [so_user AS u1] cost=7.48
+          Hash cost=2777.68
+            Nested Loop cost=2777.68
+              Nested Loop cost=2770.19
+                Nested Loop cost=2612.95
+                  Merge Join cost=2551.1
+                    Sort cost=2547.85
+                      Seq Scan [tag AS t2] cost=2547.31
+                    Sort cost=3.18
+                      Seq Scan [site AS s2] cost=3.16
+                  Index Only Scan [tag_question AS tq2] cost=61.54
+                Index Scan [question AS q2] cost=7.47
+              Index Scan [so_user AS u2] cost=7.48
+      Index Scan [account AS acc] cost=7.47
+
+
+qsoload_q2-003,283.4 (baseline)
+Execution time: 283.435
+---------------------------------------
+Unique cost=1313.284
+  Sort cost=6562.1
+    Nested Loop cost=6562.08
+      Gather cost=6554.61
+        Hash Join cost=5554.51
+          Nested Loop cost=2777.24
+            Nested Loop cost=2769.75
+              Nested Loop cost=2612.51
+                Merge Join cost=2550.52
+                  Sort cost=2547.32
+                    Seq Scan [tag AS t1] cost=2547.31
+                  Sort cost=3.18
+                    Seq Scan [site AS s1] cost=3.16
+                Index Only Scan [tag_question AS tq1] cost=61.69
+              Index Scan [question AS q1] cost=7.47
+            Index Scan [so_user AS u1] cost=7.48
+          Hash cost=2777.24
+            Nested Loop cost=2777.24
+              Nested Loop cost=2769.75
+                Nested Loop cost=2612.51
+                  Merge Join cost=2550.52
+                    Sort cost=2547.32
+                      Seq Scan [tag AS t2] cost=2547.31
+                    Sort cost=3.18
+                      Seq Scan [site AS s2] cost=3.16
+                  Index Only Scan [tag_question AS tq2] cost=61.69
+                Index Scan [question AS q2] cost=7.47
+              Index Scan [so_user AS u2] cost=7.48
+      Index Scan [account AS acc] cost=7.47
+
+
+qsoload_q2-004,1313.3 (baseline)
+Execution time: 1313.284
+---------------------------------------
+Unique cost=1199.587
+  Sort cost=6562.1
+    Nested Loop cost=6562.08
+      Gather cost=6554.61
+        Hash Join cost=5554.51
+          Nested Loop cost=2777.24
+            Nested Loop cost=2769.75
+              Nested Loop cost=2612.51
+                Merge Join cost=2550.52
+                  Sort cost=2547.32
+                    Seq Scan [tag AS t1] cost=2547.31
+                  Sort cost=3.18
+                    Seq Scan [site AS s1] cost=3.16
+                Index Only Scan [tag_question AS tq1] cost=61.69
+              Index Scan [question AS q1] cost=7.47
+            Index Scan [so_user AS u1] cost=7.48
+          Hash cost=2777.24
+            Nested Loop cost=2777.24
+              Nested Loop cost=2769.75
+                Nested Loop cost=2612.51
+                  Merge Join cost=2550.52
+                    Sort cost=2547.32
+                      Seq Scan [tag AS t2] cost=2547.31
+                    Sort cost=3.18
+                      Seq Scan [site AS s2] cost=3.16
+                  Index Only Scan [tag_question AS tq2] cost=61.69
+                Index Scan [question AS q2] cost=7.47
+              Index Scan [so_user AS u2] cost=7.48
+      Index Scan [account AS acc] cost=7.47
+
+
+qsoload_q2-005,1199.6 (baseline)
+Execution time: 1199.587
+---------------------------------------
+SimpleAggregate cost=533.082
+  Nested Loop cost=254785.73
+    Nested Loop cost=254778.12
+      Nested Loop cost=254770.49
+        Nested Loop cost=254762.87
+          Nested Loop cost=254755.09
+            Gather cost=254522.88
+              Hash Join cost=253522.78
+                Hash Join cost=250717.46
+                  Seq Scan [so_user AS u1] cost=239366.81
+                  Hash cost=3.16
+                    Seq Scan [site AS s1] cost=3.16
+                Hash cost=2713.84
+                  Nested Loop cost=2713.84
+                    Nested Loop cost=2706.2
+                      Merge Join cost=2690.93
+                        Sort cost=2686.86
+                          Nested Loop cost=2671.3
+                            Seq Scan [tag AS t2] cost=2547.31
+                            Index Only Scan [tag_question AS tq2] cost=61.69
+                        Sort cost=3.18
+                          Seq Scan [site AS s2] cost=3.16
+                      Index Scan [question AS q2] cost=7.62
+                    Index Scan [so_user AS u2] cost=7.63
+            Index Scan [answer AS a1] cost=232.19
+          Index Only Scan [tag_question AS tq1] cost=7.77
+        Index Scan [account AS acc] cost=7.62
+      Index Only Scan [question AS q1] cost=7.62
+    Index Scan [tag AS t1] cost=7.59
+
+
+qsoload_q3-001,533.1 (baseline)
+Execution time: 533.082
+---------------------------------------
+SimpleAggregate cost=2019.936
+  Nested Loop cost=254785.73
+    Nested Loop cost=254778.12
+      Nested Loop cost=254770.49
+        Nested Loop cost=254762.87
+          Nested Loop cost=254755.09
+            Gather cost=254522.88
+              Hash Join cost=253522.78
+                Hash Join cost=250717.46
+                  Seq Scan [so_user AS u1] cost=239366.81
+                  Hash cost=3.16
+                    Seq Scan [site AS s1] cost=3.16
+                Hash cost=2713.84
+                  Nested Loop cost=2713.84
+                    Nested Loop cost=2706.2
+                      Merge Join cost=2690.93
+                        Sort cost=2686.86
+                          Nested Loop cost=2671.3
+                            Seq Scan [tag AS t2] cost=2547.31
+                            Index Only Scan [tag_question AS tq2] cost=61.69
+                        Sort cost=3.18
+                          Seq Scan [site AS s2] cost=3.16
+                      Index Scan [question AS q2] cost=7.62
+                    Index Scan [so_user AS u2] cost=7.63
+            Index Scan [answer AS a1] cost=232.19
+          Index Only Scan [tag_question AS tq1] cost=7.77
+        Index Scan [account AS acc] cost=7.62
+      Index Only Scan [question AS q1] cost=7.62
+    Index Scan [tag AS t1] cost=7.59
+
+
+qsoload_q3-002,2019.9 (baseline)
+Execution time: 2019.936
+---------------------------------------
+SimpleAggregate cost=1283.95
+  Nested Loop cost=254785.73
+    Nested Loop cost=254778.12
+      Nested Loop cost=254770.49
+        Nested Loop cost=254762.87
+          Nested Loop cost=254755.09
+            Gather cost=254522.88
+              Hash Join cost=253522.78
+                Hash Join cost=250717.46
+                  Seq Scan [so_user AS u1] cost=239366.81
+                  Hash cost=3.16
+                    Seq Scan [site AS s1] cost=3.16
+                Hash cost=2713.84
+                  Nested Loop cost=2713.84
+                    Nested Loop cost=2706.2
+                      Merge Join cost=2690.93
+                        Sort cost=2686.86
+                          Nested Loop cost=2671.3
+                            Seq Scan [tag AS t2] cost=2547.31
+                            Index Only Scan [tag_question AS tq2] cost=61.69
+                        Sort cost=3.18
+                          Seq Scan [site AS s2] cost=3.16
+                      Index Scan [question AS q2] cost=7.62
+                    Index Scan [so_user AS u2] cost=7.63
+            Index Scan [answer AS a1] cost=232.19
+          Index Only Scan [tag_question AS tq1] cost=7.77
+        Index Scan [account AS acc] cost=7.62
+      Index Only Scan [question AS q1] cost=7.62
+    Index Scan [tag AS t1] cost=7.59
+
+
+qsoload_q3-003,1284.0 (baseline)
+Execution time: 1283.95
+---------------------------------------
+SimpleAggregate cost=559.813
+  Nested Loop cost=256193.19
+    Nested Loop cost=256185.59
+      Nested Loop cost=256177.95
+        Nested Loop cost=256170.33
+          Nested Loop cost=256162.55
+            Gather cost=255930.35
+              Hash Join cost=254930.25
+                Hash Join cost=250717.46
+                  Seq Scan [so_user AS u1] cost=239366.81
+                  Hash cost=3.16
+                    Seq Scan [site AS s1] cost=3.16
+                Hash cost=4121.3
+                  Nested Loop cost=4121.3
+                    Nested Loop cost=4113.66
+                      Hash Join cost=3922.81
+                        Nested Loop cost=3908.08
+                          Seq Scan [tag AS t2] cost=2547.31
+                          Index Only Scan [tag_question AS tq2] cost=61.54
+                        Hash cost=3.16
+                          Seq Scan [site AS s2] cost=3.16
+                      Index Scan [question AS q2] cost=7.62
+                    Index Scan [so_user AS u2] cost=7.63
+            Index Scan [answer AS a1] cost=232.19
+          Index Only Scan [tag_question AS tq1] cost=7.77
+        Index Scan [account AS acc] cost=7.62
+      Index Only Scan [question AS q1] cost=7.62
+    Index Scan [tag AS t1] cost=7.59
+
+
+qsoload_q3-004,559.8 (baseline)
+Execution time: 559.813
+---------------------------------------
+SimpleAggregate cost=539.833
+  Nested Loop cost=257470.9
+    Nested Loop cost=257463.3
+      Nested Loop cost=257455.66
+        Nested Loop cost=257448.04
+          Nested Loop cost=257440.26
+            Gather cost=257208.06
+              Hash Join cost=256207.96
+                Hash Join cost=250717.46
+                  Seq Scan [so_user AS u1] cost=239366.81
+                  Hash cost=3.16
+                    Seq Scan [site AS s1] cost=3.16
+                Hash cost=5399.01
+                  Nested Loop cost=5399.01
+                    Nested Loop cost=5391.37
+                      Hash Join cost=5040.21
+                        Nested Loop cost=5015.79
+                          Seq Scan [tag AS t2] cost=2547.31
+                          Index Only Scan [tag_question AS tq2] cost=61.4
+                        Hash cost=3.16
+                          Seq Scan [site AS s2] cost=3.16
+                      Index Scan [question AS q2] cost=7.62
+                    Index Scan [so_user AS u2] cost=7.63
+            Index Scan [answer AS a1] cost=232.19
+          Index Only Scan [tag_question AS tq1] cost=7.77
+        Index Scan [account AS acc] cost=7.62
+      Index Only Scan [question AS q1] cost=7.62
+    Index Scan [tag AS t1] cost=7.59
+
+
+qsoload_q3-005,539.8 (baseline)
+Execution time: 539.833
+---------------------------------------
+SimpleAggregate cost=149.399
+  Nested Loop cost=3781.69
+    Gather cost=3774.65
+      Nested Loop cost=2774.55
+        Nested Loop cost=2767.48
+          Nested Loop cost=2760.42
+            Nested Loop cost=2612.51
+              Merge Join cost=2550.52
+                Sort cost=2547.32
+                  Seq Scan [tag AS t1] cost=2547.31
+                Sort cost=3.18
+                  Seq Scan [site AS s1] cost=3.16
+              Index Only Scan [tag_question AS tq1] cost=61.69
+            Index Scan [answer AS a1] cost=7.03
+          Index Scan [question AS q1] cost=7.04
+        Index Scan [so_user AS u1] cost=7.06
+    Index Scan [account AS acc] cost=7.04
+
+
+qsoload_q4-001,149.4 (baseline)
+Execution time: 149.399
+---------------------------------------
+SimpleAggregate cost=242.266
+  Nested Loop cost=3781.69
+    Gather cost=3774.65
+      Nested Loop cost=2774.55
+        Nested Loop cost=2767.48
+          Nested Loop cost=2760.42
+            Nested Loop cost=2612.51
+              Merge Join cost=2550.52
+                Sort cost=2547.32
+                  Seq Scan [tag AS t1] cost=2547.31
+                Sort cost=3.18
+                  Seq Scan [site AS s1] cost=3.16
+              Index Only Scan [tag_question AS tq1] cost=61.69
+            Index Scan [answer AS a1] cost=7.03
+          Index Scan [question AS q1] cost=7.04
+        Index Scan [so_user AS u1] cost=7.06
+    Index Scan [account AS acc] cost=7.04
+
+
+qsoload_q4-002,242.3 (baseline)
+Execution time: 242.266
+---------------------------------------
+SimpleAggregate cost=76.452
+  Nested Loop cost=3781.69
+    Gather cost=3774.65
+      Nested Loop cost=2774.55
+        Nested Loop cost=2767.48
+          Nested Loop cost=2760.42
+            Nested Loop cost=2612.51
+              Merge Join cost=2550.52
+                Sort cost=2547.32
+                  Seq Scan [tag AS t1] cost=2547.31
+                Sort cost=3.18
+                  Seq Scan [site AS s1] cost=3.16
+              Index Only Scan [tag_question AS tq1] cost=61.69
+            Index Scan [answer AS a1] cost=7.03
+          Index Scan [question AS q1] cost=7.04
+        Index Scan [so_user AS u1] cost=7.06
+    Index Scan [account AS acc] cost=7.04
+
+
+qsoload_q4-003,76.5 (baseline)
+Execution time: 76.452
+---------------------------------------
+SimpleAggregate cost=162.988
+  Nested Loop cost=3781.69
+    Gather cost=3774.65
+      Nested Loop cost=2774.55
+        Nested Loop cost=2767.48
+          Nested Loop cost=2760.42
+            Nested Loop cost=2612.51
+              Merge Join cost=2550.52
+                Sort cost=2547.32
+                  Seq Scan [tag AS t1] cost=2547.31
+                Sort cost=3.18
+                  Seq Scan [site AS s1] cost=3.16
+              Index Only Scan [tag_question AS tq1] cost=61.69
+            Index Scan [answer AS a1] cost=7.03
+          Index Scan [question AS q1] cost=7.04
+        Index Scan [so_user AS u1] cost=7.06
+    Index Scan [account AS acc] cost=7.04
+
+
+qsoload_q4-004,163.0 (baseline)
+Execution time: 162.988
+---------------------------------------
+SimpleAggregate cost=276.623
+  Nested Loop cost=3781.69
+    Gather cost=3774.65
+      Nested Loop cost=2774.55
+        Nested Loop cost=2767.48
+          Nested Loop cost=2760.42
+            Nested Loop cost=2612.51
+              Merge Join cost=2550.52
+                Sort cost=2547.32
+                  Seq Scan [tag AS t1] cost=2547.31
+                Sort cost=3.18
+                  Seq Scan [site AS s1] cost=3.16
+              Index Only Scan [tag_question AS tq1] cost=61.69
+            Index Scan [answer AS a1] cost=7.03
+          Index Scan [question AS q1] cost=7.04
+        Index Scan [so_user AS u1] cost=7.06
+    Index Scan [account AS acc] cost=7.04
+
+
+qsoload_q4-005,276.6 (baseline)
+Execution time: 276.623
+---------------------------------------
+SimpleAggregate cost=48.049
+  Nested Loop cost=3933.36
+    Gather cost=3925.75
+      Nested Loop cost=2925.65
+        Nested Loop cost=2917.85
+          Nested Loop cost=2910.2
+            Nested Loop cost=2749.91
+              Merge Join cost=2687.91
+                Sort cost=2684.71
+                  Seq Scan [tag AS t1] cost=2684.64
+                Sort cost=3.18
+                  Seq Scan [site AS s1] cost=3.16
+              Index Only Scan [tag_question AS tq1] cost=61.69
+            Index Scan [question AS q1] cost=7.62
+          Index Scan [so_user AS u1] cost=7.63
+        Index Only Scan [comment AS c1] cost=7.79
+    Index Scan [account AS acc] cost=7.61
+
+
+qsoload_q5-001,48.0 (baseline)
+Execution time: 48.049
+---------------------------------------
+SimpleAggregate cost=68.26
+  Nested Loop cost=3934.25
+    Gather cost=3926.63
+      Nested Loop cost=2926.53
+        Nested Loop cost=2918.73
+          Nested Loop cost=2911.08
+            Nested Loop cost=2750.79
+              Merge Join cost=2689.06
+                Sort cost=2685.77
+                  Seq Scan [tag AS t1] cost=2684.64
+                Sort cost=3.18
+                  Seq Scan [site AS s1] cost=3.16
+              Index Only Scan [tag_question AS tq1] cost=61.42
+            Index Scan [question AS q1] cost=7.62
+          Index Scan [so_user AS u1] cost=7.64
+        Index Only Scan [comment AS c1] cost=7.79
+    Index Scan [account AS acc] cost=7.61
+
+
+qsoload_q5-002,68.3 (baseline)
+Execution time: 68.26
+---------------------------------------
+SimpleAggregate cost=23.688
+  Nested Loop cost=3796.86
+    Gather cost=3789.25
+      Nested Loop cost=2789.15
+        Nested Loop cost=2781.35
+          Nested Loop cost=2773.71
+            Nested Loop cost=2613.41
+              Merge Join cost=2551.69
+                Sort cost=2548.4
+                  Seq Scan [tag AS t1] cost=2547.31
+                Sort cost=3.18
+                  Seq Scan [site AS s1] cost=3.16
+              Index Only Scan [tag_question AS tq1] cost=61.42
+            Index Scan [question AS q1] cost=7.62
+          Index Scan [so_user AS u1] cost=7.63
+        Index Only Scan [comment AS c1] cost=7.79
+    Index Scan [account AS acc] cost=7.61
+
+
+qsoload_q5-003,23.7 (baseline)
+Execution time: 23.688
+---------------------------------------
+SimpleAggregate cost=24.48
+  Nested Loop cost=3796.0
+    Gather cost=3788.38
+      Nested Loop cost=2788.28
+        Nested Loop cost=2780.48
+          Nested Loop cost=2772.83
+            Nested Loop cost=2612.53
+              Merge Join cost=2550.54
+                Sort cost=2547.34
+                  Seq Scan [tag AS t1] cost=2547.31
+                Sort cost=3.18
+                  Seq Scan [site AS s1] cost=3.16
+              Index Only Scan [tag_question AS tq1] cost=61.69
+            Index Scan [question AS q1] cost=7.62
+          Index Scan [so_user AS u1] cost=7.64
+        Index Only Scan [comment AS c1] cost=7.79
+    Index Scan [account AS acc] cost=7.61
+
+
+qsoload_q5-004,24.5 (baseline)
+Execution time: 24.48
+---------------------------------------
+SimpleAggregate cost=100.743
+  Nested Loop cost=4894.89
+    Gather cost=4887.28
+      Nested Loop cost=3887.18
+        Nested Loop cost=3879.38
+          Nested Loop cost=3871.74
+            Nested Loop cost=3711.44
+              Merge Join cost=3649.51
+                Sort cost=3646.29
+                  Seq Scan [tag AS t1] cost=3645.96
+                Sort cost=3.18
+                  Seq Scan [site AS s1] cost=3.16
+              Index Only Scan [tag_question AS tq1] cost=61.62
+            Index Scan [question AS q1] cost=7.62
+          Index Scan [so_user AS u1] cost=7.63
+        Index Only Scan [comment AS c1] cost=7.79
+    Index Scan [account AS acc] cost=7.61
+
+
+qsoload_q5-005,100.7 (baseline)
+Execution time: 100.743
+---------------------------------------
+SimpleAggregate cost=20.502
+  Nested Loop cost=3795.87
+    Gather cost=3788.26
+      Nested Loop cost=2788.16
+        Nested Loop cost=2780.36
+          Nested Loop cost=2772.72
+            Nested Loop cost=2612.53
+              Merge Join cost=2550.54
+                Sort cost=2547.34
+                  Seq Scan [tag AS t1] cost=2547.31
+                Sort cost=3.18
+                  Seq Scan [site AS s1] cost=3.16
+              Index Only Scan [tag_question AS tq1] cost=61.69
+            Index Scan [question AS q1] cost=7.62
+          Index Scan [so_user AS u1] cost=7.62
+        Index Scan [comment AS c1] cost=7.79
+    Index Scan [account AS acc] cost=7.61
+
+
+qsoload_q6-001,20.5 (baseline)
+Execution time: 20.502
+---------------------------------------
+SimpleAggregate cost=167.158
+  Nested Loop cost=3795.87
+    Gather cost=3788.26
+      Nested Loop cost=2788.16
+        Nested Loop cost=2780.36
+          Nested Loop cost=2772.72
+            Nested Loop cost=2612.53
+              Merge Join cost=2550.54
+                Sort cost=2547.34
+                  Seq Scan [tag AS t1] cost=2547.31
+                Sort cost=3.18
+                  Seq Scan [site AS s1] cost=3.16
+              Index Only Scan [tag_question AS tq1] cost=61.69
+            Index Scan [question AS q1] cost=7.62
+          Index Scan [so_user AS u1] cost=7.62
+        Index Scan [comment AS c1] cost=7.79
+    Index Scan [account AS acc] cost=7.61
+
+
+qsoload_q6-002,167.2 (baseline)
+Execution time: 167.158
+---------------------------------------
+SimpleAggregate cost=56.829
+  Nested Loop cost=4208.59
+    Gather cost=4200.98
+      Nested Loop cost=3200.88
+        Nested Loop cost=3193.08
+          Nested Loop cost=3185.44
+            Nested Loop cost=3025.25
+              Merge Join cost=2963.45
+                Sort cost=2960.18
+                  Seq Scan [tag AS t1] cost=2959.3
+                Sort cost=3.18
+                  Seq Scan [site AS s1] cost=3.16
+              Index Only Scan [tag_question AS tq1] cost=61.49
+            Index Scan [question AS q1] cost=7.62
+          Index Scan [so_user AS u1] cost=7.62
+        Index Scan [comment AS c1] cost=7.79
+    Index Scan [account AS acc] cost=7.61
+
+
+qsoload_q6-003,56.8 (baseline)
+Execution time: 56.829
+---------------------------------------
+SimpleAggregate cost=191.398
+  Nested Loop cost=4207.99
+    Gather cost=4200.37
+      Nested Loop cost=3200.27
+        Nested Loop cost=3192.47
+          Nested Loop cost=3184.84
+            Nested Loop cost=3024.65
+              Merge Join cost=2962.65
+                Sort cost=2959.44
+                  Seq Scan [tag AS t1] cost=2959.3
+                Sort cost=3.18
+                  Seq Scan [site AS s1] cost=3.16
+              Index Only Scan [tag_question AS tq1] cost=61.69
+            Index Scan [question AS q1] cost=7.62
+          Index Scan [so_user AS u1] cost=7.62
+        Index Scan [comment AS c1] cost=7.79
+    Index Scan [account AS acc] cost=7.61
+
+
+qsoload_q6-004,191.4 (baseline)
+Execution time: 191.398
+---------------------------------------
+SimpleAggregate cost=29.975
+  Nested Loop cost=4070.6
+    Gather cost=4062.99
+      Nested Loop cost=3062.89
+        Nested Loop cost=3055.09
+          Nested Loop cost=3047.45
+            Nested Loop cost=2887.26
+              Merge Join cost=2825.27
+                Sort cost=2822.06
+                  Seq Scan [tag AS t1] cost=2821.97
+                Sort cost=3.18
+                  Seq Scan [site AS s1] cost=3.16
+              Index Only Scan [tag_question AS tq1] cost=61.69
+            Index Scan [question AS q1] cost=7.62
+          Index Scan [so_user AS u1] cost=7.62
+        Index Scan [comment AS c1] cost=7.79
+    Index Scan [account AS acc] cost=7.61
+
+
+qsoload_q6-005,30.0 (baseline)
+Execution time: 29.975
+---------------------------------------
+SimpleAggregate cost=724.128
+  Gather cost=492490.94
+    Nested Loop cost=491490.34
+      Nested Loop cost=491402.62
+        Nested Loop cost=489378.26
+          Seq Scan [badge AS b2] cost=477733.43
+          Index Only Scan [badge AS b1] cost=8.5
+        Index Scan [so_user AS u1] cost=4.85
+      Index Scan [account AS acc] cost=4.62
+
+
+qsoload_q7-001,724.1 (baseline)
+Execution time: 724.128
+---------------------------------------
+SimpleAggregate cost=371.123
+  Gather cost=492708.48
+    Nested Loop cost=491707.78
+      Nested Loop cost=491610.83
+        Nested Loop cost=489378.26
+          Seq Scan [badge AS b1] cost=477733.43
+          Index Only Scan [badge AS b2] cost=8.5
+        Index Scan [so_user AS u1] cost=4.84
+      Index Scan [account AS acc] cost=4.62
+
+
+qsoload_q7-002,371.1 (baseline)
+Execution time: 371.123
+---------------------------------------
+SimpleAggregate cost=360.417
+  Nested Loop cost=490415.42
+    Gather cost=490410.8
+      Nested Loop cost=489410.7
+        Nested Loop cost=489378.26
+          Seq Scan [badge AS b1] cost=477733.43
+          Index Only Scan [badge AS b2] cost=8.5
+        Index Scan [so_user AS u1] cost=8.11
+    Index Scan [account AS acc] cost=4.62
+
+
+qsoload_q7-003,360.4 (baseline)
+Execution time: 360.417
+---------------------------------------
+SimpleAggregate cost=2845.033
+  Gather cost=942377.5
+    Nested Loop cost=941256.4
+      Hash Join cost=888307.98
+        Seq Scan [badge AS b1] cost=477733.43
+        Hash cost=401323.27
+          Hash Join cost=401323.27
+            Seq Scan [so_user AS u1] cost=239366.81
+            Hash cost=149025.24
+              Seq Scan [account AS acc] cost=149025.24
+      Index Only Scan [badge AS b2] cost=5.51
+
+
+qsoload_q7-004,2845.0 (baseline)
+Execution time: 2845.033
+---------------------------------------
+SimpleAggregate cost=384.807
+  Nested Loop cost=490415.42
+    Gather cost=490410.8
+      Nested Loop cost=489410.7
+        Nested Loop cost=489378.26
+          Seq Scan [badge AS b1] cost=477733.43
+          Index Only Scan [badge AS b2] cost=8.5
+        Index Scan [so_user AS u1] cost=8.11
+    Index Scan [account AS acc] cost=4.62
+
+
+qsoload_q7-005,384.8 (baseline)
+Execution time: 384.807
+---------------------------------------
+SimpleAggregate cost=10.737
+  Gather cost=4235.25
+    Nested Loop cost=3235.15
+      Nested Loop cost=3227.13
+        Nested Loop cost=3218.96
+          Nested Loop cost=3210.81
+            Nested Loop cost=3202.79
+              Nested Loop cost=3194.62
+                Nested Loop cost=3026.38
+                  Merge Join cost=2964.86
+                    Sort cost=2961.5
+                      Seq Scan [tag AS t1] cost=2959.3
+                    Sort cost=3.18
+                      Seq Scan [site AS s1] cost=3.16
+                  Index Only Scan [tag_question AS tq1] cost=61.21
+                Index Only Scan [post_link AS pl] cost=8.0
+              Index Scan [comment AS c1] cost=8.15
+            Index Only Scan [question AS q1] cost=8.01
+          Index Only Scan [tag_question AS tq2] cost=8.14
+        Index Scan [comment AS c2] cost=8.15
+      Index Only Scan [question AS q2] cost=8.01
+
+
+qsoload_q8-001,10.7 (baseline)
+Execution time: 10.737
+---------------------------------------
+SimpleAggregate cost=7.769
+  Gather cost=3821.91
+    Nested Loop cost=2821.81
+      Nested Loop cost=2813.79
+        Nested Loop cost=2805.62
+          Nested Loop cost=2797.46
+            Nested Loop cost=2789.44
+              Nested Loop cost=2781.28
+                Nested Loop cost=2613.03
+                  Merge Join cost=2551.17
+                    Sort cost=2547.92
+                      Seq Scan [tag AS t1] cost=2547.31
+                    Sort cost=3.18
+                      Seq Scan [site AS s1] cost=3.16
+                  Index Only Scan [tag_question AS tq1] cost=61.55
+                Index Only Scan [post_link AS pl] cost=8.0
+              Index Scan [comment AS c1] cost=8.15
+            Index Only Scan [question AS q1] cost=8.01
+          Index Only Scan [tag_question AS tq2] cost=8.14
+        Index Scan [comment AS c2] cost=8.15
+      Index Only Scan [question AS q2] cost=8.01
+
+
+qsoload_q8-002,7.8 (baseline)
+Execution time: 7.769
+---------------------------------------
+SimpleAggregate cost=8.793
+  Gather cost=3821.41
+    Nested Loop cost=2821.31
+      Nested Loop cost=2813.29
+        Nested Loop cost=2805.12
+          Nested Loop cost=2796.96
+            Nested Loop cost=2788.94
+              Nested Loop cost=2780.78
+                Nested Loop cost=2612.53
+                  Merge Join cost=2550.54
+                    Sort cost=2547.34
+                      Seq Scan [tag AS t1] cost=2547.31
+                    Sort cost=3.18
+                      Seq Scan [site AS s1] cost=3.16
+                  Index Only Scan [tag_question AS tq1] cost=61.69
+                Index Only Scan [post_link AS pl] cost=8.0
+              Index Scan [comment AS c1] cost=8.15
+            Index Only Scan [question AS q1] cost=8.01
+          Index Only Scan [tag_question AS tq2] cost=8.14
+        Index Scan [comment AS c2] cost=8.15
+      Index Only Scan [question AS q2] cost=8.01
+
+
+qsoload_q8-003,8.8 (baseline)
+Execution time: 8.793
+---------------------------------------
+SimpleAggregate cost=10.349
+  Gather cost=4096.71
+    Nested Loop cost=3096.61
+      Nested Loop cost=3088.59
+        Nested Loop cost=3080.42
+          Nested Loop cost=3072.27
+            Nested Loop cost=3064.24
+              Nested Loop cost=3056.08
+                Nested Loop cost=2887.84
+                  Merge Join cost=2826.05
+                    Sort cost=2822.78
+                      Seq Scan [tag AS t1] cost=2821.97
+                    Sort cost=3.18
+                      Seq Scan [site AS s1] cost=3.16
+                  Index Only Scan [tag_question AS tq1] cost=61.48
+                Index Only Scan [post_link AS pl] cost=8.0
+              Index Scan [comment AS c1] cost=8.15
+            Index Only Scan [question AS q1] cost=8.01
+          Index Only Scan [tag_question AS tq2] cost=8.14
+        Index Scan [comment AS c2] cost=8.15
+      Index Only Scan [question AS q2] cost=8.01
+
+
+qsoload_q8-004,10.3 (baseline)
+Execution time: 10.349
+---------------------------------------
+SimpleAggregate cost=9.808
+  Gather cost=4097.86
+    Nested Loop cost=3097.76
+      Nested Loop cost=3089.74
+        Nested Loop cost=3081.57
+          Nested Loop cost=3073.41
+            Nested Loop cost=3065.39
+              Nested Loop cost=3057.22
+                Nested Loop cost=2888.98
+                  Merge Join cost=2827.44
+                    Sort cost=2824.09
+                      Seq Scan [tag AS t1] cost=2821.97
+                    Sort cost=3.18
+                      Seq Scan [site AS s1] cost=3.16
+                  Index Only Scan [tag_question AS tq1] cost=61.23
+                Index Only Scan [post_link AS pl] cost=8.0
+              Index Scan [comment AS c1] cost=8.15
+            Index Only Scan [question AS q1] cost=8.01
+          Index Only Scan [tag_question AS tq2] cost=8.14
+        Index Scan [comment AS c2] cost=8.15
+      Index Only Scan [question AS q2] cost=8.01
+
+
+qsoload_q8-005,9.8 (baseline)
+Execution time: 9.808
+---------------------------------------
+SimpleAggregate cost=25327.801
+  Nested Loop cost=4116.59
+    Gather cost=4109.53
+      Nested Loop cost=3109.43
+        Nested Loop cost=3099.32
+          Nested Loop cost=2768.04
+            Nested Loop cost=2760.96
+              Nested Loop cost=2612.59
+                Merge Join cost=2550.52
+                  Sort cost=2547.32
+                    Seq Scan [tag AS t1] cost=2547.31
+                  Sort cost=3.18
+                    Seq Scan [site AS s1] cost=3.16
+                Index Only Scan [tag_question AS tq1] cost=61.69
+              Index Scan [question AS q1] cost=7.05
+            Index Scan [so_user AS u1] cost=7.07
+          Index Only Scan [post_link AS pl] cost=331.26
+        Index Only Scan [answer AS a] cost=7.06
+    Index Scan [account AS acc] cost=7.06
+
+
+qsoload_q9-003,25327.8 (baseline)
+Execution time: 25327.801
+---------------------------------------
+SimpleAggregate cost=85187.825
+  Nested Loop cost=4116.57
+    Gather cost=4109.51
+      Nested Loop cost=3109.41
+        Nested Loop cost=3099.31
+          Nested Loop cost=2768.04
+            Nested Loop cost=2760.96
+              Nested Loop cost=2612.59
+                Merge Join cost=2550.52
+                  Sort cost=2547.32
+                    Seq Scan [tag AS t1] cost=2547.31
+                  Sort cost=3.18
+                    Seq Scan [site AS s1] cost=3.16
+                Index Only Scan [tag_question AS tq1] cost=61.69
+              Index Scan [question AS q1] cost=7.05
+            Index Scan [so_user AS u1] cost=7.07
+          Index Only Scan [post_link AS pl] cost=331.26
+        Index Only Scan [answer AS a] cost=7.05
+    Index Scan [account AS acc] cost=7.06
+
+
+qsoload_q9-005,85187.8 (baseline)
+Execution time: 85187.825
+---------------------------------------
+SimpleAggregate cost=115808.304
+  Nested Loop cost=4116.56
+    Gather cost=4109.51
+      Nested Loop cost=3109.41
+        Nested Loop cost=3099.31
+          Nested Loop cost=2768.04
+            Nested Loop cost=2760.96
+              Nested Loop cost=2612.59
+                Merge Join cost=2550.52
+                  Sort cost=2547.32
+                    Seq Scan [tag AS t1] cost=2547.31
+                  Sort cost=3.18
+                    Seq Scan [site AS s1] cost=3.16
+                Index Only Scan [tag_question AS tq1] cost=61.69
+              Index Scan [question AS q1] cost=7.05
+            Index Scan [so_user AS u1] cost=7.07
+          Index Only Scan [post_link AS pl] cost=331.26
+        Index Only Scan [answer AS a] cost=7.05
+    Index Scan [account AS acc] cost=7.05
+
+
+qsoload_q9-006,115808.3 (baseline)
+Execution time: 115808.304
+---------------------------------------
+SimpleAggregate cost=99519.177
+  Nested Loop cost=4116.59
+    Gather cost=4109.53
+      Nested Loop cost=3109.43
+        Nested Loop cost=3099.32
+          Nested Loop cost=2768.04
+            Nested Loop cost=2760.96
+              Nested Loop cost=2612.59
+                Merge Join cost=2550.52
+                  Sort cost=2547.32
+                    Seq Scan [tag AS t1] cost=2547.31
+                  Sort cost=3.18
+                    Seq Scan [site AS s1] cost=3.16
+                Index Only Scan [tag_question AS tq1] cost=61.69
+              Index Scan [question AS q1] cost=7.05
+            Index Scan [so_user AS u1] cost=7.07
+          Index Only Scan [post_link AS pl] cost=331.26
+        Index Only Scan [answer AS a] cost=7.06
+    Index Scan [account AS acc] cost=7.06
+
+
+qsoload_q9-008,99519.2 (baseline)
+Execution time: 99519.177
+---------------------------------------
+SimpleAggregate cost=78405.615
+  Nested Loop cost=4116.57
+    Gather cost=4109.51
+      Nested Loop cost=3109.41
+        Nested Loop cost=3099.31
+          Nested Loop cost=2768.04
+            Nested Loop cost=2760.96
+              Nested Loop cost=2612.59
+                Merge Join cost=2550.52
+                  Sort cost=2547.32
+                    Seq Scan [tag AS t1] cost=2547.31
+                  Sort cost=3.18
+                    Seq Scan [site AS s1] cost=3.16
+                Index Only Scan [tag_question AS tq1] cost=61.69
+              Index Scan [question AS q1] cost=7.05
+            Index Scan [so_user AS u1] cost=7.07
+          Index Only Scan [post_link AS pl] cost=331.26
+        Index Only Scan [answer AS a] cost=7.05
+    Index Scan [account AS acc] cost=7.06
+
+
+qsoload_q9-013,78405.6 (baseline)
+Execution time: 78405.615
+latency_expert/workload (seconds): 550.71 (81 queries)
+latency_expert_test/workload (seconds): 0.00 (0 queries)
+Number of joins [3, 11], avg 6.4
