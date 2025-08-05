@@ -68,40 +68,57 @@ def extract_plan_info(plan_json):
 
     return table_cardinality, filter_cardinality
 
-def analyze_sql(sql, connection_info,REAL_EXECUTION,sql_name):
+def analyze_sql(sql, connection_info, REAL_EXECUTION, sql_name, introduce_errors=False):
     import json
-    # remove the property timeout in dictionary connection_info, if exists
-    connection_info_cp = connection_info.copy()
+    import random
     
-    if 'timeout' in connection_info_cp:
-        del connection_info_cp['timeout']
+    # set a random seed
+    random.seed(42)
 
-    # get the JSON object of the query plan (assuming get_postgres_hint_json is defined)
-    plan_json = get_postgres_hint_json(sql, connection_info_cp,REAL_EXECUTION,sql_name)
-    # change string to json
-    plan_json = json.loads(plan_json)
-    
-    # extract the cardinality of the tables and the filter cardinality (assuming extract_plan_info is defined)
+    # Make a shallow copy of connection_info and remove 'timeout' if present
+    connection_info_cp = connection_info.copy()
+    connection_info_cp.pop('timeout', None)
+
+    # Retrieve the query plan as a JSON string (assumes get_postgres_hint_json is defined)
+    plan_str = get_postgres_hint_json(sql, connection_info_cp, REAL_EXECUTION, sql_name)
+    plan_json = json.loads(plan_str)
+
+    # Extract table cardinalities and filter cardinalities
+    # (assumes extract_plan_info returns (dict(table→rows), dict((alias, filter)→rows)))
     table_card, filter_card = extract_plan_info(plan_json)
-    
-    # store the results of each line in a list, then merge them into a string and return
-    result_lines = []
-    
-    result_lines.append("Table Cardinality:")
+
+    # If error injection is enabled, apply multiplicative perturbation to each cardinality
+    if introduce_errors:
+        def perturb(rows: int) -> int:
+            """
+            Introduce a random multiplicative error in log-space:
+            - If rows >= 10: factor = 10^power, power ∈ [-1, 1] → scales [0.1×, 10×]
+            - If rows < 10:  factor = 10^power, power ∈ [0, 1]   → scales [1×, 10×]
+            Ensures perturbed value is at least 1.
+            """
+            if rows >= 10:
+                power = random.uniform(-1, 1)
+            else:
+                power = random.uniform(0, 1)
+            factor = 10 ** power
+            return max(1, int(rows * factor))
+
+        # Apply perturbation to each table’s cardinality
+        table_card = {tbl: perturb(cnt) for tbl, cnt in table_card.items()}
+        # Apply perturbation to each filter’s cardinality
+        filter_card = {key: perturb(cnt) for key, cnt in filter_card.items()}
+
+    # Build the output lines
+    result_lines = ["Table Cardinality:"]
     for table, rows in table_card.items():
         result_lines.append(f"  {table}: {rows}")
-    
+
     result_lines.append("Filter Cardinality:")
     for (alias, filt), rows in filter_card.items():
         result_lines.append(f"  ({alias}, {filt}): {rows}")
-    
-    # merge all lines with newline characters into a string
-    concatened_text = "\n".join(result_lines)
-    
-    # optional: print the result
-    # print(concatened_text)
-    
-    return concatened_text
+
+    # Return all lines joined by newlines
+    return "\n".join(result_lines)
 
     
 
