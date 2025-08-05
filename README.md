@@ -1,6 +1,6 @@
 # SEFRQO: LLM-Based Query Optimization
 
-This branch contains the implementation of SEFRQO.
+This branch contains the implementation of SEFRQO. The experimental data can be seen under the folder of `exp_original_results`.
 
 You can reproduce the experiments described in our paper using either:
 - Local LLMs (as specified in the paper), or
