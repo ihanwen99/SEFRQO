@@ -1,6 +1,6 @@
 # SEFRQO: LLM-Based Query Optimization
 
-This branch contains the implementation of the **online phase** of SEFRQO, specifically the **RAG (Retrieval-Augmented Generation)** component.
+This branch contains the implementation of SEFRQO.
 
 You can reproduce the experiments described in our paper using either:
 - Local LLMs (as specified in the paper), or
