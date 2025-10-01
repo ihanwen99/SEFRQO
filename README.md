@@ -1,5 +1,8 @@
 # SEFRQO: LLM-Based Query Optimization
 
+Currenly we are still working on preparing the final version of the code before the camera-ready submission, so the fine-tuning part is still imcomplete. If you would like to replay the experiemnts, please use the following model checkpoints:
+https://drive.google.com/drive/folders/13IcyAW-zPrhVkQFZ6Ho45htY_zhGfWfD?usp=sharing
+
 This branch contains the implementation of SEFRQO. The experimental data can be seen under the folder of `exp_original_results`.
 
 You can reproduce the experiments described in our paper using either:
